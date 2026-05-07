@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8"/>
@@ -8,334 +7,655 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 <style>
 /* =====================================================
-   人间编年 · 四时书房
+&nbsp;&nbsp;&nbsp;人间编年 · 四时书房主题系统
 ===================================================== */
 :root{
-  --bg:#F8F4EC;
-  --paper:#EFE7DA;
-  --paper2:#E4D7C3;
-  --text:#2B2622;
-  --text2:#6D6257;
-  --text3:#9A8C7D;
-  --accent:#A56A4F;
-  --accent-soft:#E8D7C8;
-  --border:#D9CCB8;
-  --shadow: 0 12px 40px rgba(90,70,50,.08);
-  --radius:26px;
-  --font-serif: 'Noto Serif SC', serif;
-  --font-hand: 'Ma Shan Zheng', serif;
+&nbsp;&nbsp;--bg:#F8F4EC;
+&nbsp;&nbsp;--paper:#EFE7DA;
+&nbsp;&nbsp;--paper2:#E4D7C3;
+&nbsp;&nbsp;--text:#2B2622;
+&nbsp;&nbsp;--text2:#6D6257;
+&nbsp;&nbsp;--text3:#9A8C7D;
+&nbsp;&nbsp;--accent:#A56A4F;
+&nbsp;&nbsp;--accent-soft:#E8D7C8;
+&nbsp;&nbsp;--border:#D9CCB8;
+&nbsp;&nbsp;--shadow:
+&nbsp;&nbsp;&nbsp;&nbsp;0 12px 40px rgba(90,70,50,.08);
+&nbsp;&nbsp;--radius:26px;
+&nbsp;&nbsp;--safe-bottom:env(safe-area-inset-bottom);
 }
-
-/* 主题定义 */
-body.theme-xuanzhi { --bg:#F8F4EC; --paper:#EFE7DA; --paper2:#E4D7C3; --text:#2B2622; --text2:#6D6257; --text3:#9A8C7D; --accent:#A56A4F; --accent-soft:#E8D7C8; --border:#D9CCB8; }
-body.theme-songyan { 
-  --bg:#161311; --paper:#221D1A; --paper2:#2E2621; --text:#F2E8DC; --text2:#B7A99B; 
-  --text3:#7C7067; --accent:#8FAE8E; --accent-soft:#2D3830; --border:#3A312B; 
-  --shadow:0 16px 50px rgba(0,0,0,.45); 
+/* =====================================================
+&nbsp;&nbsp;&nbsp;宣纸
+===================================================== */
+body.theme-xuanzhi{
+&nbsp;&nbsp;--bg:#F8F4EC;
+&nbsp;&nbsp;--paper:#EFE7DA;
+&nbsp;&nbsp;--paper2:#E4D7C3;
+&nbsp;&nbsp;--text:#2B2622;
+&nbsp;&nbsp;--text2:#6D6257;
+&nbsp;&nbsp;--text3:#9A8C7D;
+&nbsp;&nbsp;--accent:#A56A4F;
+&nbsp;&nbsp;--accent-soft:#E8D7C8;
+&nbsp;&nbsp;--border:#D9CCB8;
 }
-body.theme-yanzhi { 
-  --bg:#2A1E22; --paper:#3A2A2F; --paper2:#49353B; --text:#F8EDEE; --text2:#D5B8BE; 
-  --text3:#A7858E; --accent:#E09AB0; --accent-soft:#5B3B46; --border:#6A4C56; 
+/* =====================================================
+&nbsp;&nbsp;&nbsp;松烟
+===================================================== */
+body.theme-songyan{
+&nbsp;&nbsp;--bg:#161311;
+&nbsp;&nbsp;--paper:#221D1A;
+&nbsp;&nbsp;--paper2:#2E2621;
+&nbsp;&nbsp;--text:#F2E8DC;
+&nbsp;&nbsp;--text2:#B7A99B;
+&nbsp;&nbsp;--text3:#7C7067;
+&nbsp;&nbsp;--accent:#8FAE8E;
+&nbsp;&nbsp;--accent-soft:#2D3830;
+&nbsp;&nbsp;--border:#3A312B;
+&nbsp;&nbsp;--shadow:
+&nbsp;&nbsp;&nbsp;&nbsp;0 16px 50px rgba(0,0,0,.45);
 }
-body.theme-qingjian { 
-  --bg:#182022; --paper:#233034; --paper2:#2E4045; --text:#E6EFE8; --text2:#A8B9B0; 
-  --text3:#72847B; --accent:#7FA89A; --accent-soft:#31454A; --border:#395056; 
+/* =====================================================
+&nbsp;&nbsp;&nbsp;胭脂
+===================================================== */
+body.theme-yanzhi{
+&nbsp;&nbsp;--bg:#2A1E22;
+&nbsp;&nbsp;--paper:#3A2A2F;
+&nbsp;&nbsp;--paper2:#49353B;
+&nbsp;&nbsp;--text:#F8EDEE;
+&nbsp;&nbsp;--text2:#D5B8BE;
+&nbsp;&nbsp;--text3:#A7858E;
+&nbsp;&nbsp;--accent:#E09AB0;
+&nbsp;&nbsp;--accent-soft:#5B3B46;
+&nbsp;&nbsp;--border:#6A4C56;
+&nbsp;&nbsp;--shadow:
+&nbsp;&nbsp;&nbsp;&nbsp;0 16px 50px rgba(0,0,0,.38);
 }
-
-/* 全局 */
-* { margin:0; padding:0; box-sizing:border-box; }
-html, body { height:100%; overflow:hidden; }
-body {
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Noto Sans SC',sans-serif;
-  -webkit-font-smoothing:antialiased;
+/* =====================================================
+&nbsp;&nbsp;&nbsp;青简
+===================================================== */
+body.theme-qingjian{
+&nbsp;&nbsp;--bg:#182022;
+&nbsp;&nbsp;--paper:#233034;
+&nbsp;&nbsp;--paper2:#2E4045;
+&nbsp;&nbsp;--text:#E6EFE8;
+&nbsp;&nbsp;--text2:#A8B9B0;
+&nbsp;&nbsp;--text3:#72847B;
+&nbsp;&nbsp;--accent:#7FA89A;
+&nbsp;&nbsp;--accent-soft:#31454A;
+&nbsp;&nbsp;--border:#395056;
+&nbsp;&nbsp;--shadow:
+&nbsp;&nbsp;&nbsp;&nbsp;0 16px 50px rgba(0,0,0,.40);
 }
-body::before {
-  content:'';
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:.10;
-  background: radial-gradient(circle at 20% 30%, var(--accent-soft), transparent 25%);
+/* =====================================================
+&nbsp;&nbsp;&nbsp;全局
+===================================================== */
+*{
+&nbsp;&nbsp;margin:0;
+&nbsp;&nbsp;padding:0;
+&nbsp;&nbsp;box-sizing:border-box;
 }
-
-/* 顶栏 */
-header {
-  height:72px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 20px;
-  border-bottom:1px solid var(--border);
-  background:rgba(255,255,255,.04);
-  backdrop-filter:blur(12px);
-  flex-shrink:0;
+html,
+body{
+&nbsp;&nbsp;height:100%;
+&nbsp;&nbsp;overflow:hidden;
 }
-.logo-box { display:flex; flex-direction:column; }
-.logo {
-  font-family:var(--font-hand);
-  font-size:36px;
-  color:var(--accent);
-  line-height:1;
-  white-space:nowrap;
+body{
+&nbsp;&nbsp;background:var(--bg);
+&nbsp;&nbsp;color:var(--text);
+&nbsp;&nbsp;font-family:'Noto Sans SC',sans-serif;
+&nbsp;&nbsp;transition:
+&nbsp;&nbsp;&nbsp;&nbsp;background .35s,
+&nbsp;&nbsp;&nbsp;&nbsp;color .35s;
+&nbsp;&nbsp;position:relative;
+&nbsp;&nbsp;-webkit-font-smoothing:antialiased;
 }
-.logo-sub {
-  margin-top:4px;
-  font-size:13px;
-  color:var(--text2);
-  letter-spacing:0.5px;
+body::before{
+&nbsp;&nbsp;content:'';
+&nbsp;&nbsp;position:fixed;
+&nbsp;&nbsp;inset:0;
+&nbsp;&nbsp;pointer-events:none;
+&nbsp;&nbsp;opacity:.12;
+&nbsp;&nbsp;background:
+&nbsp;&nbsp;&nbsp;&nbsp;radial-gradient(circle at 15% 20%, var(--accent-soft), transparent 24%),
+&nbsp;&nbsp;&nbsp;&nbsp;radial-gradient(circle at 80% 80%, var(--accent-soft), transparent 22%);
 }
-
-/* 主题按钮 */
-.theme-group {
-  display:flex;
-  gap:8px;
+/* =====================================================
+&nbsp;&nbsp;&nbsp;顶栏
+===================================================== */
+header{
+&nbsp;&nbsp;height:74px;
+&nbsp;&nbsp;display:flex;
+&nbsp;&nbsp;align-items:center;
+&nbsp;&nbsp;justify-content:space-between;
+&nbsp;&nbsp;padding:0 26px;
+&nbsp;&nbsp;border-bottom:1px solid var(--border);
+&nbsp;&nbsp;background:rgba(255,255,255,.03);
+&nbsp;&nbsp;backdrop-filter:blur(14px);
 }
-.theme-btn {
-  border:none;
-  background:var(--paper);
-  border:1px solid var(--border);
-  color:var(--text2);
-  border-radius:999px;
-  padding:8px 15px;
-  cursor:pointer;
-  font-size:13px;
-  transition:.2s;
+.logo-box{
+&nbsp;&nbsp;display:flex;
+&nbsp;&nbsp;flex-direction:column;
 }
-.theme-btn:hover {
-  border-color:var(--accent);
-  color:var(--accent);
+.logo{
+&nbsp;&nbsp;font-family:'Ma Shan Zheng',serif;
+&nbsp;&nbsp;font-size:38px;
+&nbsp;&nbsp;color:var(--accent);
+&nbsp;&nbsp;line-height:1;
 }
-
-/* 布局 */
-.layout {
-  height:calc(100vh - 72px);
-  display:grid;
-  grid-template-columns:360px 1fr;
+.logo-sub{
+&nbsp;&nbsp;margin-top:6px;
+&nbsp;&nbsp;font-size:13px;
+&nbsp;&nbsp;color:var(--text2);
+&nbsp;&nbsp;letter-spacing:.5px;
 }
-@media (max-width:980px) {
-  .layout { grid-template-columns:1fr; }
-  .sidebar { display:none; }
-  .main { padding:24px 18px 100px; }
-  .logo { font-size:32px; }
+/* =====================================================
+&nbsp;&nbsp;&nbsp;主题切换
+===================================================== */
+.theme-group{
+&nbsp;&nbsp;display:flex;
+&nbsp;&nbsp;gap:12px;
 }
-
-/* 主内容 */
-.main {
-  overflow-y:auto;
-  padding:28px 32px;
-  line-height:1.9;
-  -webkit-overflow-scrolling:touch;
+.theme-btn{
+&nbsp;&nbsp;border:none;
+&nbsp;&nbsp;background:var(--paper);
+&nbsp;&nbsp;border:1px solid var(--border);
+&nbsp;&nbsp;color:var(--text2);
+&nbsp;&nbsp;border-radius:999px;
+&nbsp;&nbsp;padding:10px 18px;
+&nbsp;&nbsp;cursor:pointer;
+&nbsp;&nbsp;transition:.2s;
+&nbsp;&nbsp;font-size:13px;
 }
-
-/* 隐藏滚动条但保留功能 */
-.main::-webkit-scrollbar { display:none; }
-.sidebar::-webkit-scrollbar { display:none; }
-
-/* 卡片 */
-.panel, .card {
-  background:var(--paper);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  position:relative;
+.theme-btn:hover{
+&nbsp;&nbsp;transform:translateY(-2px);
+&nbsp;&nbsp;border-color:var(--accent);
+&nbsp;&nbsp;color:var(--accent);
 }
-.panel { padding:24px; }
-.card { padding:26px; margin-top:26px; }
-
-/* 今日史官 */
-.quote {
-  background:var(--accent-soft);
-  border:1px dashed var(--accent);
-  border-radius:22px;
-  padding:26px 28px;
-  margin-bottom:32px;
-  position:relative;
+/* =====================================================
+&nbsp;&nbsp;&nbsp;布局
+===================================================== */
+.layout{
+&nbsp;&nbsp;height:calc(100vh - 74px);
+&nbsp;&nbsp;display:grid;
+&nbsp;&nbsp;grid-template-columns:360px 1fr;
 }
-.quote::before {
-  content:"✦";
-  position:absolute;
-  left:26px;
-  top:22px;
-  font-size:26px;
-  opacity:0.25;
-  color:var(--accent);
+@media(max-width:980px){
+&nbsp;&nbsp;.layout{
+&nbsp;&nbsp;&nbsp;&nbsp;grid-template-columns:1fr;
+&nbsp;&nbsp;}
+&nbsp;&nbsp;.sidebar{
+&nbsp;&nbsp;&nbsp;&nbsp;display:none;
+&nbsp;&nbsp;}
 }
-.quote-label {
-  color:var(--accent);
-  font-size:14px;
-  margin-bottom:14px;
+.sidebar{
+&nbsp;&nbsp;overflow-y:auto;
+&nbsp;&nbsp;border-right:1px solid var(--border);
+&nbsp;&nbsp;padding:22px;
+&nbsp;&nbsp;-webkit-overflow-scrolling:touch;
 }
-.quote-text {
-  font-family:var(--font-serif);
-  line-height:2;
-  font-size:17.5px;
-  color:var(--text2);
+.main{
+&nbsp;&nbsp;overflow-y:auto;
+&nbsp;&nbsp;padding:30px;
+&nbsp;&nbsp;padding-bottom:140px;
+&nbsp;&nbsp;-webkit-overflow-scrolling:touch;
 }
-
-/* 日期 */
-.date-box {
-  text-align:center;
-  margin-bottom:36px;
+/* =====================================================
+&nbsp;&nbsp;&nbsp;卡片
+===================================================== */
+.panel,
+.card{
+&nbsp;&nbsp;background:var(--paper);
+&nbsp;&nbsp;border:1px solid var(--border);
+&nbsp;&nbsp;border-radius:var(--radius);
+&nbsp;&nbsp;box-shadow:var(--shadow);
+&nbsp;&nbsp;position:relative;
+&nbsp;&nbsp;overflow:hidden;
 }
-.date-box h1 {
-  font-family:var(--font-hand);
-  font-size:72px;
-  color:var(--accent);
-  line-height:1;
+.panel{
+&nbsp;&nbsp;padding:20px;
 }
-.date-box p {
-  margin-top:10px;
-  color:var(--text2);
-  font-size:18.5px;
+.card{
+&nbsp;&nbsp;padding:28px;
 }
-
-/* 标签 */
-.label {
-  color:var(--text2);
-  margin-bottom:16px;
-  font-size:15.5px;
+.panel + .panel,
+.card + .card{
+&nbsp;&nbsp;margin-top:20px;
 }
-
-/* 输入框 */
-textarea {
-  width:100%;
-  border:none;
-  outline:none;
-  background:none;
-  color:var(--text);
-  font-family:var(--font-serif);
-  line-height:2;
-  font-size:16.5px;
-  resize:vertical;
-  min-height:110px;
+.panel::before,
+.card::before{
+&nbsp;&nbsp;content:'';
+&nbsp;&nbsp;position:absolute;
+&nbsp;&nbsp;inset:0;
+&nbsp;&nbsp;background:
+&nbsp;&nbsp;&nbsp;&nbsp;linear-gradient(rgba(255,255,255,.03),rgba(0,0,0,.02));
+&nbsp;&nbsp;pointer-events:none;
 }
-::placeholder { color:var(--text3); }
-
-/* 按钮 */
-.actions {
-  display:flex;
-  gap:14px;
-  margin-top:32px;
+/* =====================================================
+&nbsp;&nbsp;&nbsp;今日史官
+===================================================== */
+.quote{
+&nbsp;&nbsp;background:var(--accent-soft);
+&nbsp;&nbsp;border:1px dashed var(--accent);
+&nbsp;&nbsp;border-radius:22px;
+&nbsp;&nbsp;padding:22px;
+&nbsp;&nbsp;margin-bottom:28px;
 }
-.btn {
-  flex:1;
-  border:none;
-  border-radius:18px;
-  padding:16px;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:600;
-  transition:.25s;
+.quote-label{
+&nbsp;&nbsp;color:var(--accent);
+&nbsp;&nbsp;font-size:13px;
+&nbsp;&nbsp;margin-bottom:12px;
 }
-.btn:hover { transform:translateY(-2px); }
-.btn-primary { background:var(--accent); color:white; }
-.btn-secondary { background:var(--paper2); color:var(--text2); }
+.quote-text{
+&nbsp;&nbsp;font-family:'Noto Serif SC',serif;
+&nbsp;&nbsp;line-height:2;
+&nbsp;&nbsp;font-size:17px;
+&nbsp;&nbsp;color:var(--text2);
+}
+/* =====================================================
+&nbsp;&nbsp;&nbsp;日期
+===================================================== */
+.date-box{
+&nbsp;&nbsp;text-align:center;
+&nbsp;&nbsp;margin-bottom:30px;
+}
+.date-box h1{
+&nbsp;&nbsp;font-family:'Ma Shan Zheng';
+&nbsp;&nbsp;font-size:74px;
+&nbsp;&nbsp;color:var(--accent);
+}
+.date-box p{
+&nbsp;&nbsp;margin-top:10px;
+&nbsp;&nbsp;color:var(--text2);
+&nbsp;&nbsp;font-size:18px;
+}
+/* =====================================================
+&nbsp;&nbsp;&nbsp;输入
+===================================================== */
+.label{
+&nbsp;&nbsp;color:var(--text2);
+&nbsp;&nbsp;margin-bottom:14px;
+&nbsp;&nbsp;font-size:15px;
+}
+textarea,
+input{
+&nbsp;&nbsp;width:100%;
+&nbsp;&nbsp;border:none;
+&nbsp;&nbsp;outline:none;
+&nbsp;&nbsp;background:none;
+&nbsp;&nbsp;color:var(--text);
+&nbsp;&nbsp;font-family:'Noto Serif SC',serif;
+&nbsp;&nbsp;line-height:2;
+&nbsp;&nbsp;font-size:16px;
+}
+textarea{
+&nbsp;&nbsp;resize:vertical;
+&nbsp;&nbsp;min-height:110px;
+}
+::placeholder{
+&nbsp;&nbsp;color:var(--text3);
+}
+/* =====================================================
+&nbsp;&nbsp;&nbsp;按钮
+===================================================== */
+.actions{
+&nbsp;&nbsp;display:flex;
+&nbsp;&nbsp;gap:14px;
+&nbsp;&nbsp;margin-top:24px;
+}
+.btn{
+&nbsp;&nbsp;flex:1;
+&nbsp;&nbsp;border:none;
+&nbsp;&nbsp;border-radius:18px;
+&nbsp;&nbsp;padding:16px;
+&nbsp;&nbsp;cursor:pointer;
+&nbsp;&nbsp;font-size:15px;
+&nbsp;&nbsp;font-weight:600;
+&nbsp;&nbsp;transition:.2s;
+}
+.btn:hover{
+&nbsp;&nbsp;transform:translateY(-2px);
+}
+.btn-primary{
+&nbsp;&nbsp;background:var(--accent);
+&nbsp;&nbsp;color:white;
+}
+.btn-secondary{
+&nbsp;&nbsp;background:var(--paper2);
+&nbsp;&nbsp;color:var(--text2);
+}
+/* =====================================================
+&nbsp;&nbsp;&nbsp;日历
+===================================================== */
+.calendar-head{
+&nbsp;&nbsp;display:flex;
+&nbsp;&nbsp;justify-content:space-between;
+&nbsp;&nbsp;align-items:center;
+&nbsp;&nbsp;margin-bottom:18px;
+}
+.calendar-title{
+&nbsp;&nbsp;font-family:'Ma Shan Zheng';
+&nbsp;&nbsp;font-size:42px;
+&nbsp;&nbsp;color:var(--accent);
+}
+.cal-btn{
+&nbsp;&nbsp;width:44px;
+&nbsp;&nbsp;height:44px;
+&nbsp;&nbsp;border-radius:50%;
+&nbsp;&nbsp;border:none;
+&nbsp;&nbsp;background:var(--bg);
+&nbsp;&nbsp;border:1px solid var(--border);
+&nbsp;&nbsp;color:var(--text2);
+&nbsp;&nbsp;cursor:pointer;
+}
+.week-row,
+.calendar-grid{
+&nbsp;&nbsp;display:grid;
+&nbsp;&nbsp;grid-template-columns:repeat(7,1fr);
+&nbsp;&nbsp;gap:8px;
+}
+.week-row{
+&nbsp;&nbsp;margin-bottom:10px;
+}
+.week-row div{
+&nbsp;&nbsp;text-align:center;
+&nbsp;&nbsp;color:var(--text3);
+}
+.day{
+&nbsp;&nbsp;aspect-ratio:1;
+&nbsp;&nbsp;display:flex;
+&nbsp;&nbsp;align-items:center;
+&nbsp;&nbsp;justify-content:center;
+&nbsp;&nbsp;border-radius:16px;
+&nbsp;&nbsp;cursor:pointer;
+&nbsp;&nbsp;transition:.18s;
+&nbsp;&nbsp;position:relative;
+&nbsp;&nbsp;font-size:18px;
+}
+.day:hover{
+&nbsp;&nbsp;background:var(--accent-soft);
+&nbsp;&nbsp;transform:translateY(-2px);
+}
+.day.today{
+&nbsp;&nbsp;border:2px solid var(--accent);
+}
+.day.selected{
+&nbsp;&nbsp;background:var(--accent);
+&nbsp;&nbsp;color:white;
+&nbsp;&nbsp;font-weight:bold;
+}
+.day.has-entry::after{
+&nbsp;&nbsp;content:'';
+&nbsp;&nbsp;width:6px;
+&nbsp;&nbsp;height:6px;
+&nbsp;&nbsp;border-radius:50%;
+&nbsp;&nbsp;background:var(--accent);
+&nbsp;&nbsp;position:absolute;
+&nbsp;&nbsp;bottom:8px;
+}
+.day.selected.has-entry::after{
+&nbsp;&nbsp;background:white;
+}
+/* =====================================================
+&nbsp;&nbsp;&nbsp;主题说明
+===================================================== */
+.theme-desc{
+&nbsp;&nbsp;margin-top:16px;
+&nbsp;&nbsp;padding:16px;
+&nbsp;&nbsp;border-radius:18px;
+&nbsp;&nbsp;background:var(--accent-soft);
+&nbsp;&nbsp;color:var(--text2);
+&nbsp;&nbsp;line-height:1.9;
+&nbsp;&nbsp;font-size:14px;
+&nbsp;&nbsp;font-family:'Noto Serif SC',serif;
+}
 </style>
 </head>
 <body class="theme-songyan">
-
 <header>
-  <div class="logo-box">
-    <div class="logo">人间编年</div>
-    <div class="logo-sub">不是世界史，而是我的人间史</div>
-  </div>
-  <div class="theme-group">
-    <button class="theme-btn" onclick="setTheme('xuanzhi')">宣纸</button>
-    <button class="theme-btn" onclick="setTheme('songyan')">松烟</button>
-    <button class="theme-btn" onclick="setTheme('yanzhi')">胭脂</button>
-    <button class="theme-btn" onclick="setTheme('qingjian')">青简</button>
-  </div>
+&nbsp;&nbsp;<div class="logo-box">
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="logo">人间编年</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="logo-sub">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不是世界史，而是我的人间史
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;</div>
+&nbsp;&nbsp;<div class="theme-group">
+&nbsp;&nbsp;&nbsp;&nbsp;<button class="theme-btn" onclick="setTheme('xuanzhi')">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宣纸
+&nbsp;&nbsp;&nbsp;&nbsp;</button>
+&nbsp;&nbsp;&nbsp;&nbsp;<button class="theme-btn" onclick="setTheme('songyan')">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;松烟
+&nbsp;&nbsp;&nbsp;&nbsp;</button>
+&nbsp;&nbsp;&nbsp;&nbsp;<button class="theme-btn" onclick="setTheme('yanzhi')">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;胭脂
+&nbsp;&nbsp;&nbsp;&nbsp;</button>
+&nbsp;&nbsp;&nbsp;&nbsp;<button class="theme-btn" onclick="setTheme('qingjian')">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;青简
+&nbsp;&nbsp;&nbsp;&nbsp;</button>
+&nbsp;&nbsp;</div>
 </header>
-
 <div class="layout">
-  <aside class="sidebar">
-    <div class="panel">
-      <!-- 日历区域保持不变，代码较长此处省略显示，如需可保留 -->
-    </div>
-  </aside>
-
-  <main class="main">
-    <div class="quote">
-      <div class="quote-label">✦ 今日史官</div>
-      <div class="quote-text" id="dailyQuote"></div>
-    </div>
-
-    <div class="date-box">
-      <h1 id="mainDate"></h1>
-      <p id="subDate"></p>
-    </div>
-
-    <div class="card">
-      <div class="label">☀️ 坊间见闻</div>
-      <textarea id="ta-fangjian" placeholder="今日市井之间，有何可记？"></textarea>
-    </div>
-
-    <div class="card">
-      <div class="label">📚 案头博览</div>
-      <textarea id="ta-anshou" placeholder="今日翻阅了哪些卷册？"></textarea>
-    </div>
-
-    <div class="card">
-      <div class="label">🧊 考据心得</div>
-      <textarea id="ta-kaoju" placeholder="记录一则掌故、冷知识……"></textarea>
-    </div>
-
-    <div class="card">
-      <div class="label">💡 奇思脑洞</div>
-      <textarea id="ta-qisi" placeholder="若历史拐向另一条河流……"></textarea>
-    </div>
-
-    <div class="actions">
-      <button class="btn btn-primary" onclick="saveEntry()">💾 载入史册</button>
-      <button class="btn btn-secondary" onclick="clearAll()">📜 清空草稿</button>
-    </div>
-  </main>
+&nbsp;&nbsp;<!-- 左侧 -->
+&nbsp;&nbsp;<aside class="sidebar">
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="panel">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="calendar-head">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="cal-btn" onclick="changeMonth(-1)">‹</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="calendar-title" id="monthTitle"></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="cal-btn" onclick="changeMonth(1)">›</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="week-row">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>日</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>一</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>二</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>三</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>四</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>五</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>六</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="calendar-grid" id="calendarGrid"></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="theme-desc" id="themeDesc"></div>
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;</aside>
+&nbsp;&nbsp;<!-- 主体 -->
+&nbsp;&nbsp;<main class="main">
+&nbsp;&nbsp;&nbsp;&nbsp;<!-- 今日史官 -->
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="quote">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="quote-label">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✦ 今日史官
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="quote-text" id="dailyQuote"></div>
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<!-- 日期 -->
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="date-box">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 id="mainDate"></h1>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p id="subDate"></p>
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<!-- 内容 -->
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="card">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="label">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☀️ 坊间见闻
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea placeholder="今日市井之间，有何可记？"></textarea>
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="card">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="label">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📚 案头博览
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea placeholder="今日翻阅了哪些卷册？"></textarea>
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="card">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="label">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🧊 考据心得
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea placeholder="记录一则掌故、冷知识……"></textarea>
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="card">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="label">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💡 奇思脑洞
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea placeholder="若历史拐向另一条河流……"></textarea>
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="actions">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💾 载入史册
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📜 誊录
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;</main>
 </div>
-
 <script>
-// （JS 部分保持和上次一致，这里省略以节省篇幅，你可以直接复制上一个版本的 <script> 内容）
-const QUOTES = ["万历十五年无大事，今日亦然。","真正的编年史，往往写满了寻常日子。","历史从不是宏大叙事，它只是千万人的今日。","所有未被记下的生活，终将沉入岁月。","人间烟火气，最抚后来人。","今日看似平淡，来日翻阅，皆成时代切片。"];
-
+/* =====================================================
+&nbsp;&nbsp;&nbsp;今日史官
+===================================================== */
+const QUOTES = [
+&nbsp;&nbsp;"万历十五年无大事，今日亦然。",
+&nbsp;&nbsp;"长安米贵，居大不易，而今日咖啡亦涨价。",
+&nbsp;&nbsp;"真正的编年史，往往写满了寻常日子。",
+&nbsp;&nbsp;"古人记山河，今人记地铁与深夜便利店。",
+&nbsp;&nbsp;"历史从不是宏大叙事，它只是千万人的今日。",
+&nbsp;&nbsp;"所有未被记下的生活，终将沉入岁月。",
+&nbsp;&nbsp;"所谓人生，不过是把寻常日子写成长卷。",
+&nbsp;&nbsp;"白居易困于长安，今人困于早高峰。",
+&nbsp;&nbsp;"窗外车流不息，恰如旧时长安夜市。",
+&nbsp;&nbsp;"人间烟火气，最抚后来人。",
+&nbsp;&nbsp;"今日看似平淡，来日翻阅，皆成时代切片。"
+];
 function setDailyQuote(){
-  const today = new Date().toDateString();
-  let seed = 0;
-  for(let i=0;i<today.length;i++) seed += today.charCodeAt(i);
-  document.getElementById('dailyQuote').innerText = QUOTES[seed % QUOTES.length];
+&nbsp;&nbsp;const today =
+&nbsp;&nbsp;&nbsp;&nbsp;new Date().toDateString();
+&nbsp;&nbsp;let seed = 0;
+&nbsp;&nbsp;for(let i=0;i<today.length;i++){
+&nbsp;&nbsp;&nbsp;&nbsp;seed += today.charCodeAt(i);
+&nbsp;&nbsp;}
+&nbsp;&nbsp;const quote =
+&nbsp;&nbsp;&nbsp;&nbsp;QUOTES[seed % QUOTES.length];
+&nbsp;&nbsp;document.getElementById('dailyQuote')
+&nbsp;&nbsp;&nbsp;&nbsp;.innerText = quote;
 }
-
+/* =====================================================
+&nbsp;&nbsp;&nbsp;日期
+===================================================== */
+const weekNames = [
+&nbsp;&nbsp;'星期日',
+&nbsp;&nbsp;'星期一',
+&nbsp;&nbsp;'星期二',
+&nbsp;&nbsp;'星期三',
+&nbsp;&nbsp;'星期四',
+&nbsp;&nbsp;'星期五',
+&nbsp;&nbsp;'星期六'
+];
 let selectedDate = new Date();
 let currentMonth = new Date();
-const weekNames = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
-
 function updateDate(){
-  const y = selectedDate.getFullYear(), m = selectedDate.getMonth()+1, d = selectedDate.getDate();
-  document.getElementById('mainDate').innerHTML = `${y}年${m}月${d}日`;
-  document.getElementById('subDate').innerHTML = weekNames[selectedDate.getDay()];
+&nbsp;&nbsp;document.getElementById('mainDate')
+&nbsp;&nbsp;&nbsp;&nbsp;.innerHTML =
+&nbsp;&nbsp;&nbsp;&nbsp;`${selectedDate.getFullYear()}年`
+&nbsp;&nbsp;&nbsp;&nbsp;+
+&nbsp;&nbsp;&nbsp;&nbsp;`${selectedDate.getMonth()+1}月`
+&nbsp;&nbsp;&nbsp;&nbsp;+
+&nbsp;&nbsp;&nbsp;&nbsp;`${selectedDate.getDate()}日`;
+&nbsp;&nbsp;document.getElementById('subDate')
+&nbsp;&nbsp;&nbsp;&nbsp;.innerHTML =
+&nbsp;&nbsp;&nbsp;&nbsp;weekNames[selectedDate.getDay()];
 }
-
-function renderCalendar(){ /* 保持你原来的日历代码 */ }
-function changeMonth(step){ currentMonth.setMonth(currentMonth.getMonth()+step); renderCalendar(); }
-
+/* =====================================================
+&nbsp;&nbsp;&nbsp;日历
+===================================================== */
+function renderCalendar(){
+&nbsp;&nbsp;const grid =
+&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('calendarGrid');
+&nbsp;&nbsp;grid.innerHTML = '';
+&nbsp;&nbsp;const year =
+&nbsp;&nbsp;&nbsp;&nbsp;currentMonth.getFullYear();
+&nbsp;&nbsp;const month =
+&nbsp;&nbsp;&nbsp;&nbsp;currentMonth.getMonth();
+&nbsp;&nbsp;document.getElementById('monthTitle')
+&nbsp;&nbsp;&nbsp;&nbsp;.innerHTML =
+&nbsp;&nbsp;&nbsp;&nbsp;`${year}年 ${month+1}月`;
+&nbsp;&nbsp;const firstDay =
+&nbsp;&nbsp;&nbsp;&nbsp;new Date(year,month,1).getDay();
+&nbsp;&nbsp;const lastDate =
+&nbsp;&nbsp;&nbsp;&nbsp;new Date(year,month+1,0).getDate();
+&nbsp;&nbsp;for(let i=0;i<firstDay;i++){
+&nbsp;&nbsp;&nbsp;&nbsp;const empty =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.createElement('div');
+&nbsp;&nbsp;&nbsp;&nbsp;grid.appendChild(empty);
+&nbsp;&nbsp;}
+&nbsp;&nbsp;for(let i=1;i<=lastDate;i++){
+&nbsp;&nbsp;&nbsp;&nbsp;const date =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new Date(year,month,i);
+&nbsp;&nbsp;&nbsp;&nbsp;const div =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.createElement('div');
+&nbsp;&nbsp;&nbsp;&nbsp;div.className = 'day';
+&nbsp;&nbsp;&nbsp;&nbsp;div.innerText = i;
+&nbsp;&nbsp;&nbsp;&nbsp;if(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date.toDateString()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;===
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new Date().toDateString()
+&nbsp;&nbsp;&nbsp;&nbsp;){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;div.classList.add('today');
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;if(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date.toDateString()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;===
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedDate.toDateString()
+&nbsp;&nbsp;&nbsp;&nbsp;){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;div.classList.add('selected');
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;div.onclick = ()=>{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedDate = date;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;updateDate();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderCalendar();
+&nbsp;&nbsp;&nbsp;&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;grid.appendChild(div);
+&nbsp;&nbsp;}
+}
+function changeMonth(step){
+&nbsp;&nbsp;currentMonth.setMonth(
+&nbsp;&nbsp;&nbsp;&nbsp;currentMonth.getMonth()+step
+&nbsp;&nbsp;);
+&nbsp;&nbsp;renderCalendar();
+}
+/* =====================================================
+&nbsp;&nbsp;&nbsp;四大主题
+===================================================== */
+const THEME_INFO = {
+&nbsp;&nbsp;xuanzhi:{
+&nbsp;&nbsp;&nbsp;&nbsp;text:"日光正好，宜翻旧卷。"
+&nbsp;&nbsp;},
+&nbsp;&nbsp;songyan:{
+&nbsp;&nbsp;&nbsp;&nbsp;text:"夜深灯下，最宜修史。"
+&nbsp;&nbsp;},
+&nbsp;&nbsp;yanzhi:{
+&nbsp;&nbsp;&nbsp;&nbsp;text:"灯火微红，人间如梦。"
+&nbsp;&nbsp;},
+&nbsp;&nbsp;qingjian:{
+&nbsp;&nbsp;&nbsp;&nbsp;text:"山雨欲来，且读旧书。"
+&nbsp;&nbsp;}
+};
 function setTheme(theme){
-  document.body.className = 'theme-' + theme;
-  localStorage.setItem('renjian_theme', theme);
+&nbsp;&nbsp;document.body.className =
+&nbsp;&nbsp;&nbsp;&nbsp;'theme-' + theme;
+&nbsp;&nbsp;localStorage.setItem(
+&nbsp;&nbsp;&nbsp;&nbsp;'renjian_theme',
+&nbsp;&nbsp;&nbsp;&nbsp;theme
+&nbsp;&nbsp;);
+&nbsp;&nbsp;document.getElementById('themeDesc')
+&nbsp;&nbsp;&nbsp;&nbsp;.innerHTML =
+&nbsp;&nbsp;&nbsp;&nbsp;THEME_INFO[theme].text;
 }
-
-function saveEntry(){ alert('✅ 已载入史册（本地暂存）'); }
-function clearAll(){
-  if(confirm('确定清空所有草稿吗？')){
-    document.querySelectorAll('textarea').forEach(t => t.value = '');
-  }
-}
-
+/* =====================================================
+&nbsp;&nbsp;&nbsp;初始化
+===================================================== */
 function init(){
-  const saved = localStorage.getItem('renjian_theme') || 'songyan';
-  setTheme(saved);
-  setDailyQuote();
-  updateDate();
-  renderCalendar();
+&nbsp;&nbsp;const savedTheme =
+&nbsp;&nbsp;&nbsp;&nbsp;localStorage.getItem('renjian_theme')
+&nbsp;&nbsp;&nbsp;&nbsp;|| 'songyan';
+&nbsp;&nbsp;setTheme(savedTheme);
+&nbsp;&nbsp;setDailyQuote();
+&nbsp;&nbsp;updateDate();
+&nbsp;&nbsp;renderCalendar();
 }
 init();
 </script>
