@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 
-<title>马伯庸日记 · 个人编年史</title>
+<title>人间编年</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 
 <style>
@@ -30,31 +32,31 @@
   --shadow:
     0 10px 35px rgba(80,60,40,.07);
 
-  --radius:22px;
+  --radius:24px;
 
   --safe-bottom:env(safe-area-inset-bottom);
 }
 
-/* 深色模式 */
+/* 深色 */
 
 body.dark{
 
-  --bg:#181513;
-  --paper:#221d1a;
-  --paper2:#2b241f;
+  --bg:#171412;
+  --paper:#231d19;
+  --paper2:#2c241f;
 
-  --ink:#f4ede7;
-  --ink2:#d4c4b7;
-  --ink3:#9b887a;
+  --ink:#f3ece6;
+  --ink2:#d7c5b8;
+  --ink3:#9d8a7d;
 
-  --rose:#d989a1;
-  --rose2:#4b3139;
-  --rose-bg:#2d2025;
+  --rose:#d98ca3;
+  --rose2:#50353d;
+  --rose-bg:#302126;
 
-  --border:#3a322c;
+  --border:#3d342e;
 
   --shadow:
-    0 10px 40px rgba(0,0,0,.45);
+    0 14px 40px rgba(0,0,0,.45);
 }
 
 *{
@@ -64,6 +66,7 @@ body.dark{
 }
 
 html{
+
   height:100%;
   overflow:hidden;
 }
@@ -79,12 +82,10 @@ body{
 
   font-family:'Noto Sans SC',sans-serif;
 
-  -webkit-font-smoothing:antialiased;
-
   position:relative;
-}
 
-/* 纸纹 */
+  -webkit-font-smoothing:antialiased;
+}
 
 body::before{
 
@@ -98,15 +99,15 @@ body::before{
   opacity:.18;
 
   background:
-    radial-gradient(circle at 15% 20%, rgba(196,116,138,.08), transparent 20%),
-    radial-gradient(circle at 85% 75%, rgba(120,90,60,.06), transparent 30%);
+    radial-gradient(circle at 20% 20%, rgba(196,116,138,.08), transparent 22%),
+    radial-gradient(circle at 80% 75%, rgba(120,90,60,.05), transparent 28%);
 }
 
 /* 顶栏 */
 
 header{
 
-  height:64px;
+  height:68px;
 
   display:flex;
 
@@ -114,30 +115,49 @@ header{
 
   justify-content:space-between;
 
-  padding:0 20px;
+  padding:0 22px;
 
   position:sticky;
   top:0;
-  z-index:200;
+  z-index:100;
 
-  background:rgba(250,247,242,.86);
+  background:rgba(250,247,242,.88);
 
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(14px);
 
   border-bottom:1px solid var(--border);
 }
 
 body.dark header{
-  background:rgba(24,21,19,.9);
+  background:rgba(23,20,18,.92);
+}
+
+.logo-wrap{
+
+  display:flex;
+  flex-direction:column;
 }
 
 .logo{
 
   font-family:'Ma Shan Zheng',serif;
 
-  font-size:28px;
+  font-size:30px;
 
   color:var(--rose);
+
+  line-height:1;
+}
+
+.logo-sub{
+
+  font-size:11px;
+
+  color:var(--ink3);
+
+  margin-top:4px;
+
+  letter-spacing:1px;
 }
 
 .top-actions{
@@ -163,13 +183,19 @@ body.dark header{
   cursor:pointer;
 
   font-size:13px;
+
+  transition:.2s;
 }
 
-/* 主布局 */
+.icon-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* 布局 */
 
 .layout{
 
-  height:calc(100vh - 64px);
+  height:calc(100vh - 68px);
 
   display:grid;
 
@@ -188,11 +214,13 @@ body.dark header{
 
     position:fixed;
 
-    inset:64px auto 0 0;
+    left:0;
+    top:68px;
+    bottom:0;
 
     width:100%;
 
-    z-index:300;
+    z-index:200;
 
     background:var(--bg);
 
@@ -210,29 +238,41 @@ body.dark header{
 
 .sidebar{
 
-  border-right:1px solid var(--border);
-
   overflow-y:auto;
+
+  border-right:1px solid var(--border);
 
   padding:18px;
 
   padding-bottom:calc(30px + var(--safe-bottom));
+
+  -webkit-overflow-scrolling:touch;
 }
+
+/* 主体 */
 
 .main{
 
   overflow-y:auto;
 
-  padding:24px;
+  padding:26px;
 
-  padding-bottom:calc(100px + var(--safe-bottom));
+  padding-bottom:calc(120px + var(--safe-bottom));
 
   -webkit-overflow-scrolling:touch;
 }
 
+@media(max-width:980px){
+
+  .main{
+    padding:18px;
+  }
+}
+
 /* 卡片 */
 
-.panel{
+.panel,
+.card{
 
   background:var(--paper);
 
@@ -240,8 +280,6 @@ body.dark header{
 
   border-radius:var(--radius);
 
-  padding:18px;
-
   box-shadow:var(--shadow);
 
   position:relative;
@@ -249,195 +287,22 @@ body.dark header{
   overflow:hidden;
 }
 
-.panel + .panel{
-  margin-top:18px;
+.panel{
+
+  padding:18px;
 }
-
-.panel::before{
-
-  content:'';
-
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(rgba(255,255,255,.03),rgba(0,0,0,.015));
-
-  pointer-events:none;
-}
-
-/* 日历 */
-
-.calendar-head{
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  margin-bottom:18px;
-}
-
-.calendar-head h2{
-
-  font-family:'Ma Shan Zheng';
-
-  color:var(--rose);
-
-  font-size:28px;
-}
-
-.cal-btn{
-
-  width:34px;
-  height:34px;
-
-  border-radius:50%;
-
-  border:none;
-
-  cursor:pointer;
-
-  background:var(--bg);
-
-  border:1px solid var(--border);
-
-  color:var(--ink2);
-}
-
-.week-row,
-.calendar-grid{
-
-  display:grid;
-
-  grid-template-columns:repeat(7,1fr);
-
-  gap:6px;
-}
-
-.week-row{
-  margin-bottom:8px;
-}
-
-.week-row div{
-
-  text-align:center;
-
-  font-size:12px;
-
-  color:var(--ink3);
-}
-
-.day{
-
-  aspect-ratio:1;
-
-  border-radius:12px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  cursor:pointer;
-
-  position:relative;
-
-  transition:.18s;
-
-  user-select:none;
-}
-
-.day:hover{
-
-  background:var(--rose-bg);
-
-  transform:translateY(-2px);
-}
-
-.day.empty{
-  pointer-events:none;
-}
-
-.day.today{
-  border:2px solid var(--rose);
-}
-
-.day.selected{
-
-  background:var(--rose);
-
-  color:white;
-
-  font-weight:bold;
-}
-
-.day.has-entry::after{
-
-  content:'';
-
-  width:6px;
-  height:6px;
-
-  border-radius:50%;
-
-  background:var(--rose);
-
-  position:absolute;
-
-  bottom:6px;
-}
-
-.day.selected.has-entry::after{
-  background:white;
-}
-
-/* 日期标题 */
-
-.date-title{
-
-  text-align:center;
-
-  margin-bottom:20px;
-}
-
-.date-title h1{
-
-  font-family:'Ma Shan Zheng';
-
-  font-size:44px;
-
-  color:var(--rose);
-}
-
-.date-title p{
-
-  margin-top:6px;
-
-  color:var(--ink3);
-}
-
-/* 编辑卡 */
 
 .card{
 
-  background:var(--paper);
-
-  border:1px solid var(--border);
-
-  border-radius:26px;
-
-  padding:22px;
-
-  box-shadow:var(--shadow);
-
-  position:relative;
-
-  overflow:hidden;
+  padding:24px;
 }
 
+.panel + .panel,
 .card + .card{
   margin-top:18px;
 }
 
+.panel::before,
 .card::before{
 
   content:'';
@@ -451,6 +316,76 @@ body.dark header{
   pointer-events:none;
 }
 
+/* 今日史官 */
+
+.quote-box{
+
+  background:var(--rose-bg);
+
+  border:1px dashed var(--rose);
+
+  border-radius:20px;
+
+  padding:18px;
+
+  margin-bottom:22px;
+
+  position:relative;
+}
+
+.quote-label{
+
+  font-size:12px;
+
+  color:var(--rose);
+
+  margin-bottom:10px;
+
+  letter-spacing:1px;
+}
+
+.quote-text{
+
+  font-family:'Noto Serif SC',serif;
+
+  line-height:2;
+
+  color:var(--ink2);
+
+  font-size:15px;
+}
+
+/* 日期 */
+
+.date-title{
+
+  text-align:center;
+
+  margin-bottom:22px;
+}
+
+.date-title h1{
+
+  font-family:'Ma Shan Zheng';
+
+  font-size:46px;
+
+  color:var(--rose);
+}
+
+.date-title p{
+
+  margin-top:8px;
+
+  color:var(--ink3);
+
+  font-size:13px;
+
+  letter-spacing:1px;
+}
+
+/* 标签 */
+
 .label{
 
   font-size:13px;
@@ -460,9 +395,10 @@ body.dark header{
   margin-bottom:12px;
 }
 
+/* 输入 */
+
 textarea,
-input,
-select{
+input{
 
   width:100%;
 
@@ -476,14 +412,16 @@ select{
 
   font-size:15px;
 
-  line-height:1.9;
+  line-height:1.95;
 
   font-family:'Noto Serif SC',serif;
 }
 
 textarea{
+
   resize:vertical;
-  min-height:80px;
+
+  min-height:90px;
 }
 
 textarea::placeholder,
@@ -537,23 +475,145 @@ input::placeholder{
   color:var(--ink2);
 }
 
-/* 搜索 */
+/* 日历 */
 
-.search-box{
+.calendar-head{
 
   display:flex;
-  gap:8px;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:18px;
 }
+
+.calendar-head h2{
+
+  font-family:'Ma Shan Zheng';
+
+  font-size:30px;
+
+  color:var(--rose);
+}
+
+.cal-btn{
+
+  width:34px;
+  height:34px;
+
+  border-radius:50%;
+
+  border:none;
+
+  background:var(--bg);
+
+  border:1px solid var(--border);
+
+  color:var(--ink2);
+
+  cursor:pointer;
+}
+
+.week-row,
+.calendar-grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(7,1fr);
+
+  gap:6px;
+}
+
+.week-row{
+  margin-bottom:8px;
+}
+
+.week-row div{
+
+  text-align:center;
+
+  color:var(--ink3);
+
+  font-size:12px;
+}
+
+.day{
+
+  aspect-ratio:1;
+
+  border-radius:12px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  cursor:pointer;
+
+  transition:.18s;
+
+  position:relative;
+}
+
+.day:hover{
+
+  background:var(--rose-bg);
+
+  transform:translateY(-2px);
+}
+
+.day.empty{
+  pointer-events:none;
+}
+
+.day.today{
+  border:2px solid var(--rose);
+}
+
+.day.selected{
+
+  background:var(--rose);
+
+  color:white;
+
+  font-weight:bold;
+}
+
+.day.has-entry::after{
+
+  content:'';
+
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+
+  background:var(--rose);
+
+  position:absolute;
+
+  bottom:6px;
+}
+
+.day.selected.has-entry::after{
+  background:white;
+}
+
+/* 搜索 */
 
 .search-results{
 
   margin-top:14px;
 
   display:flex;
+
   flex-direction:column;
+
   gap:10px;
 
-  max-height:340px;
+  max-height:320px;
 
   overflow:auto;
 }
@@ -575,15 +635,14 @@ input::placeholder{
 
   color:var(--rose);
 
-  font-weight:700;
+  margin-bottom:8px;
 
-  margin-bottom:6px;
+  font-weight:700;
 }
 
 /* 时间轴 */
 
 .timeline-year{
-
   margin-top:18px;
 }
 
@@ -598,18 +657,18 @@ input::placeholder{
 
   padding-left:14px;
 
-  margin-bottom:8px;
+  margin-bottom:10px;
 }
 
 .timeline-entry{
 
-  cursor:pointer;
+  font-size:14px;
 
   color:var(--ink2);
 
   margin:4px 0;
 
-  font-size:14px;
+  cursor:pointer;
 }
 
 .timeline-entry:hover{
@@ -620,9 +679,9 @@ input::placeholder{
 
 .material-item{
 
-  border:1px solid var(--border);
-
   background:var(--bg);
+
+  border:1px solid var(--border);
 
   border-radius:16px;
 
@@ -654,23 +713,18 @@ input::placeholder{
 
   font-size:11px;
 
-  margin-right:6px;
-
   margin-top:8px;
+
+  margin-right:6px;
 }
 
 /* 手机底栏 */
 
 .mobile-bar{
-
   display:none;
 }
 
 @media(max-width:980px){
-
-  .main{
-    padding:18px;
-  }
 
   .mobile-bar{
 
@@ -680,7 +734,7 @@ input::placeholder{
     right:0;
     bottom:0;
 
-    height:68px;
+    height:70px;
 
     background:rgba(250,247,242,.95);
 
@@ -690,13 +744,13 @@ input::placeholder{
 
     display:flex;
 
-    z-index:500;
+    z-index:400;
 
     padding-bottom:var(--safe-bottom);
   }
 
   body.dark .mobile-bar{
-    background:rgba(24,21,19,.95);
+    background:rgba(23,20,18,.95);
   }
 
   .mobile-bar button{
@@ -720,7 +774,15 @@ input::placeholder{
 
 <header>
 
-  <div class="logo">📖 马伯庸日记</div>
+  <div class="logo-wrap">
+
+    <div class="logo">人间编年</div>
+
+    <div class="logo-sub">
+      不是世界史，而是我的人间史
+    </div>
+
+  </div>
 
   <div class="top-actions">
 
@@ -729,11 +791,11 @@ input::placeholder{
     </button>
 
     <button class="icon-btn" onclick="exportMarkdown()">
-      📜 导出史册
+      📜 誊录
     </button>
 
-    <button class="icon-btn mobile-only" onclick="toggleSidebar()">
-      📚
+    <button class="icon-btn" onclick="toggleSidebar()">
+      📚 史册
     </button>
 
   </div>
@@ -780,18 +842,14 @@ input::placeholder{
 
     <div class="panel">
 
-      <div style="font-family:'Ma Shan Zheng';font-size:26px;color:var(--rose);margin-bottom:12px;">
+      <div style="font-family:'Ma Shan Zheng';font-size:28px;color:var(--rose);margin-bottom:12px;">
         翻检旧档
       </div>
 
-      <div class="search-box">
-
-        <input
-          id="searchInput"
-          placeholder="搜索日期、见闻、冷知识、脑洞..."
-        />
-
-      </div>
+      <input
+        id="searchInput"
+        placeholder="搜索日期、见闻、脑洞、掌故..."
+      />
 
       <div class="search-results" id="searchResults"></div>
 
@@ -801,7 +859,7 @@ input::placeholder{
 
     <div class="panel">
 
-      <div style="font-family:'Ma Shan Zheng';font-size:26px;color:var(--rose);margin-bottom:12px;">
+      <div style="font-family:'Ma Shan Zheng';font-size:28px;color:var(--rose);margin-bottom:12px;">
         编年总目
       </div>
 
@@ -814,6 +872,20 @@ input::placeholder{
   <!-- 主体 -->
 
   <main class="main">
+
+    <!-- 今日史官 -->
+
+    <div class="quote-box">
+
+      <div class="quote-label">
+        ✦ 今日史官
+      </div>
+
+      <div class="quote-text" id="dailyQuote"></div>
+
+    </div>
+
+    <!-- 日期 -->
 
     <div class="date-title">
 
@@ -829,7 +901,10 @@ input::placeholder{
 
       <div class="label">☀️ 坊间见闻</div>
 
-      <textarea id="events" placeholder="今日市井之间，有何可记？"></textarea>
+      <textarea
+        id="events"
+        placeholder="今日市井之间，有何可记？"
+      ></textarea>
 
     </div>
 
@@ -837,7 +912,10 @@ input::placeholder{
 
       <div class="label">📚 案头博览</div>
 
-      <textarea id="reading" placeholder="今日翻阅了哪些卷册？"></textarea>
+      <textarea
+        id="reading"
+        placeholder="今日翻阅了哪些卷册？"
+      ></textarea>
 
     </div>
 
@@ -845,7 +923,10 @@ input::placeholder{
 
       <div class="label">🧊 考据心得</div>
 
-      <textarea id="trivia" placeholder="记录一则掌故、冷知识……"></textarea>
+      <textarea
+        id="trivia"
+        placeholder="记录一则掌故、冷知识……"
+      ></textarea>
 
     </div>
 
@@ -853,17 +934,21 @@ input::placeholder{
 
       <div class="label">💡 奇思脑洞</div>
 
-      <textarea id="brainstorm" placeholder="若历史拐向另一条河流……"></textarea>
+      <textarea
+        id="brainstorm"
+        placeholder="若历史拐向另一条河流……"
+      ></textarea>
 
     </div>
 
-    <!-- 标签 -->
-
     <div class="card">
 
-      <div class="label">🏷 本日标签</div>
+      <div class="label">🏷 卷宗标签</div>
 
-      <input id="tags" placeholder="如：唐朝, 长安, 茶馆, 科举"/>
+      <input
+        id="tags"
+        placeholder="如：长安, 唐朝, 茶馆, 科举"
+      />
 
     </div>
 
@@ -871,11 +956,17 @@ input::placeholder{
 
     <div class="actions">
 
-      <button class="btn btn-primary" onclick="saveDiary()">
+      <button
+        class="btn btn-primary"
+        onclick="saveDiary()"
+      >
         💾 载入史册
       </button>
 
-      <button class="btn btn-secondary" onclick="deleteDiary()">
+      <button
+        class="btn btn-secondary"
+        onclick="deleteDiary()"
+      >
         🔥 焚稿
       </button>
 
@@ -891,7 +982,10 @@ input::placeholder{
           ⭐ 采风本
         </div>
 
-        <button class="icon-btn" onclick="addMaterial()">
+        <button
+          class="icon-btn"
+          onclick="addMaterial()"
+        >
           ＋ 收录
         </button>
 
@@ -909,21 +1003,88 @@ input::placeholder{
 
 <div class="mobile-bar">
 
-  <button onclick="toggleSidebar()">📅 史册</button>
+  <button onclick="toggleSidebar()">📚 史册</button>
 
   <button onclick="goToday()">✍️ 今日</button>
 
-  <button onclick="exportMarkdown()">📜 导出</button>
+  <button onclick="exportMarkdown()">📜 誊录</button>
 
 </div>
 
 <script>
 
 /* =========================================
+   今日史官
+========================================= */
+
+const QUOTES = [
+
+  "万历十五年无大事，今日亦然。",
+
+  "长安米贵，居大不易，而今日咖啡亦涨价。",
+
+  "史书不会记得今日晚饭吃了什么，但你会。",
+
+  "所谓人生，不过是把寻常日子写成长卷。",
+
+  "这一日看似平淡，日后翻阅，皆成时代切片。",
+
+  "不是所有故事都惊天动地，大多数历史只是生活。",
+
+  "人间烟火气，最抚后来人。",
+
+  "古人记山河，今人记地铁与深夜便利店。",
+
+  "若干年后，今日也会成为旧时代。",
+
+  "真正的编年史，往往写满了寻常日子。",
+
+  "你今日记下的琐事，也许正是未来最珍贵的证词。",
+
+  "人总以为来日方长，却忘了岁月只会翻页。",
+
+  "窗外车流不息，恰如旧时长安夜市。",
+
+  "历史从不是宏大叙事，它只是千万人的今日。",
+
+  "世间多数日子并无大事，而人生恰恰由这些日子组成。",
+
+  "古人有起居注，今人有深夜输入框。",
+
+  "所有未被记下的生活，终将沉入岁月。",
+
+  "所谓个人史，不过是一个人与时代的互相路过。",
+
+  "白居易困于长安，今人困于早高峰。",
+
+  "写下今天，是为了未来某一天重新遇见自己。"
+];
+
+function setDailyQuote(){
+
+  const today =
+    new Date().toDateString();
+
+  let seed = 0;
+
+  for(let i=0;i<today.length;i++){
+
+    seed += today.charCodeAt(i);
+  }
+
+  const quote =
+    QUOTES[seed % QUOTES.length];
+
+  document.getElementById('dailyQuote')
+    .innerText = quote;
+}
+
+/* =========================================
    IndexedDB
 ========================================= */
 
-const DB_NAME = 'MaboyongDiaryDB';
+const DB_NAME = 'RenjianBianNianDB';
+
 const DB_VERSION = 1;
 
 let db;
@@ -932,7 +1093,8 @@ function openDB(){
 
   return new Promise((resolve,reject)=>{
 
-    const request = indexedDB.open(DB_NAME, DB_VERSION);
+    const request =
+      indexedDB.open(DB_NAME, DB_VERSION);
 
     request.onupgradeneeded = function(e){
 
@@ -940,12 +1102,17 @@ function openDB(){
 
       if(!db.objectStoreNames.contains('diaries')){
 
-        db.createObjectStore('diaries',{ keyPath:'date' });
+        db.createObjectStore('diaries',{
+          keyPath:'date'
+        });
       }
 
       if(!db.objectStoreNames.contains('materials')){
 
-        db.createObjectStore('materials',{ keyPath:'id', autoIncrement:true });
+        db.createObjectStore('materials',{
+          keyPath:'id',
+          autoIncrement:true
+        });
       }
     };
 
@@ -965,22 +1132,67 @@ function openDB(){
 ========================================= */
 
 const weekNames = [
-  '星期日','星期一','星期二',
-  '星期三','星期四','星期五','星期六'
+
+  '星期日',
+  '星期一',
+  '星期二',
+  '星期三',
+  '星期四',
+  '星期五',
+  '星期六'
 ];
 
 let selectedDate = new Date();
+
 let currentMonth = new Date();
 
 function formatDate(date){
 
   const y = date.getFullYear();
 
-  const m = String(date.getMonth()+1).padStart(2,'0');
+  const m =
+    String(date.getMonth()+1)
+    .padStart(2,'0');
 
-  const d = String(date.getDate()).padStart(2,'0');
+  const d =
+    String(date.getDate())
+    .padStart(2,'0');
 
   return `${y}-${m}-${d}`;
+}
+
+/* =========================================
+   工具
+========================================= */
+
+function id(v){
+  return document.getElementById(v);
+}
+
+function val(v){
+  return id(v).value;
+}
+
+function setVal(v,t){
+  id(v).value = t;
+}
+
+/* =========================================
+   日期UI
+========================================= */
+
+function updateDateUI(){
+
+  id('mainDate').innerHTML =
+
+    `${selectedDate.getFullYear()}年`
+    +
+    `${selectedDate.getMonth()+1}月`
+    +
+    `${selectedDate.getDate()}日`;
+
+  id('subDate').innerHTML =
+    weekNames[selectedDate.getDay()];
 }
 
 /* =========================================
@@ -989,11 +1201,13 @@ function formatDate(date){
 
 async function saveDiary(){
 
-  const tx = db.transaction('diaries','readwrite');
+  const tx =
+    db.transaction('diaries','readwrite');
 
-  const store = tx.objectStore('diaries');
+  const store =
+    tx.objectStore('diaries');
 
-  const data = {
+  store.put({
 
     date:formatDate(selectedDate),
 
@@ -1008,9 +1222,7 @@ async function saveDiary(){
     brainstorm:val('brainstorm'),
 
     tags:val('tags')
-  };
-
-  store.put(data);
+  });
 
   renderCalendar();
 
@@ -1021,11 +1233,12 @@ async function saveDiary(){
 
 async function loadDiary(){
 
-  const tx = db.transaction('diaries','readonly');
+  const tx =
+    db.transaction('diaries','readonly');
 
-  const store = tx.objectStore('diaries');
-
-  const req = store.get(formatDate(selectedDate));
+  const req =
+    tx.objectStore('diaries')
+      .get(formatDate(selectedDate));
 
   req.onsuccess = ()=>{
 
@@ -1043,9 +1256,11 @@ async function loadDiary(){
 
 async function deleteDiary(){
 
-  if(!confirm('确定焚毁此页起居注？')) return;
+  if(!confirm('确定焚毁此页编年？'))
+    return;
 
-  const tx = db.transaction('diaries','readwrite');
+  const tx =
+    db.transaction('diaries','readwrite');
 
   tx.objectStore('diaries')
     .delete(formatDate(selectedDate));
@@ -1067,7 +1282,7 @@ function clearInputs(){
     'trivia',
     'brainstorm',
     'tags'
-  ].forEach(id=>setVal(id,''));
+  ].forEach(v=>setVal(v,''));
 }
 
 /* =========================================
@@ -1076,13 +1291,16 @@ function clearInputs(){
 
 async function renderCalendar(){
 
-  const grid = id('calendarGrid');
+  const grid =
+    id('calendarGrid');
 
   grid.innerHTML = '';
 
-  const year = currentMonth.getFullYear();
+  const year =
+    currentMonth.getFullYear();
 
-  const month = currentMonth.getMonth();
+  const month =
+    currentMonth.getMonth();
 
   id('monthTitle').innerHTML =
     `${year}年 ${month+1}月`;
@@ -1093,11 +1311,13 @@ async function renderCalendar(){
   const lastDate =
     new Date(year,month+1,0).getDate();
 
-  const diaryDates = await getAllDiaryDates();
+  const diaryDates =
+    await getAllDiaryDates();
 
   for(let i=0;i<firstDay;i++){
 
-    const empty = document.createElement('div');
+    const empty =
+      document.createElement('div');
 
     empty.className = 'day empty';
 
@@ -1184,31 +1404,54 @@ async function doSearch(){
       .trim()
       .toLowerCase();
 
-  const wrap = id('searchResults');
+  const wrap =
+    id('searchResults');
 
   wrap.innerHTML = '';
 
   if(!q) return;
 
-  const all = await getAllDiaries();
+  const all =
+    await getAllDiaries();
 
-  const result = all.filter(d=>{
+  const result =
+    all.filter(d=>{
 
-    return (
+      return (
 
-      d.date.includes(q) ||
+        d.date.includes(q)
 
-      (d.events || '').toLowerCase().includes(q) ||
+        ||
 
-      (d.reading || '').toLowerCase().includes(q) ||
+        (d.events || '')
+          .toLowerCase()
+          .includes(q)
 
-      (d.trivia || '').toLowerCase().includes(q) ||
+        ||
 
-      (d.brainstorm || '').toLowerCase().includes(q) ||
+        (d.reading || '')
+          .toLowerCase()
+          .includes(q)
 
-      (d.tags || '').toLowerCase().includes(q)
-    );
-  });
+        ||
+
+        (d.trivia || '')
+          .toLowerCase()
+          .includes(q)
+
+        ||
+
+        (d.brainstorm || '')
+          .toLowerCase()
+          .includes(q)
+
+        ||
+
+        (d.tags || '')
+          .toLowerCase()
+          .includes(q)
+      );
+    });
 
   if(result.length === 0){
 
@@ -1222,19 +1465,27 @@ async function doSearch(){
   }
 
   result
-    .sort((a,b)=>b.date.localeCompare(a.date))
+    .sort((a,b)=>
+      b.date.localeCompare(a.date)
+    )
     .forEach(item=>{
 
       const div =
         document.createElement('div');
 
-      div.className = 'search-item';
+      div.className =
+        'search-item';
 
       const preview =
+
         item.events ||
+
         item.trivia ||
+
         item.brainstorm ||
+
         item.reading ||
+
         '';
 
       div.innerHTML = `
@@ -1243,7 +1494,7 @@ async function doSearch(){
           ${item.date}
         </div>
 
-        <div style="font-size:14px;line-height:1.8;color:var(--ink2);">
+        <div style="line-height:1.8;font-size:14px;color:var(--ink2);">
           ${preview.slice(0,80)}...
         </div>
       `;
@@ -1275,7 +1526,8 @@ async function doSearch(){
 
 async function renderTimeline(){
 
-  const wrap = id('timeline');
+  const wrap =
+    id('timeline');
 
   wrap.innerHTML = '';
 
@@ -1289,12 +1541,14 @@ async function renderTimeline(){
     const [year,month] =
       d.date.split('-');
 
-    if(!grouped[year]) grouped[year] = {};
+    if(!grouped[year])
+      grouped[year] = {};
 
     if(!grouped[year][month])
       grouped[year][month] = [];
 
-    grouped[year][month].push(d);
+    grouped[year][month]
+      .push(d);
   });
 
   Object.keys(grouped)
@@ -1304,7 +1558,8 @@ async function renderTimeline(){
       const yearDiv =
         document.createElement('div');
 
-      yearDiv.className = 'timeline-year';
+      yearDiv.className =
+        'timeline-year';
 
       yearDiv.innerHTML =
         `<h3>${year}</h3>`;
@@ -1323,7 +1578,9 @@ async function renderTimeline(){
             `<div style="margin-bottom:6px;color:var(--ink2);">${month}月</div>`;
 
           grouped[year][month]
-            .sort((a,b)=>b.date.localeCompare(a.date))
+            .sort((a,b)=>
+              b.date.localeCompare(a.date)
+            )
             .forEach(item=>{
 
               const entry =
@@ -1363,7 +1620,7 @@ async function renderTimeline(){
 }
 
 /* =========================================
-   Markdown Export
+   Export Markdown
 ========================================= */
 
 async function exportMarkdown(){
@@ -1375,28 +1632,35 @@ async function exportMarkdown(){
     a.date.localeCompare(b.date)
   );
 
-  let md = `# 马伯庸日记\n\n`;
+  let md =
+`# 人间编年
+
+不是世界史，而是我的人间史。
+
+`;
 
   all.forEach(d=>{
 
-    md += `# ${d.date}\n\n`;
+    md += `# ${d.date}
 
-    md += `## 坊间见闻\n`;
-    md += `${d.events || ''}\n\n`;
+## 坊间见闻
+${d.events || ''}
 
-    md += `## 案头博览\n`;
-    md += `${d.reading || ''}\n\n`;
+## 案头博览
+${d.reading || ''}
 
-    md += `## 考据心得\n`;
-    md += `${d.trivia || ''}\n\n`;
+## 考据心得
+${d.trivia || ''}
 
-    md += `## 奇思脑洞\n`;
-    md += `${d.brainstorm || ''}\n\n`;
+## 奇思脑洞
+${d.brainstorm || ''}
 
-    md += `## 标签\n`;
-    md += `${d.tags || ''}\n\n`;
+## 卷宗标签
+${d.tags || ''}
 
-    md += `---\n\n`;
+---
+
+`;
   });
 
   const blob =
@@ -1413,7 +1677,7 @@ async function exportMarkdown(){
   a.href = url;
 
   a.download =
-    `马伯庸日记_${Date.now()}.md`;
+    `人间编年_${Date.now()}.md`;
 
   a.click();
 
@@ -1445,13 +1709,14 @@ async function addMaterial(){
   const tx =
     db.transaction('materials','readwrite');
 
-  tx.objectStore('materials').add({
+  tx.objectStore('materials')
+    .add({
 
-    type,
-    content,
-    source,
-    tags
-  });
+      type,
+      content,
+      source,
+      tags
+    });
 
   renderMaterials();
 }
@@ -1467,7 +1732,8 @@ async function renderMaterials(){
     db.transaction('materials','readonly');
 
   const req =
-    tx.objectStore('materials').getAll();
+    tx.objectStore('materials')
+      .getAll();
 
   req.onsuccess = ()=>{
 
@@ -1511,7 +1777,9 @@ async function renderMaterials(){
           (item.tags || '')
           .split(',')
           .filter(Boolean)
-          .map(t=>`<span class="tag">${t}</span>`)
+          .map(t=>
+            `<span class="tag">${t}</span>`
+          )
           .join('')
         }
       `;
@@ -1522,44 +1790,24 @@ async function renderMaterials(){
 }
 
 /* =========================================
-   Helpers
+   Dark Mode
 ========================================= */
-
-function id(v){
-  return document.getElementById(v);
-}
-
-function val(v){
-  return id(v).value;
-}
-
-function setVal(v,t){
-  id(v).value = t;
-}
-
-function updateDateUI(){
-
-  id('mainDate').innerHTML =
-
-    `${selectedDate.getFullYear()}年`
-    +
-    `${selectedDate.getMonth()+1}月`
-    +
-    `${selectedDate.getDate()}日`;
-
-  id('subDate').innerHTML =
-    weekNames[selectedDate.getDay()];
-}
 
 function toggleDark(){
 
-  document.body.classList.toggle('dark');
+  document.body
+    .classList
+    .toggle('dark');
 
   localStorage.setItem(
-    'mby_dark',
+    'renjian_dark',
     document.body.classList.contains('dark')
   );
 }
+
+/* =========================================
+   Sidebar
+========================================= */
 
 function toggleSidebar(force){
 
@@ -1576,6 +1824,10 @@ function toggleSidebar(force){
   }
 }
 
+/* =========================================
+   DB Helpers
+========================================= */
+
 async function getAllDiaries(){
 
   return new Promise(resolve=>{
@@ -1584,7 +1836,8 @@ async function getAllDiaries(){
       db.transaction('diaries','readonly');
 
     const req =
-      tx.objectStore('diaries').getAll();
+      tx.objectStore('diaries')
+        .getAll();
 
     req.onsuccess =
       ()=>resolve(req.result || []);
@@ -1611,15 +1864,15 @@ let timer;
   'trivia',
   'brainstorm',
   'tags'
-].forEach(idName=>{
+].forEach(v=>{
 
-  id(idName)
+  id(v)
     .addEventListener('input',()=>{
 
       clearTimeout(timer);
 
       timer =
-        setTimeout(saveDiary, 1000);
+        setTimeout(saveDiary,1000);
     });
 });
 
@@ -1634,10 +1887,17 @@ async function init(){
 
   await openDB();
 
-  if(localStorage.getItem('mby_dark') === 'true'){
+  if(
+    localStorage.getItem('renjian_dark')
+    === 'true'
+  ){
 
-    document.body.classList.add('dark');
+    document.body
+      .classList
+      .add('dark');
   }
+
+  setDailyQuote();
 
   updateDateUI();
 
