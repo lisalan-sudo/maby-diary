@@ -1,179 +1,74 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-
 <title>人间编年</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
-
 <style>
-
 /* =====================================================
    人间编年 · 四时书房主题系统
 ===================================================== */
-
 :root{
-
   --bg:#F8F4EC;
   --paper:#EFE7DA;
   --paper2:#E4D7C3;
-
   --text:#2B2622;
   --text2:#6D6257;
   --text3:#9A8C7D;
-
   --accent:#A56A4F;
   --accent-soft:#E8D7C8;
-
   --border:#D9CCB8;
-
-  --shadow:
-    0 12px 40px rgba(90,70,50,.08);
-
+  --shadow: 0 12px 40px rgba(90,70,50,.08);
   --radius:26px;
-
-  --safe-bottom:env(safe-area-inset-bottom);
+  --font-serif: 'Noto Serif SC', serif;
+  --font-hand: 'Ma Shan Zheng', serif;
 }
 
-/* =====================================================
-   宣纸
-===================================================== */
-
-body.theme-xuanzhi{
-
-  --bg:#F8F4EC;
-  --paper:#EFE7DA;
-  --paper2:#E4D7C3;
-
-  --text:#2B2622;
-  --text2:#6D6257;
-  --text3:#9A8C7D;
-
-  --accent:#A56A4F;
-  --accent-soft:#E8D7C8;
-
-  --border:#D9CCB8;
+/* 四大主题 */
+body.theme-xuanzhi { --bg:#F8F4EC; --paper:#EFE7DA; --paper2:#E4D7C3; --text:#2B2622; --text2:#6D6257; --text3:#9A8C7D; --accent:#A56A4F; --accent-soft:#E8D7C8; --border:#D9CCB8; }
+body.theme-songyan { 
+  --bg:#161311; --paper:#221D1A; --paper2:#2E2621; --text:#F2E8DC; --text2:#B7A99B; 
+  --text3:#7C7067; --accent:#8FAE8E; --accent-soft:#2D3830; --border:#3A312B; 
+  --shadow:0 16px 50px rgba(0,0,0,.45); 
 }
-
-/* =====================================================
-   松烟
-===================================================== */
-
-body.theme-songyan{
-
-  --bg:#161311;
-  --paper:#221D1A;
-  --paper2:#2E2621;
-
-  --text:#F2E8DC;
-  --text2:#B7A99B;
-  --text3:#7C7067;
-
-  --accent:#8FAE8E;
-  --accent-soft:#2D3830;
-
-  --border:#3A312B;
-
-  --shadow:
-    0 16px 50px rgba(0,0,0,.45);
+body.theme-yanzhi { 
+  --bg:#2A1E22; --paper:#3A2A2F; --paper2:#49353B; --text:#F8EDEE; --text2:#D5B8BE; 
+  --text3:#A7858E; --accent:#E09AB0; --accent-soft:#5B3B46; --border:#6A4C56; 
+  --shadow:0 16px 50px rgba(0,0,0,.38); 
 }
-
-/* =====================================================
-   胭脂
-===================================================== */
-
-body.theme-yanzhi{
-
-  --bg:#2A1E22;
-  --paper:#3A2A2F;
-  --paper2:#49353B;
-
-  --text:#F8EDEE;
-  --text2:#D5B8BE;
-  --text3:#A7858E;
-
-  --accent:#E09AB0;
-  --accent-soft:#5B3B46;
-
-  --border:#6A4C56;
-
-  --shadow:
-    0 16px 50px rgba(0,0,0,.38);
-}
-
-/* =====================================================
-   青简
-===================================================== */
-
-body.theme-qingjian{
-
-  --bg:#182022;
-  --paper:#233034;
-  --paper2:#2E4045;
-
-  --text:#E6EFE8;
-  --text2:#A8B9B0;
-  --text3:#72847B;
-
-  --accent:#7FA89A;
-  --accent-soft:#31454A;
-
-  --border:#395056;
-
-  --shadow:
-    0 16px 50px rgba(0,0,0,.40);
+body.theme-qingjian { 
+  --bg:#182022; --paper:#233034; --paper2:#2E4045; --text:#E6EFE8; --text2:#A8B9B0; 
+  --text3:#72847B; --accent:#7FA89A; --accent-soft:#31454A; --border:#395056; 
+  --shadow:0 16px 50px rgba(0,0,0,.40); 
 }
 
 /* =====================================================
    全局
 ===================================================== */
-
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
-
-html,
-body{
-
+html, body{
   height:100%;
   overflow:hidden;
 }
-
 body{
-
   background:var(--bg);
-
   color:var(--text);
-
   font-family:'Noto Sans SC',sans-serif;
-
-  transition:
-    background .35s,
-    color .35s;
-
-  position:relative;
-
+  transition: background .35s, color .35s;
   -webkit-font-smoothing:antialiased;
 }
-
 body::before{
-
   content:'';
-
   position:fixed;
   inset:0;
-
   pointer-events:none;
-
   opacity:.12;
-
   background:
     radial-gradient(circle at 15% 20%, var(--accent-soft), transparent 24%),
     radial-gradient(circle at 80% 80%, var(--accent-soft), transparent 22%);
@@ -182,889 +77,504 @@ body::before{
 /* =====================================================
    顶栏
 ===================================================== */
-
 header{
-
   height:74px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   padding:0 26px;
-
   border-bottom:1px solid var(--border);
-
   background:rgba(255,255,255,.03);
-
   backdrop-filter:blur(14px);
 }
-
 .logo-box{
-
   display:flex;
   flex-direction:column;
 }
-
 .logo{
-
-  font-family:'Ma Shan Zheng',serif;
-
+  font-family:var(--font-hand);
   font-size:38px;
-
   color:var(--accent);
-
   line-height:1;
 }
-
 .logo-sub{
-
   margin-top:6px;
-
   font-size:13px;
-
   color:var(--text2);
-
   letter-spacing:.5px;
 }
 
-/* =====================================================
-   主题切换
-===================================================== */
-
+/* 主题切换 */
 .theme-group{
-
   display:flex;
-  gap:12px;
+  gap:10px;
 }
-
 .theme-btn{
-
   border:none;
-
   background:var(--paper);
-
   border:1px solid var(--border);
-
   color:var(--text2);
-
   border-radius:999px;
-
-  padding:10px 18px;
-
+  padding:9px 16px;
   cursor:pointer;
-
   transition:.2s;
-
   font-size:13px;
 }
-
 .theme-btn:hover{
-
   transform:translateY(-2px);
-
   border-color:var(--accent);
-
   color:var(--accent);
 }
 
 /* =====================================================
    布局
 ===================================================== */
-
 .layout{
-
   height:calc(100vh - 74px);
-
   display:grid;
-
   grid-template-columns:360px 1fr;
 }
-
 @media(max-width:980px){
-
   .layout{
     grid-template-columns:1fr;
   }
-
   .sidebar{
-
     display:none;
   }
+  .main{
+    padding:20px 18px 120px;
+  }
 }
-
 .sidebar{
-
   overflow-y:auto;
-
   border-right:1px solid var(--border);
-
   padding:22px;
-
   -webkit-overflow-scrolling:touch;
 }
-
 .main{
-
   overflow-y:auto;
-
-  padding:30px;
-
-  padding-bottom:140px;
-
+  padding:32px 40px;
+  padding-bottom:160px;
+  line-height:1.9;
+  max-width:780px;
+  margin:0 auto;
   -webkit-overflow-scrolling:touch;
 }
 
 /* =====================================================
-   卡片
+   卡片 & 面板
 ===================================================== */
-
-.panel,
-.card{
-
+.panel, .card{
   background:var(--paper);
-
   border:1px solid var(--border);
-
   border-radius:var(--radius);
-
   box-shadow:var(--shadow);
-
   position:relative;
-
   overflow:hidden;
 }
-
 .panel{
-  padding:20px;
+  padding:22px;
 }
-
 .card{
-  padding:28px;
+  padding:26px;
+  margin-top:24px;
 }
-
-.panel + .panel,
-.card + .card{
-  margin-top:20px;
-}
-
-.panel::before,
-.card::before{
-
+.panel::before, .card::before{
   content:'';
-
   position:absolute;
   inset:0;
-
-  background:
-    linear-gradient(rgba(255,255,255,.03),rgba(0,0,0,.02));
-
+  background:linear-gradient(rgba(255,255,255,.03),rgba(0,0,0,.02));
   pointer-events:none;
 }
 
-/* =====================================================
-   今日史官
-===================================================== */
-
+/* 今日史官 */
 .quote{
-
   background:var(--accent-soft);
-
   border:1px dashed var(--accent);
-
   border-radius:22px;
-
-  padding:22px;
-
-  margin-bottom:28px;
+  padding:26px 28px;
+  margin-bottom:32px;
+  position:relative;
 }
-
+.quote::before{
+  content:"✦";
+  position:absolute;
+  left:24px;
+  top:22px;
+  font-size:28px;
+  opacity:0.25;
+  color:var(--accent);
+}
 .quote-label{
-
   color:var(--accent);
-
-  font-size:13px;
-
-  margin-bottom:12px;
-}
-
-.quote-text{
-
-  font-family:'Noto Serif SC',serif;
-
-  line-height:2;
-
-  font-size:17px;
-
-  color:var(--text2);
-}
-
-/* =====================================================
-   日期
-===================================================== */
-
-.date-box{
-
-  text-align:center;
-
-  margin-bottom:30px;
-}
-
-.date-box h1{
-
-  font-family:'Ma Shan Zheng';
-
-  font-size:74px;
-
-  color:var(--accent);
-}
-
-.date-box p{
-
-  margin-top:10px;
-
-  color:var(--text2);
-
-  font-size:18px;
-}
-
-/* =====================================================
-   输入
-===================================================== */
-
-.label{
-
-  color:var(--text2);
-
+  font-size:14px;
   margin-bottom:14px;
-
-  font-size:15px;
 }
-
-textarea,
-input{
-
-  width:100%;
-
-  border:none;
-
-  outline:none;
-
-  background:none;
-
-  color:var(--text);
-
-  font-family:'Noto Serif SC',serif;
-
+.quote-text{
+  font-family:var(--font-serif);
   line-height:2;
-
-  font-size:16px;
+  font-size:17.5px;
+  color:var(--text2);
 }
 
+/* 日期 */
+.date-box{
+  text-align:center;
+  margin-bottom:36px;
+}
+.date-box h1{
+  font-family:var(--font-hand);
+  font-size:76px;
+  color:var(--accent);
+  line-height:1;
+}
+.date-box p{
+  margin-top:12px;
+  color:var(--text2);
+  font-size:19px;
+}
+
+/* 栏目标签 */
+.label{
+  color:var(--text2);
+  margin-bottom:14px;
+  font-size:15.5px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* 输入框 */
 textarea{
-
+  width:100%;
+  border:none;
+  outline:none;
+  background:none;
+  color:var(--text);
+  font-family:var(--font-serif);
+  line-height:2;
+  font-size:16.5px;
   resize:vertical;
-
-  min-height:110px;
+  min-height:108px;
 }
-
 ::placeholder{
   color:var(--text3);
 }
 
-/* =====================================================
-   按钮
-===================================================== */
-
+/* 按钮 */
 .actions{
-
   display:flex;
   gap:14px;
-
-  margin-top:24px;
+  margin-top:28px;
 }
-
 .btn{
-
   flex:1;
-
   border:none;
-
   border-radius:18px;
-
   padding:16px;
-
   cursor:pointer;
-
   font-size:15px;
-
   font-weight:600;
-
   transition:.2s;
 }
-
 .btn:hover{
   transform:translateY(-2px);
 }
-
 .btn-primary{
-
   background:var(--accent);
-
   color:white;
 }
-
 .btn-secondary{
-
   background:var(--paper2);
-
   color:var(--text2);
 }
 
-/* =====================================================
-   日历
-===================================================== */
-
+/* 日历 */
 .calendar-head{
-
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
-
   margin-bottom:18px;
 }
-
 .calendar-title{
-
-  font-family:'Ma Shan Zheng';
-
+  font-family:var(--font-hand);
   font-size:42px;
-
   color:var(--accent);
 }
-
 .cal-btn{
-
   width:44px;
   height:44px;
-
   border-radius:50%;
-
   border:none;
-
   background:var(--bg);
-
   border:1px solid var(--border);
-
   color:var(--text2);
-
   cursor:pointer;
 }
-
-.week-row,
-.calendar-grid{
-
+.week-row, .calendar-grid{
   display:grid;
-
   grid-template-columns:repeat(7,1fr);
-
   gap:8px;
 }
-
 .week-row{
   margin-bottom:10px;
 }
-
 .week-row div{
-
   text-align:center;
-
   color:var(--text3);
+  font-size:14px;
 }
-
 .day{
-
   aspect-ratio:1;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   border-radius:16px;
-
   cursor:pointer;
-
   transition:.18s;
-
-  position:relative;
-
   font-size:18px;
 }
-
 .day:hover{
-
   background:var(--accent-soft);
-
   transform:translateY(-2px);
 }
-
 .day.today{
-
   border:2px solid var(--accent);
 }
-
 .day.selected{
-
   background:var(--accent);
-
   color:white;
-
   font-weight:bold;
 }
-
 .day.has-entry::after{
-
   content:'';
-
   width:6px;
   height:6px;
-
   border-radius:50%;
-
   background:var(--accent);
-
   position:absolute;
-
   bottom:8px;
 }
 
-.day.selected.has-entry::after{
-  background:white;
+/* 页脚 */
+footer{
+  text-align:center;
+  padding:40px 20px 30px;
+  color:var(--text3);
+  font-size:13.5px;
+  opacity:0.85;
 }
-
-/* =====================================================
-   主题说明
-===================================================== */
-
-.theme-desc{
-
-  margin-top:16px;
-
-  padding:16px;
-
-  border-radius:18px;
-
-  background:var(--accent-soft);
-
-  color:var(--text2);
-
-  line-height:1.9;
-
-  font-size:14px;
-
-  font-family:'Noto Serif SC',serif;
-}
-
 </style>
 </head>
-
 <body class="theme-songyan">
 
 <header>
-
   <div class="logo-box">
-
     <div class="logo">人间编年</div>
-
-    <div class="logo-sub">
-      不是世界史，而是我的人间史
-    </div>
-
+    <div class="logo-sub">不是世界史，而是我的人间史</div>
   </div>
-
   <div class="theme-group">
-
-    <button class="theme-btn" onclick="setTheme('xuanzhi')">
-      宣纸
-    </button>
-
-    <button class="theme-btn" onclick="setTheme('songyan')">
-      松烟
-    </button>
-
-    <button class="theme-btn" onclick="setTheme('yanzhi')">
-      胭脂
-    </button>
-
-    <button class="theme-btn" onclick="setTheme('qingjian')">
-      青简
-    </button>
-
+    <button class="theme-btn" onclick="setTheme('xuanzhi')">宣纸</button>
+    <button class="theme-btn" onclick="setTheme('songyan')">松烟</button>
+    <button class="theme-btn" onclick="setTheme('yanzhi')">胭脂</button>
+    <button class="theme-btn" onclick="setTheme('qingjian')">青简</button>
   </div>
-
 </header>
 
 <div class="layout">
-
-  <!-- 左侧 -->
-
+  <!-- 左侧栏 -->
   <aside class="sidebar">
-
     <div class="panel">
-
       <div class="calendar-head">
-
         <button class="cal-btn" onclick="changeMonth(-1)">‹</button>
-
         <div class="calendar-title" id="monthTitle"></div>
-
         <button class="cal-btn" onclick="changeMonth(1)">›</button>
-
       </div>
-
       <div class="week-row">
-
-        <div>日</div>
-        <div>一</div>
-        <div>二</div>
-        <div>三</div>
-        <div>四</div>
-        <div>五</div>
-        <div>六</div>
-
+        <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
       </div>
-
       <div class="calendar-grid" id="calendarGrid"></div>
-
-      <div class="theme-desc" id="themeDesc"></div>
-
     </div>
-
   </aside>
 
   <!-- 主体 -->
-
   <main class="main">
-
     <!-- 今日史官 -->
-
     <div class="quote">
-
-      <div class="quote-label">
-        ✦ 今日史官
-      </div>
-
+      <div class="quote-label">✦ 今日史官</div>
       <div class="quote-text" id="dailyQuote"></div>
-
     </div>
 
-    <!-- 日期 -->
-
+    <!-- 大日期 -->
     <div class="date-box">
-
       <h1 id="mainDate"></h1>
-
       <p id="subDate"></p>
-
     </div>
 
-    <!-- 内容 -->
-
-    <div class="card">
-
-      <div class="label">
-        ☀️ 坊间见闻
-      </div>
-
-      <textarea placeholder="今日市井之间，有何可记？"></textarea>
-
+    <!-- 最新记录预览区 -->
+    <div class="panel">
+      <div class="label">📜 近日誊录</div>
+      <p style="color:var(--text3); line-height:1.8; font-size:15.5px;">
+        此处后续可展示最近几条记录摘要（可通过 JS 动态加载）
+      </p>
     </div>
 
+    <!-- 写作入口 -->
     <div class="card">
-
-      <div class="label">
-        📚 案头博览
-      </div>
-
-      <textarea placeholder="今日翻阅了哪些卷册？"></textarea>
-
+      <div class="label">☀️ 坊间见闻</div>
+      <textarea id="ta-fangjian" placeholder="今日市井之间，有何可记？"></textarea>
     </div>
 
     <div class="card">
-
-      <div class="label">
-        🧊 考据心得
-      </div>
-
-      <textarea placeholder="记录一则掌故、冷知识……"></textarea>
-
+      <div class="label">📚 案头博览</div>
+      <textarea id="ta-anshou" placeholder="今日翻阅了哪些卷册？"></textarea>
     </div>
 
     <div class="card">
+      <div class="label">🧊 考据心得</div>
+      <textarea id="ta-kaoju" placeholder="记录一则掌故、冷知识……"></textarea>
+    </div>
 
-      <div class="label">
-        💡 奇思脑洞
-      </div>
-
-      <textarea placeholder="若历史拐向另一条河流……"></textarea>
-
+    <div class="card">
+      <div class="label">💡 奇思脑洞</div>
+      <textarea id="ta-qisi" placeholder="若历史拐向另一条河流……"></textarea>
     </div>
 
     <div class="actions">
-
-      <button class="btn btn-primary">
-        💾 载入史册
-      </button>
-
-      <button class="btn btn-secondary">
-        📜 誊录
-      </button>
-
+      <button class="btn btn-primary" onclick="saveEntry()">💾 载入史册</button>
+      <button class="btn btn-secondary" onclick="clearAll()">📜 清空草稿</button>
     </div>
 
+    <footer>
+      史官 lisalan · 人间值得
+    </footer>
   </main>
-
 </div>
 
 <script>
+// DOM 缓存
+const els = {
+  dailyQuote: document.getElementById('dailyQuote'),
+  mainDate: document.getElementById('mainDate'),
+  subDate: document.getElementById('subDate'),
+  monthTitle: document.getElementById('monthTitle'),
+  calendarGrid: document.getElementById('calendarGrid')
+};
 
-/* =====================================================
-   今日史官
-===================================================== */
-
+// 今日史官语录
 const QUOTES = [
-
   "万历十五年无大事，今日亦然。",
-
-  "长安米贵，居大不易，而今日咖啡亦涨价。",
-
   "真正的编年史，往往写满了寻常日子。",
-
-  "古人记山河，今人记地铁与深夜便利店。",
-
   "历史从不是宏大叙事，它只是千万人的今日。",
-
   "所有未被记下的生活，终将沉入岁月。",
-
-  "所谓人生，不过是把寻常日子写成长卷。",
-
-  "白居易困于长安，今人困于早高峰。",
-
-  "窗外车流不息，恰如旧时长安夜市。",
-
   "人间烟火气，最抚后来人。",
-
   "今日看似平淡，来日翻阅，皆成时代切片。"
-
 ];
 
 function setDailyQuote(){
-
-  const today =
-    new Date().toDateString();
-
+  const today = new Date().toDateString();
   let seed = 0;
-
-  for(let i=0;i<today.length;i++){
-
-    seed += today.charCodeAt(i);
-  }
-
-  const quote =
-    QUOTES[seed % QUOTES.length];
-
-  document.getElementById('dailyQuote')
-    .innerText = quote;
+  for(let i = 0; i < today.length; i++) seed += today.charCodeAt(i);
+  els.dailyQuote.innerText = QUOTES[seed % QUOTES.length];
 }
 
-/* =====================================================
-   日期
-===================================================== */
-
-const weekNames = [
-
-  '星期日',
-  '星期一',
-  '星期二',
-  '星期三',
-  '星期四',
-  '星期五',
-  '星期六'
-];
-
+// 日期
+const weekNames = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
 let selectedDate = new Date();
-
 let currentMonth = new Date();
 
 function updateDate(){
-
-  document.getElementById('mainDate')
-    .innerHTML =
-
-    `${selectedDate.getFullYear()}年`
-    +
-    `${selectedDate.getMonth()+1}月`
-    +
-    `${selectedDate.getDate()}日`;
-
-  document.getElementById('subDate')
-    .innerHTML =
-    weekNames[selectedDate.getDay()];
+  const y = selectedDate.getFullYear();
+  const m = selectedDate.getMonth() + 1;
+  const d = selectedDate.getDate();
+  els.mainDate.innerHTML = `${y}年${m}月${d}日`;
+  els.subDate.innerHTML = weekNames[selectedDate.getDay()];
 }
 
-/* =====================================================
-   日历
-===================================================== */
-
+// 日历
 function renderCalendar(){
+  els.calendarGrid.innerHTML = '';
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth();
+  els.monthTitle.innerHTML = `${year}年 ${month+1}月`;
 
-  const grid =
-    document.getElementById('calendarGrid');
+  const firstDay = new Date(year, month, 1).getDay();
+  const lastDate = new Date(year, month + 1, 0).getDate();
 
-  grid.innerHTML = '';
-
-  const year =
-    currentMonth.getFullYear();
-
-  const month =
-    currentMonth.getMonth();
-
-  document.getElementById('monthTitle')
-    .innerHTML =
-    `${year}年 ${month+1}月`;
-
-  const firstDay =
-    new Date(year,month,1).getDay();
-
-  const lastDate =
-    new Date(year,month+1,0).getDate();
-
-  for(let i=0;i<firstDay;i++){
-
-    const empty =
-      document.createElement('div');
-
-    grid.appendChild(empty);
+  for(let i = 0; i < firstDay; i++){
+    const empty = document.createElement('div');
+    els.calendarGrid.appendChild(empty);
   }
 
-  for(let i=1;i<=lastDate;i++){
-
-    const date =
-      new Date(year,month,i);
-
-    const div =
-      document.createElement('div');
-
+  for(let i = 1; i <= lastDate; i++){
+    const date = new Date(year, month, i);
+    const div = document.createElement('div');
     div.className = 'day';
-
     div.innerText = i;
 
-    if(
-      date.toDateString()
-      ===
-      new Date().toDateString()
-    ){
+    if(date.toDateString() === new Date().toDateString()) div.classList.add('today');
+    if(date.toDateString() === selectedDate.toDateString()) div.classList.add('selected');
 
-      div.classList.add('today');
-    }
-
-    if(
-      date.toDateString()
-      ===
-      selectedDate.toDateString()
-    ){
-
-      div.classList.add('selected');
-    }
-
-    div.onclick = ()=>{
-
+    div.onclick = () => {
       selectedDate = date;
-
       updateDate();
-
       renderCalendar();
     };
-
-    grid.appendChild(div);
+    els.calendarGrid.appendChild(div);
   }
 }
 
 function changeMonth(step){
-
-  currentMonth.setMonth(
-    currentMonth.getMonth()+step
-  );
-
+  currentMonth.setMonth(currentMonth.getMonth() + step);
   renderCalendar();
 }
 
-/* =====================================================
-   四大主题
-===================================================== */
-
+// 主题切换
 const THEME_INFO = {
-
-  xuanzhi:{
-    text:"日光正好，宜翻旧卷。"
-  },
-
-  songyan:{
-    text:"夜深灯下，最宜修史。"
-  },
-
-  yanzhi:{
-    text:"灯火微红，人间如梦。"
-  },
-
-  qingjian:{
-    text:"山雨欲来，且读旧书。"
-  }
+  xuanzhi: {text: "日光正好，宜翻旧卷。"},
+  songyan: {text: "夜深灯下，最宜修史。"},
+  yanzhi:  {text: "灯火微红，人间如梦。"},
+  qingjian:{text: "山雨欲来，且读旧书。"}
 };
 
 function setTheme(theme){
-
-  document.body.className =
-    'theme-' + theme;
-
-  localStorage.setItem(
-    'renjian_theme',
-    theme
-  );
-
-  document.getElementById('themeDesc')
-    .innerHTML =
-    THEME_INFO[theme].text;
+  document.body.className = 'theme-' + theme;
+  localStorage.setItem('renjian_theme', theme);
 }
 
-/* =====================================================
-   初始化
-===================================================== */
+// 保存草稿（简单 localStorage 示例）
+function saveEntry(){
+  const data = {
+    fangjian: document.getElementById('ta-fangjian').value,
+    anshou: document.getElementById('ta-anshou').value,
+    kaoju: document.getElementById('ta-kaoju').value,
+    qisi: document.getElementById('ta-qisi').value,
+    date: new Date().toISOString()
+  };
+  localStorage.setItem('renjian_draft_' + Date.now(), JSON.stringify(data));
+  alert('✅ 已载入史册（本地暂存）');
+}
 
+function clearAll(){
+  if(confirm('确定清空所有草稿吗？')){
+    document.getElementById('ta-fangjian').value = '';
+    document.getElementById('ta-anshou').value = '';
+    document.getElementById('ta-kaoju').value = '';
+    document.getElementById('ta-qisi').value = '';
+  }
+}
+
+// 初始化
 function init(){
-
-  const savedTheme =
-    localStorage.getItem('renjian_theme')
-    || 'songyan';
-
+  const savedTheme = localStorage.getItem('renjian_theme') || 'songyan';
   setTheme(savedTheme);
-
+  
   setDailyQuote();
-
   updateDate();
-
   renderCalendar();
 }
 
 init();
-
 </script>
-
 </body>
 </html>
