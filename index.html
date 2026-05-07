@@ -13,51 +13,125 @@
 
 <style>
 
+/* =====================================================
+   人间编年 · 四时书房主题系统
+===================================================== */
+
 :root{
 
-  --bg:#faf7f2;
-  --paper:#f3ede3;
-  --paper2:#ede4d5;
+  --bg:#F8F4EC;
+  --paper:#EFE7DA;
+  --paper2:#E4D7C3;
 
-  --ink:#2d2520;
-  --ink2:#6b5d54;
-  --ink3:#a8978c;
+  --text:#2B2622;
+  --text2:#6D6257;
+  --text3:#9A8C7D;
 
-  --rose:#c4748a;
-  --rose2:#f5dde4;
-  --rose-bg:#fcf3f6;
+  --accent:#A56A4F;
+  --accent-soft:#E8D7C8;
 
-  --border:#ddd3c5;
+  --border:#D9CCB8;
 
   --shadow:
-    0 10px 35px rgba(80,60,40,.07);
+    0 12px 40px rgba(90,70,50,.08);
 
-  --radius:24px;
+  --radius:26px;
 
   --safe-bottom:env(safe-area-inset-bottom);
 }
 
-/* 深色 */
+/* =====================================================
+   宣纸
+===================================================== */
 
-body.dark{
+body.theme-xuanzhi{
 
-  --bg:#171412;
-  --paper:#231d19;
-  --paper2:#2c241f;
+  --bg:#F8F4EC;
+  --paper:#EFE7DA;
+  --paper2:#E4D7C3;
 
-  --ink:#f3ece6;
-  --ink2:#d7c5b8;
-  --ink3:#9d8a7d;
+  --text:#2B2622;
+  --text2:#6D6257;
+  --text3:#9A8C7D;
 
-  --rose:#d98ca3;
-  --rose2:#50353d;
-  --rose-bg:#302126;
+  --accent:#A56A4F;
+  --accent-soft:#E8D7C8;
 
-  --border:#3d342e;
+  --border:#D9CCB8;
+}
+
+/* =====================================================
+   松烟
+===================================================== */
+
+body.theme-songyan{
+
+  --bg:#161311;
+  --paper:#221D1A;
+  --paper2:#2E2621;
+
+  --text:#F2E8DC;
+  --text2:#B7A99B;
+  --text3:#7C7067;
+
+  --accent:#8FAE8E;
+  --accent-soft:#2D3830;
+
+  --border:#3A312B;
 
   --shadow:
-    0 14px 40px rgba(0,0,0,.45);
+    0 16px 50px rgba(0,0,0,.45);
 }
+
+/* =====================================================
+   胭脂
+===================================================== */
+
+body.theme-yanzhi{
+
+  --bg:#2A1E22;
+  --paper:#3A2A2F;
+  --paper2:#49353B;
+
+  --text:#F8EDEE;
+  --text2:#D5B8BE;
+  --text3:#A7858E;
+
+  --accent:#E09AB0;
+  --accent-soft:#5B3B46;
+
+  --border:#6A4C56;
+
+  --shadow:
+    0 16px 50px rgba(0,0,0,.38);
+}
+
+/* =====================================================
+   青简
+===================================================== */
+
+body.theme-qingjian{
+
+  --bg:#182022;
+  --paper:#233034;
+  --paper2:#2E4045;
+
+  --text:#E6EFE8;
+  --text2:#A8B9B0;
+  --text3:#72847B;
+
+  --accent:#7FA89A;
+  --accent-soft:#31454A;
+
+  --border:#395056;
+
+  --shadow:
+    0 16px 50px rgba(0,0,0,.40);
+}
+
+/* =====================================================
+   全局
+===================================================== */
 
 *{
   margin:0;
@@ -65,7 +139,8 @@ body.dark{
   box-sizing:border-box;
 }
 
-html{
+html,
+body{
 
   height:100%;
   overflow:hidden;
@@ -73,14 +148,15 @@ html{
 
 body{
 
-  height:100%;
-  overflow:hidden;
-
   background:var(--bg);
 
-  color:var(--ink);
+  color:var(--text);
 
   font-family:'Noto Sans SC',sans-serif;
+
+  transition:
+    background .35s,
+    color .35s;
 
   position:relative;
 
@@ -96,18 +172,20 @@ body::before{
 
   pointer-events:none;
 
-  opacity:.18;
+  opacity:.12;
 
   background:
-    radial-gradient(circle at 20% 20%, rgba(196,116,138,.08), transparent 22%),
-    radial-gradient(circle at 80% 75%, rgba(120,90,60,.05), transparent 28%);
+    radial-gradient(circle at 15% 20%, var(--accent-soft), transparent 24%),
+    radial-gradient(circle at 80% 80%, var(--accent-soft), transparent 22%);
 }
 
-/* 顶栏 */
+/* =====================================================
+   顶栏
+===================================================== */
 
 header{
 
-  height:68px;
+  height:74px;
 
   display:flex;
 
@@ -115,24 +193,16 @@ header{
 
   justify-content:space-between;
 
-  padding:0 22px;
-
-  position:sticky;
-  top:0;
-  z-index:100;
-
-  background:rgba(250,247,242,.88);
-
-  backdrop-filter:blur(14px);
+  padding:0 26px;
 
   border-bottom:1px solid var(--border);
+
+  background:rgba(255,255,255,.03);
+
+  backdrop-filter:blur(14px);
 }
 
-body.dark header{
-  background:rgba(23,20,18,.92);
-}
-
-.logo-wrap{
+.logo-box{
 
   display:flex;
   flex-direction:column;
@@ -142,66 +212,75 @@ body.dark header{
 
   font-family:'Ma Shan Zheng',serif;
 
-  font-size:30px;
+  font-size:38px;
 
-  color:var(--rose);
+  color:var(--accent);
 
   line-height:1;
 }
 
 .logo-sub{
 
-  font-size:11px;
+  margin-top:6px;
 
-  color:var(--ink3);
+  font-size:13px;
 
-  margin-top:4px;
+  color:var(--text2);
 
-  letter-spacing:1px;
+  letter-spacing:.5px;
 }
 
-.top-actions{
+/* =====================================================
+   主题切换
+===================================================== */
+
+.theme-group{
 
   display:flex;
-  gap:10px;
+  gap:12px;
 }
 
-.icon-btn{
+.theme-btn{
 
   border:none;
 
   background:var(--paper);
 
-  color:var(--ink2);
-
   border:1px solid var(--border);
 
-  padding:9px 14px;
+  color:var(--text2);
 
   border-radius:999px;
 
+  padding:10px 18px;
+
   cursor:pointer;
 
-  font-size:13px;
-
   transition:.2s;
+
+  font-size:13px;
 }
 
-.icon-btn:hover{
+.theme-btn:hover{
+
   transform:translateY(-2px);
+
+  border-color:var(--accent);
+
+  color:var(--accent);
 }
 
-/* 布局 */
+/* =====================================================
+   布局
+===================================================== */
 
 .layout{
 
-  height:calc(100vh - 68px);
+  height:calc(100vh - 74px);
 
   display:grid;
 
-  grid-template-columns:340px 1fr;
-
-  overflow:hidden;
+  grid-template-columns:360px 1fr;
 }
 
 @media(max-width:980px){
@@ -212,29 +291,9 @@ body.dark header{
 
   .sidebar{
 
-    position:fixed;
-
-    left:0;
-    top:68px;
-    bottom:0;
-
-    width:100%;
-
-    z-index:200;
-
-    background:var(--bg);
-
-    transform:translateX(-100%);
-
-    transition:.3s;
-  }
-
-  .sidebar.open{
-    transform:translateX(0);
+    display:none;
   }
 }
-
-/* 左侧 */
 
 .sidebar{
 
@@ -242,34 +301,25 @@ body.dark header{
 
   border-right:1px solid var(--border);
 
-  padding:18px;
-
-  padding-bottom:calc(30px + var(--safe-bottom));
+  padding:22px;
 
   -webkit-overflow-scrolling:touch;
 }
-
-/* 主体 */
 
 .main{
 
   overflow-y:auto;
 
-  padding:26px;
+  padding:30px;
 
-  padding-bottom:calc(120px + var(--safe-bottom));
+  padding-bottom:140px;
 
   -webkit-overflow-scrolling:touch;
 }
 
-@media(max-width:980px){
-
-  .main{
-    padding:18px;
-  }
-}
-
-/* 卡片 */
+/* =====================================================
+   卡片
+===================================================== */
 
 .panel,
 .card{
@@ -288,18 +338,16 @@ body.dark header{
 }
 
 .panel{
-
-  padding:18px;
+  padding:20px;
 }
 
 .card{
-
-  padding:24px;
+  padding:28px;
 }
 
 .panel + .panel,
 .card + .card{
-  margin-top:18px;
+  margin-top:20px;
 }
 
 .panel::before,
@@ -311,37 +359,35 @@ body.dark header{
   inset:0;
 
   background:
-    linear-gradient(rgba(255,255,255,.03),rgba(0,0,0,.015));
+    linear-gradient(rgba(255,255,255,.03),rgba(0,0,0,.02));
 
   pointer-events:none;
 }
 
-/* 今日史官 */
+/* =====================================================
+   今日史官
+===================================================== */
 
-.quote-box{
+.quote{
 
-  background:var(--rose-bg);
+  background:var(--accent-soft);
 
-  border:1px dashed var(--rose);
+  border:1px dashed var(--accent);
 
-  border-radius:20px;
+  border-radius:22px;
 
-  padding:18px;
+  padding:22px;
 
-  margin-bottom:22px;
-
-  position:relative;
+  margin-bottom:28px;
 }
 
 .quote-label{
 
-  font-size:12px;
+  color:var(--accent);
 
-  color:var(--rose);
+  font-size:13px;
 
-  margin-bottom:10px;
-
-  letter-spacing:1px;
+  margin-bottom:12px;
 }
 
 .quote-text{
@@ -350,52 +396,52 @@ body.dark header{
 
   line-height:2;
 
-  color:var(--ink2);
+  font-size:17px;
 
-  font-size:15px;
+  color:var(--text2);
 }
 
-/* 日期 */
+/* =====================================================
+   日期
+===================================================== */
 
-.date-title{
+.date-box{
 
   text-align:center;
 
-  margin-bottom:22px;
+  margin-bottom:30px;
 }
 
-.date-title h1{
+.date-box h1{
 
   font-family:'Ma Shan Zheng';
 
-  font-size:46px;
+  font-size:74px;
 
-  color:var(--rose);
+  color:var(--accent);
 }
 
-.date-title p{
+.date-box p{
 
-  margin-top:8px;
+  margin-top:10px;
 
-  color:var(--ink3);
+  color:var(--text2);
 
-  font-size:13px;
-
-  letter-spacing:1px;
+  font-size:18px;
 }
 
-/* 标签 */
+/* =====================================================
+   输入
+===================================================== */
 
 .label{
 
-  font-size:13px;
+  color:var(--text2);
 
-  color:var(--ink2);
+  margin-bottom:14px;
 
-  margin-bottom:12px;
+  font-size:15px;
 }
-
-/* 输入 */
 
 textarea,
 input{
@@ -406,38 +452,38 @@ input{
 
   outline:none;
 
-  background:transparent;
+  background:none;
 
-  color:var(--ink);
-
-  font-size:15px;
-
-  line-height:1.95;
+  color:var(--text);
 
   font-family:'Noto Serif SC',serif;
+
+  line-height:2;
+
+  font-size:16px;
 }
 
 textarea{
 
   resize:vertical;
 
-  min-height:90px;
+  min-height:110px;
 }
 
-textarea::placeholder,
-input::placeholder{
-  color:var(--ink3);
+::placeholder{
+  color:var(--text3);
 }
 
-/* 操作 */
+/* =====================================================
+   按钮
+===================================================== */
 
 .actions{
 
   display:flex;
+  gap:14px;
 
-  gap:12px;
-
-  margin-top:20px;
+  margin-top:24px;
 }
 
 .btn{
@@ -448,9 +494,11 @@ input::placeholder{
 
   border-radius:18px;
 
-  padding:15px;
+  padding:16px;
 
   cursor:pointer;
+
+  font-size:15px;
 
   font-weight:600;
 
@@ -463,7 +511,7 @@ input::placeholder{
 
 .btn-primary{
 
-  background:var(--rose);
+  background:var(--accent);
 
   color:white;
 }
@@ -472,10 +520,12 @@ input::placeholder{
 
   background:var(--paper2);
 
-  color:var(--ink2);
+  color:var(--text2);
 }
 
-/* 日历 */
+/* =====================================================
+   日历
+===================================================== */
 
 .calendar-head{
 
@@ -488,19 +538,19 @@ input::placeholder{
   margin-bottom:18px;
 }
 
-.calendar-head h2{
+.calendar-title{
 
   font-family:'Ma Shan Zheng';
 
-  font-size:30px;
+  font-size:42px;
 
-  color:var(--rose);
+  color:var(--accent);
 }
 
 .cal-btn{
 
-  width:34px;
-  height:34px;
+  width:44px;
+  height:44px;
 
   border-radius:50%;
 
@@ -510,7 +560,7 @@ input::placeholder{
 
   border:1px solid var(--border);
 
-  color:var(--ink2);
+  color:var(--text2);
 
   cursor:pointer;
 }
@@ -522,27 +572,23 @@ input::placeholder{
 
   grid-template-columns:repeat(7,1fr);
 
-  gap:6px;
+  gap:8px;
 }
 
 .week-row{
-  margin-bottom:8px;
+  margin-bottom:10px;
 }
 
 .week-row div{
 
   text-align:center;
 
-  color:var(--ink3);
-
-  font-size:12px;
+  color:var(--text3);
 }
 
 .day{
 
   aspect-ratio:1;
-
-  border-radius:12px;
 
   display:flex;
 
@@ -550,31 +596,32 @@ input::placeholder{
 
   justify-content:center;
 
+  border-radius:16px;
+
   cursor:pointer;
 
   transition:.18s;
 
   position:relative;
+
+  font-size:18px;
 }
 
 .day:hover{
 
-  background:var(--rose-bg);
+  background:var(--accent-soft);
 
   transform:translateY(-2px);
 }
 
-.day.empty{
-  pointer-events:none;
-}
-
 .day.today{
-  border:2px solid var(--rose);
+
+  border:2px solid var(--accent);
 }
 
 .day.selected{
 
-  background:var(--rose);
+  background:var(--accent);
 
   color:white;
 
@@ -590,191 +637,48 @@ input::placeholder{
 
   border-radius:50%;
 
-  background:var(--rose);
+  background:var(--accent);
 
   position:absolute;
 
-  bottom:6px;
+  bottom:8px;
 }
 
 .day.selected.has-entry::after{
   background:white;
 }
 
-/* 搜索 */
+/* =====================================================
+   主题说明
+===================================================== */
 
-.search-results{
+.theme-desc{
 
-  margin-top:14px;
+  margin-top:16px;
 
-  display:flex;
+  padding:16px;
 
-  flex-direction:column;
+  border-radius:18px;
 
-  gap:10px;
+  background:var(--accent-soft);
 
-  max-height:320px;
+  color:var(--text2);
 
-  overflow:auto;
-}
-
-.search-item{
-
-  background:var(--bg);
-
-  border:1px solid var(--border);
-
-  border-radius:16px;
-
-  padding:12px;
-
-  cursor:pointer;
-}
-
-.search-item-title{
-
-  color:var(--rose);
-
-  margin-bottom:8px;
-
-  font-weight:700;
-}
-
-/* 时间轴 */
-
-.timeline-year{
-  margin-top:18px;
-}
-
-.timeline-year h3{
-
-  color:var(--rose);
-
-  margin-bottom:8px;
-}
-
-.timeline-month{
-
-  padding-left:14px;
-
-  margin-bottom:10px;
-}
-
-.timeline-entry{
+  line-height:1.9;
 
   font-size:14px;
 
-  color:var(--ink2);
-
-  margin:4px 0;
-
-  cursor:pointer;
-}
-
-.timeline-entry:hover{
-  color:var(--rose);
-}
-
-/* 采风本 */
-
-.material-item{
-
-  background:var(--bg);
-
-  border:1px solid var(--border);
-
-  border-radius:16px;
-
-  padding:14px;
-
-  margin-top:12px;
-}
-
-.material-type{
-
-  color:var(--rose);
-
-  font-size:12px;
-
-  margin-bottom:8px;
-}
-
-.tag{
-
-  display:inline-block;
-
-  padding:4px 8px;
-
-  border-radius:999px;
-
-  background:var(--rose2);
-
-  color:var(--rose);
-
-  font-size:11px;
-
-  margin-top:8px;
-
-  margin-right:6px;
-}
-
-/* 手机底栏 */
-
-.mobile-bar{
-  display:none;
-}
-
-@media(max-width:980px){
-
-  .mobile-bar{
-
-    position:fixed;
-
-    left:0;
-    right:0;
-    bottom:0;
-
-    height:70px;
-
-    background:rgba(250,247,242,.95);
-
-    backdrop-filter:blur(12px);
-
-    border-top:1px solid var(--border);
-
-    display:flex;
-
-    z-index:400;
-
-    padding-bottom:var(--safe-bottom);
-  }
-
-  body.dark .mobile-bar{
-    background:rgba(23,20,18,.95);
-  }
-
-  .mobile-bar button{
-
-    flex:1;
-
-    border:none;
-
-    background:none;
-
-    color:var(--ink2);
-
-    font-size:14px;
-  }
+  font-family:'Noto Serif SC',serif;
 }
 
 </style>
 </head>
 
-<body>
+<body class="theme-songyan">
 
 <header>
 
-  <div class="logo-wrap">
+  <div class="logo-box">
 
     <div class="logo">人间编年</div>
 
@@ -784,18 +688,22 @@ input::placeholder{
 
   </div>
 
-  <div class="top-actions">
+  <div class="theme-group">
 
-    <button class="icon-btn" onclick="toggleDark()">
-      🌙 夜读
+    <button class="theme-btn" onclick="setTheme('xuanzhi')">
+      宣纸
     </button>
 
-    <button class="icon-btn" onclick="exportMarkdown()">
-      📜 誊录
+    <button class="theme-btn" onclick="setTheme('songyan')">
+      松烟
     </button>
 
-    <button class="icon-btn" onclick="toggleSidebar()">
-      📚 史册
+    <button class="theme-btn" onclick="setTheme('yanzhi')">
+      胭脂
+    </button>
+
+    <button class="theme-btn" onclick="setTheme('qingjian')">
+      青简
     </button>
 
   </div>
@@ -806,9 +714,7 @@ input::placeholder{
 
   <!-- 左侧 -->
 
-  <aside class="sidebar" id="sidebar">
-
-    <!-- 日历 -->
+  <aside class="sidebar">
 
     <div class="panel">
 
@@ -816,7 +722,7 @@ input::placeholder{
 
         <button class="cal-btn" onclick="changeMonth(-1)">‹</button>
 
-        <h2 id="monthTitle"></h2>
+        <div class="calendar-title" id="monthTitle"></div>
 
         <button class="cal-btn" onclick="changeMonth(1)">›</button>
 
@@ -836,34 +742,7 @@ input::placeholder{
 
       <div class="calendar-grid" id="calendarGrid"></div>
 
-    </div>
-
-    <!-- 搜索 -->
-
-    <div class="panel">
-
-      <div style="font-family:'Ma Shan Zheng';font-size:28px;color:var(--rose);margin-bottom:12px;">
-        翻检旧档
-      </div>
-
-      <input
-        id="searchInput"
-        placeholder="搜索日期、见闻、脑洞、掌故..."
-      />
-
-      <div class="search-results" id="searchResults"></div>
-
-    </div>
-
-    <!-- 时间轴 -->
-
-    <div class="panel">
-
-      <div style="font-family:'Ma Shan Zheng';font-size:28px;color:var(--rose);margin-bottom:12px;">
-        编年总目
-      </div>
-
-      <div id="timeline"></div>
+      <div class="theme-desc" id="themeDesc"></div>
 
     </div>
 
@@ -875,7 +754,7 @@ input::placeholder{
 
     <!-- 今日史官 -->
 
-    <div class="quote-box">
+    <div class="quote">
 
       <div class="quote-label">
         ✦ 今日史官
@@ -887,7 +766,7 @@ input::placeholder{
 
     <!-- 日期 -->
 
-    <div class="date-title">
+    <div class="date-box">
 
       <h1 id="mainDate"></h1>
 
@@ -895,103 +774,57 @@ input::placeholder{
 
     </div>
 
-    <!-- 日记 -->
+    <!-- 内容 -->
 
     <div class="card">
 
-      <div class="label">☀️ 坊间见闻</div>
+      <div class="label">
+        ☀️ 坊间见闻
+      </div>
 
-      <textarea
-        id="events"
-        placeholder="今日市井之间，有何可记？"
-      ></textarea>
+      <textarea placeholder="今日市井之间，有何可记？"></textarea>
 
     </div>
 
     <div class="card">
 
-      <div class="label">📚 案头博览</div>
+      <div class="label">
+        📚 案头博览
+      </div>
 
-      <textarea
-        id="reading"
-        placeholder="今日翻阅了哪些卷册？"
-      ></textarea>
-
-    </div>
-
-    <div class="card">
-
-      <div class="label">🧊 考据心得</div>
-
-      <textarea
-        id="trivia"
-        placeholder="记录一则掌故、冷知识……"
-      ></textarea>
+      <textarea placeholder="今日翻阅了哪些卷册？"></textarea>
 
     </div>
 
     <div class="card">
 
-      <div class="label">💡 奇思脑洞</div>
+      <div class="label">
+        🧊 考据心得
+      </div>
 
-      <textarea
-        id="brainstorm"
-        placeholder="若历史拐向另一条河流……"
-      ></textarea>
+      <textarea placeholder="记录一则掌故、冷知识……"></textarea>
 
     </div>
 
     <div class="card">
 
-      <div class="label">🏷 卷宗标签</div>
+      <div class="label">
+        💡 奇思脑洞
+      </div>
 
-      <input
-        id="tags"
-        placeholder="如：长安, 唐朝, 茶馆, 科举"
-      />
+      <textarea placeholder="若历史拐向另一条河流……"></textarea>
 
     </div>
-
-    <!-- 操作 -->
 
     <div class="actions">
 
-      <button
-        class="btn btn-primary"
-        onclick="saveDiary()"
-      >
+      <button class="btn btn-primary">
         💾 载入史册
       </button>
 
-      <button
-        class="btn btn-secondary"
-        onclick="deleteDiary()"
-      >
-        🔥 焚稿
+      <button class="btn btn-secondary">
+        📜 誊录
       </button>
-
-    </div>
-
-    <!-- 采风本 -->
-
-    <div class="card" style="margin-top:28px;">
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-
-        <div style="font-family:'Ma Shan Zheng';font-size:30px;color:var(--rose);">
-          ⭐ 采风本
-        </div>
-
-        <button
-          class="icon-btn"
-          onclick="addMaterial()"
-        >
-          ＋ 收录
-        </button>
-
-      </div>
-
-      <div id="materials"></div>
 
     </div>
 
@@ -999,23 +832,11 @@ input::placeholder{
 
 </div>
 
-<!-- 手机底栏 -->
-
-<div class="mobile-bar">
-
-  <button onclick="toggleSidebar()">📚 史册</button>
-
-  <button onclick="goToday()">✍️ 今日</button>
-
-  <button onclick="exportMarkdown()">📜 誊录</button>
-
-</div>
-
 <script>
 
-/* =========================================
+/* =====================================================
    今日史官
-========================================= */
+===================================================== */
 
 const QUOTES = [
 
@@ -1023,41 +844,24 @@ const QUOTES = [
 
   "长安米贵，居大不易，而今日咖啡亦涨价。",
 
-  "史书不会记得今日晚饭吃了什么，但你会。",
-
-  "所谓人生，不过是把寻常日子写成长卷。",
-
-  "这一日看似平淡，日后翻阅，皆成时代切片。",
-
-  "不是所有故事都惊天动地，大多数历史只是生活。",
-
-  "人间烟火气，最抚后来人。",
+  "真正的编年史，往往写满了寻常日子。",
 
   "古人记山河，今人记地铁与深夜便利店。",
 
-  "若干年后，今日也会成为旧时代。",
-
-  "真正的编年史，往往写满了寻常日子。",
-
-  "你今日记下的琐事，也许正是未来最珍贵的证词。",
-
-  "人总以为来日方长，却忘了岁月只会翻页。",
-
-  "窗外车流不息，恰如旧时长安夜市。",
-
   "历史从不是宏大叙事，它只是千万人的今日。",
-
-  "世间多数日子并无大事，而人生恰恰由这些日子组成。",
-
-  "古人有起居注，今人有深夜输入框。",
 
   "所有未被记下的生活，终将沉入岁月。",
 
-  "所谓个人史，不过是一个人与时代的互相路过。",
+  "所谓人生，不过是把寻常日子写成长卷。",
 
   "白居易困于长安，今人困于早高峰。",
 
-  "写下今天，是为了未来某一天重新遇见自己。"
+  "窗外车流不息，恰如旧时长安夜市。",
+
+  "人间烟火气，最抚后来人。",
+
+  "今日看似平淡，来日翻阅，皆成时代切片。"
+
 ];
 
 function setDailyQuote(){
@@ -1079,57 +883,9 @@ function setDailyQuote(){
     .innerText = quote;
 }
 
-/* =========================================
-   IndexedDB
-========================================= */
-
-const DB_NAME = 'RenjianBianNianDB';
-
-const DB_VERSION = 1;
-
-let db;
-
-function openDB(){
-
-  return new Promise((resolve,reject)=>{
-
-    const request =
-      indexedDB.open(DB_NAME, DB_VERSION);
-
-    request.onupgradeneeded = function(e){
-
-      db = e.target.result;
-
-      if(!db.objectStoreNames.contains('diaries')){
-
-        db.createObjectStore('diaries',{
-          keyPath:'date'
-        });
-      }
-
-      if(!db.objectStoreNames.contains('materials')){
-
-        db.createObjectStore('materials',{
-          keyPath:'id',
-          autoIncrement:true
-        });
-      }
-    };
-
-    request.onsuccess = function(e){
-
-      db = e.target.result;
-
-      resolve();
-    };
-
-    request.onerror = reject;
-  });
-}
-
-/* =========================================
+/* =====================================================
    日期
-========================================= */
+===================================================== */
 
 const weekNames = [
 
@@ -1146,44 +902,10 @@ let selectedDate = new Date();
 
 let currentMonth = new Date();
 
-function formatDate(date){
+function updateDate(){
 
-  const y = date.getFullYear();
-
-  const m =
-    String(date.getMonth()+1)
-    .padStart(2,'0');
-
-  const d =
-    String(date.getDate())
-    .padStart(2,'0');
-
-  return `${y}-${m}-${d}`;
-}
-
-/* =========================================
-   工具
-========================================= */
-
-function id(v){
-  return document.getElementById(v);
-}
-
-function val(v){
-  return id(v).value;
-}
-
-function setVal(v,t){
-  id(v).value = t;
-}
-
-/* =========================================
-   日期UI
-========================================= */
-
-function updateDateUI(){
-
-  id('mainDate').innerHTML =
+  document.getElementById('mainDate')
+    .innerHTML =
 
     `${selectedDate.getFullYear()}年`
     +
@@ -1191,108 +913,19 @@ function updateDateUI(){
     +
     `${selectedDate.getDate()}日`;
 
-  id('subDate').innerHTML =
+  document.getElementById('subDate')
+    .innerHTML =
     weekNames[selectedDate.getDay()];
 }
 
-/* =========================================
-   Diary CRUD
-========================================= */
+/* =====================================================
+   日历
+===================================================== */
 
-async function saveDiary(){
-
-  const tx =
-    db.transaction('diaries','readwrite');
-
-  const store =
-    tx.objectStore('diaries');
-
-  store.put({
-
-    date:formatDate(selectedDate),
-
-    updatedAt:Date.now(),
-
-    events:val('events'),
-
-    reading:val('reading'),
-
-    trivia:val('trivia'),
-
-    brainstorm:val('brainstorm'),
-
-    tags:val('tags')
-  });
-
-  renderCalendar();
-
-  renderTimeline();
-
-  doSearch();
-}
-
-async function loadDiary(){
-
-  const tx =
-    db.transaction('diaries','readonly');
-
-  const req =
-    tx.objectStore('diaries')
-      .get(formatDate(selectedDate));
-
-  req.onsuccess = ()=>{
-
-    const d = req.result || {};
-
-    setVal('events', d.events || '');
-    setVal('reading', d.reading || '');
-    setVal('trivia', d.trivia || '');
-    setVal('brainstorm', d.brainstorm || '');
-    setVal('tags', d.tags || '');
-
-    updateDateUI();
-  };
-}
-
-async function deleteDiary(){
-
-  if(!confirm('确定焚毁此页编年？'))
-    return;
-
-  const tx =
-    db.transaction('diaries','readwrite');
-
-  tx.objectStore('diaries')
-    .delete(formatDate(selectedDate));
-
-  clearInputs();
-
-  renderCalendar();
-
-  renderTimeline();
-
-  doSearch();
-}
-
-function clearInputs(){
-
-  [
-    'events',
-    'reading',
-    'trivia',
-    'brainstorm',
-    'tags'
-  ].forEach(v=>setVal(v,''));
-}
-
-/* =========================================
-   Calendar
-========================================= */
-
-async function renderCalendar(){
+function renderCalendar(){
 
   const grid =
-    id('calendarGrid');
+    document.getElementById('calendarGrid');
 
   grid.innerHTML = '';
 
@@ -1302,7 +935,8 @@ async function renderCalendar(){
   const month =
     currentMonth.getMonth();
 
-  id('monthTitle').innerHTML =
+  document.getElementById('monthTitle')
+    .innerHTML =
     `${year}年 ${month+1}月`;
 
   const firstDay =
@@ -1311,15 +945,10 @@ async function renderCalendar(){
   const lastDate =
     new Date(year,month+1,0).getDate();
 
-  const diaryDates =
-    await getAllDiaryDates();
-
   for(let i=0;i<firstDay;i++){
 
     const empty =
       document.createElement('div');
-
-    empty.className = 'day empty';
 
     grid.appendChild(empty);
   }
@@ -1329,9 +958,6 @@ async function renderCalendar(){
     const date =
       new Date(year,month,i);
 
-    const dateStr =
-      formatDate(date);
-
     const div =
       document.createElement('div');
 
@@ -1339,33 +965,31 @@ async function renderCalendar(){
 
     div.innerText = i;
 
-    if(dateStr === formatDate(new Date())){
+    if(
+      date.toDateString()
+      ===
+      new Date().toDateString()
+    ){
 
       div.classList.add('today');
     }
 
-    if(dateStr === formatDate(selectedDate)){
+    if(
+      date.toDateString()
+      ===
+      selectedDate.toDateString()
+    ){
 
       div.classList.add('selected');
     }
 
-    if(diaryDates.includes(dateStr)){
-
-      div.classList.add('has-entry');
-    }
-
     div.onclick = ()=>{
 
-      selectedDate = new Date(date);
+      selectedDate = date;
+
+      updateDate();
 
       renderCalendar();
-
-      loadDiary();
-
-      if(window.innerWidth < 980){
-
-        toggleSidebar(false);
-      }
     };
 
     grid.appendChild(div);
@@ -1381,533 +1005,61 @@ function changeMonth(step){
   renderCalendar();
 }
 
-function goToday(){
+/* =====================================================
+   四大主题
+===================================================== */
 
-  selectedDate = new Date();
+const THEME_INFO = {
 
-  currentMonth = new Date();
+  xuanzhi:{
+    text:"日光正好，宜翻旧卷。"
+  },
 
-  renderCalendar();
+  songyan:{
+    text:"夜深灯下，最宜修史。"
+  },
 
-  loadDiary();
-}
+  yanzhi:{
+    text:"灯火微红，人间如梦。"
+  },
 
-/* =========================================
-   Search
-========================================= */
-
-async function doSearch(){
-
-  const q =
-    id('searchInput')
-      .value
-      .trim()
-      .toLowerCase();
-
-  const wrap =
-    id('searchResults');
-
-  wrap.innerHTML = '';
-
-  if(!q) return;
-
-  const all =
-    await getAllDiaries();
-
-  const result =
-    all.filter(d=>{
-
-      return (
-
-        d.date.includes(q)
-
-        ||
-
-        (d.events || '')
-          .toLowerCase()
-          .includes(q)
-
-        ||
-
-        (d.reading || '')
-          .toLowerCase()
-          .includes(q)
-
-        ||
-
-        (d.trivia || '')
-          .toLowerCase()
-          .includes(q)
-
-        ||
-
-        (d.brainstorm || '')
-          .toLowerCase()
-          .includes(q)
-
-        ||
-
-        (d.tags || '')
-          .toLowerCase()
-          .includes(q)
-      );
-    });
-
-  if(result.length === 0){
-
-    wrap.innerHTML = `
-      <div style="color:var(--ink3);font-size:13px;">
-        未检索到相关旧档
-      </div>
-    `;
-
-    return;
+  qingjian:{
+    text:"山雨欲来，且读旧书。"
   }
+};
 
-  result
-    .sort((a,b)=>
-      b.date.localeCompare(a.date)
-    )
-    .forEach(item=>{
+function setTheme(theme){
 
-      const div =
-        document.createElement('div');
-
-      div.className =
-        'search-item';
-
-      const preview =
-
-        item.events ||
-
-        item.trivia ||
-
-        item.brainstorm ||
-
-        item.reading ||
-
-        '';
-
-      div.innerHTML = `
-
-        <div class="search-item-title">
-          ${item.date}
-        </div>
-
-        <div style="line-height:1.8;font-size:14px;color:var(--ink2);">
-          ${preview.slice(0,80)}...
-        </div>
-      `;
-
-      div.onclick = ()=>{
-
-        selectedDate =
-          new Date(item.date);
-
-        currentMonth =
-          new Date(
-            selectedDate.getFullYear(),
-            selectedDate.getMonth(),
-            1
-          );
-
-        renderCalendar();
-
-        loadDiary();
-      };
-
-      wrap.appendChild(div);
-    });
-}
-
-/* =========================================
-   Timeline
-========================================= */
-
-async function renderTimeline(){
-
-  const wrap =
-    id('timeline');
-
-  wrap.innerHTML = '';
-
-  const all =
-    await getAllDiaries();
-
-  const grouped = {};
-
-  all.forEach(d=>{
-
-    const [year,month] =
-      d.date.split('-');
-
-    if(!grouped[year])
-      grouped[year] = {};
-
-    if(!grouped[year][month])
-      grouped[year][month] = [];
-
-    grouped[year][month]
-      .push(d);
-  });
-
-  Object.keys(grouped)
-    .sort((a,b)=>b-a)
-    .forEach(year=>{
-
-      const yearDiv =
-        document.createElement('div');
-
-      yearDiv.className =
-        'timeline-year';
-
-      yearDiv.innerHTML =
-        `<h3>${year}</h3>`;
-
-      Object.keys(grouped[year])
-        .sort((a,b)=>b-a)
-        .forEach(month=>{
-
-          const monthDiv =
-            document.createElement('div');
-
-          monthDiv.className =
-            'timeline-month';
-
-          monthDiv.innerHTML =
-            `<div style="margin-bottom:6px;color:var(--ink2);">${month}月</div>`;
-
-          grouped[year][month]
-            .sort((a,b)=>
-              b.date.localeCompare(a.date)
-            )
-            .forEach(item=>{
-
-              const entry =
-                document.createElement('div');
-
-              entry.className =
-                'timeline-entry';
-
-              entry.innerHTML =
-                `· ${item.date}`;
-
-              entry.onclick = ()=>{
-
-                selectedDate =
-                  new Date(item.date);
-
-                currentMonth =
-                  new Date(
-                    selectedDate.getFullYear(),
-                    selectedDate.getMonth(),
-                    1
-                  );
-
-                renderCalendar();
-
-                loadDiary();
-              };
-
-              monthDiv.appendChild(entry);
-            });
-
-          yearDiv.appendChild(monthDiv);
-        });
-
-      wrap.appendChild(yearDiv);
-    });
-}
-
-/* =========================================
-   Export Markdown
-========================================= */
-
-async function exportMarkdown(){
-
-  const all =
-    await getAllDiaries();
-
-  all.sort((a,b)=>
-    a.date.localeCompare(b.date)
-  );
-
-  let md =
-`# 人间编年
-
-不是世界史，而是我的人间史。
-
-`;
-
-  all.forEach(d=>{
-
-    md += `# ${d.date}
-
-## 坊间见闻
-${d.events || ''}
-
-## 案头博览
-${d.reading || ''}
-
-## 考据心得
-${d.trivia || ''}
-
-## 奇思脑洞
-${d.brainstorm || ''}
-
-## 卷宗标签
-${d.tags || ''}
-
----
-
-`;
-  });
-
-  const blob =
-    new Blob([md],{
-      type:'text/markdown'
-    });
-
-  const url =
-    URL.createObjectURL(blob);
-
-  const a =
-    document.createElement('a');
-
-  a.href = url;
-
-  a.download =
-    `人间编年_${Date.now()}.md`;
-
-  a.click();
-
-  URL.revokeObjectURL(url);
-}
-
-/* =========================================
-   Materials
-========================================= */
-
-async function addMaterial(){
-
-  const type =
-    prompt('类型（词句 / 掌故 / 地名 / 人物）');
-
-  if(!type) return;
-
-  const content =
-    prompt('内容');
-
-  if(!content) return;
-
-  const source =
-    prompt('出处');
-
-  const tags =
-    prompt('标签（逗号分隔）');
-
-  const tx =
-    db.transaction('materials','readwrite');
-
-  tx.objectStore('materials')
-    .add({
-
-      type,
-      content,
-      source,
-      tags
-    });
-
-  renderMaterials();
-}
-
-async function renderMaterials(){
-
-  const wrap =
-    id('materials');
-
-  wrap.innerHTML = '';
-
-  const tx =
-    db.transaction('materials','readonly');
-
-  const req =
-    tx.objectStore('materials')
-      .getAll();
-
-  req.onsuccess = ()=>{
-
-    const arr =
-      req.result.reverse();
-
-    if(arr.length === 0){
-
-      wrap.innerHTML = `
-        <div style="color:var(--ink3);">
-          尚无采风记录
-        </div>
-      `;
-
-      return;
-    }
-
-    arr.forEach(item=>{
-
-      const div =
-        document.createElement('div');
-
-      div.className =
-        'material-item';
-
-      div.innerHTML = `
-
-        <div class="material-type">
-          ${item.type}
-        </div>
-
-        <div style="line-height:1.9;">
-          ${item.content}
-        </div>
-
-        <div style="margin-top:8px;color:var(--ink3);font-size:13px;">
-          ${item.source || ''}
-        </div>
-
-        ${
-          (item.tags || '')
-          .split(',')
-          .filter(Boolean)
-          .map(t=>
-            `<span class="tag">${t}</span>`
-          )
-          .join('')
-        }
-      `;
-
-      wrap.appendChild(div);
-    });
-  };
-}
-
-/* =========================================
-   Dark Mode
-========================================= */
-
-function toggleDark(){
-
-  document.body
-    .classList
-    .toggle('dark');
+  document.body.className =
+    'theme-' + theme;
 
   localStorage.setItem(
-    'renjian_dark',
-    document.body.classList.contains('dark')
+    'renjian_theme',
+    theme
   );
+
+  document.getElementById('themeDesc')
+    .innerHTML =
+    THEME_INFO[theme].text;
 }
 
-/* =========================================
-   Sidebar
-========================================= */
+/* =====================================================
+   初始化
+===================================================== */
 
-function toggleSidebar(force){
+function init(){
 
-  const s =
-    id('sidebar');
+  const savedTheme =
+    localStorage.getItem('renjian_theme')
+    || 'songyan';
 
-  if(typeof force === 'boolean'){
-
-    s.classList.toggle('open', force);
-
-  }else{
-
-    s.classList.toggle('open');
-  }
-}
-
-/* =========================================
-   DB Helpers
-========================================= */
-
-async function getAllDiaries(){
-
-  return new Promise(resolve=>{
-
-    const tx =
-      db.transaction('diaries','readonly');
-
-    const req =
-      tx.objectStore('diaries')
-        .getAll();
-
-    req.onsuccess =
-      ()=>resolve(req.result || []);
-  });
-}
-
-async function getAllDiaryDates(){
-
-  const all =
-    await getAllDiaries();
-
-  return all.map(d=>d.date);
-}
-
-/* =========================================
-   Auto Save
-========================================= */
-
-let timer;
-
-[
-  'events',
-  'reading',
-  'trivia',
-  'brainstorm',
-  'tags'
-].forEach(v=>{
-
-  id(v)
-    .addEventListener('input',()=>{
-
-      clearTimeout(timer);
-
-      timer =
-        setTimeout(saveDiary,1000);
-    });
-});
-
-id('searchInput')
-  .addEventListener('input', doSearch);
-
-/* =========================================
-   Init
-========================================= */
-
-async function init(){
-
-  await openDB();
-
-  if(
-    localStorage.getItem('renjian_dark')
-    === 'true'
-  ){
-
-    document.body
-      .classList
-      .add('dark');
-  }
+  setTheme(savedTheme);
 
   setDailyQuote();
 
-  updateDateUI();
+  updateDate();
 
   renderCalendar();
-
-  loadDiary();
-
-  renderTimeline();
-
-  renderMaterials();
 }
 
 init();
