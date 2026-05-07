@@ -1,303 +1,732 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>马伯庸日记 📖</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>马伯庸日记 · 起居注</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+
 <style>
-/* ══════════════════════════════════════════
-   设计语言：「纸上烟云」
-   柔和奶茶色 + 毛笔字标题 + 水彩晕染背景
-══════════════════════════════════════════ */
-:root {
-  --cream:    #FAF7F2;
-  --paper:    #F3EDE3;
-  --paper2:   #EDE4D5;
-  --ink:      #2D2520;
-  --ink2:     #6B5D54;
-  --ink3:     #A8978C;
-  --rose:     #C4748A;
-  --rose-l:   #F0D4DC;
-  --rose-bg:  #FBF0F3;
-  --teal:     #4A8C7E;
-  --teal-l:   #C8E5DF;
-  --teal-bg:  #EEF8F5;
-  --amber:    #B5813A;
-  --amber-l:  #F2E2C0;
-  --amber-bg: #FDF6E8;
-  --border:   #DDD3C5;
-  --r:        12px;
-  --r-lg:     18px;
-  --shadow:   0 2px 16px rgba(100,80,60,0.10);
+:root{
+  --cream:#faf7f2;
+  --paper:#f3ede3;
+  --paper2:#ede4d5;
+  --ink:#2d2520;
+  --ink2:#6b5d54;
+  --ink3:#a8978c;
+  --rose:#c4748a;
+  --rose-light:#f3d9e1;
+  --rose-bg:#fcf3f6;
+  --border:#ddd3c5;
+  --shadow:0 10px 30px rgba(80,60,40,.08);
+  --radius:16px;
 }
 
-/* ══ 主题切换 ══ */
-body.theme-paper { /* 默认 */ }
-body.theme-sakura {
-  --cream:    #FFF5F7; --paper:  #FFE8EE; --paper2: #FFD6E0;
-  --ink:      #3D1A24; --ink2:   #7A4055; --ink3:   #B87A90;
-  --rose:     #E05C8A; --rose-l: #FFB8CC; --rose-bg:#FFF0F4;
-  --border:   #FFCDD7;
-}
-body.theme-business {
-  --cream:    #F4F7FA; --paper:  #E8EEF5; --paper2: #D8E4EF;
-  --ink:      #1A2535; --ink2:   #3D5068; --ink3:   #7A93AD;
-  --rose:     #2B6CB0; --rose-l: #BEE3F8; --rose-bg:#EBF8FF;
-  --border:   #CBD5E0;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Noto Sans SC', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; position: relative; }
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background: radial-gradient(ellipse at 10% 20%, rgba(196,116,138,0.05) 0%, transparent 50%),
-              radial-gradient(ellipse at 90% 80%, rgba(74,140,126,0.05) 0%, transparent 50%);
+body{
+  font-family:'Noto Sans SC',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
 }
 
-header { position: sticky; top: 0; z-index: 100; background: rgba(250,247,242,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-.logo { font-family: 'Ma Shan Zheng', serif; font-size: 22px; color: var(--rose); display: flex; align-items: center; gap: 8px; }
+/* 背景纸张纹理 */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.25;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(196,116,138,.08), transparent 25%),
+    radial-gradient(circle at 80% 70%, rgba(180,140,100,.05), transparent 30%);
+}
 
-nav { display: flex; justify-content: center; gap: 4px; padding: 12px 24px; position: relative; z-index: 1; }
-.nav-btn { padding: 7px 18px; border-radius: 20px; border: 1px solid transparent; background: none; cursor: pointer; font-size: 14px; color: var(--ink2); transition: all 0.2s; }
-.nav-btn.active { background: var(--paper); border-color: var(--border); color: var(--rose); font-weight: 500; }
+/* 顶栏 */
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:62px;
+  background:rgba(250,247,242,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 24px;
+}
 
-main { max-width: 780px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
-.page { display: none; animation: fadeUp 0.3s ease; }
-.page.active { display: block; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.logo{
+  font-family:'Ma Shan Zheng',serif;
+  font-size:26px;
+  color:var(--rose);
+  letter-spacing:1px;
+}
 
-.card { background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 20px; margin-bottom: 14px; box-shadow: var(--shadow); position: relative; }
-.label { font-size: 12px; color: var(--ink3); margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+.today-btn{
+  border:none;
+  background:var(--paper);
+  color:var(--ink2);
+  padding:8px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  border:1px solid var(--border);
+}
 
-textarea, input { width: 100%; border: 1px solid var(--border); border-radius: var(--r); padding: 10px; font-size: 14px; background: var(--cream); color: var(--ink); line-height: 1.6; }
-textarea:focus, input:focus { outline: none; border-color: var(--rose); }
+/* 主体 */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:24px;
+  display:grid;
+  grid-template-columns:320px 1fr;
+  gap:24px;
+}
 
-.btn { cursor: pointer; border-radius: var(--r); border: 1px solid var(--border); padding: 8px 16px; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px; }
-.btn-primary { background: var(--rose); color: #fff; border: none; width: 100%; justify-content: center; padding: 12px; font-weight: 600; box-shadow: 0 4px 12px rgba(196,116,138,0.2); }
+@media(max-width:900px){
+  .container{
+    grid-template-columns:1fr;
+  }
+}
 
-/* 日历增强样式 */
-.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-.cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 13px; cursor: pointer; transition: all 0.2s; }
-.cal-day:hover { background: var(--rose-bg); color: var(--rose); transform: scale(1.1); }
-.cal-day.today { border: 2px solid var(--rose); font-weight: bold; }
-.cal-day.has-entry { background: var(--rose-l); color: var(--rose); font-weight: 600; }
-.cal-day.other { opacity: 0.3; cursor: default; }
+/* 左侧日历 */
+.sidebar{
+  position:sticky;
+  top:86px;
+  height:fit-content;
+}
 
-.modal-mask { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; }
-.modal-mask.open { display: flex; }
-.modal-box { background: var(--paper); padding: 24px; border-radius: var(--r-lg); width: 90%; max-width: 500px; max-height: 80vh; overflow-y: auto; }
+.panel{
+  background:var(--paper);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.panel::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.03),rgba(0,0,0,.02));
+  pointer-events:none;
+}
+
+/* 月份头 */
+.calendar-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.calendar-head h2{
+  font-family:'Ma Shan Zheng';
+  font-size:28px;
+  color:var(--rose);
+}
+
+.cal-btn{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  background:var(--cream);
+  border:1px solid var(--border);
+  color:var(--ink2);
+}
+
+.week-row,
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+}
+
+.week-row{
+  margin-bottom:10px;
+}
+
+.week-row div{
+  text-align:center;
+  color:var(--ink3);
+  font-size:12px;
+}
+
+.day{
+  aspect-ratio:1;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-size:14px;
+  position:relative;
+  transition:.2s;
+  user-select:none;
+}
+
+.day:hover{
+  background:var(--rose-bg);
+  transform:translateY(-2px);
+}
+
+.day.empty{
+  pointer-events:none;
+}
+
+.day.today{
+  border:2px solid var(--rose);
+}
+
+.day.selected{
+  background:var(--rose);
+  color:white;
+  font-weight:bold;
+}
+
+.day.has-entry::after{
+  content:'';
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--rose);
+  position:absolute;
+  bottom:6px;
+}
+
+.day.selected.has-entry::after{
+  background:white;
+}
+
+/* 编辑区域 */
+.editor{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.date-title{
+  text-align:center;
+  margin-bottom:8px;
+}
+
+.date-title h1{
+  font-family:'Ma Shan Zheng';
+  font-size:42px;
+  color:var(--rose);
+}
+
+.date-title p{
+  color:var(--ink3);
+  margin-top:6px;
+}
+
+.card{
+  background:var(--paper);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.03),rgba(0,0,0,.015));
+  pointer-events:none;
+}
+
+.label{
+  font-size:13px;
+  margin-bottom:10px;
+  color:var(--ink2);
+}
+
+textarea,
+input{
+  width:100%;
+  border:none;
+  resize:none;
+  background:transparent;
+  outline:none;
+  font-size:15px;
+  line-height:1.9;
+  color:var(--ink);
+  font-family:'Noto Serif SC',serif;
+}
+
+textarea::placeholder,
+input::placeholder{
+  color:var(--ink3);
+}
+
+/* 按钮 */
+.actions{
+  display:flex;
+  gap:12px;
+}
+
+.btn{
+  flex:1;
+  border:none;
+  border-radius:16px;
+  padding:14px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.btn-save{
+  background:var(--rose);
+  color:white;
+}
+
+.btn-save:hover{
+  transform:translateY(-2px);
+}
+
+.btn-clear{
+  background:var(--paper2);
+  color:var(--ink2);
+}
+
+/* 历史预览 */
+.history-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:18px;
+}
+
+.history-item{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:14px;
+}
+
+.history-item-title{
+  color:var(--rose);
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+.empty-tip{
+  text-align:center;
+  color:var(--ink3);
+  padding:30px 0;
+}
 </style>
 </head>
-<body class="theme-paper">
+
+<body>
 
 <header>
-  <div class="logo">📖 <span>马伯庸日记</span></div>
-  <div class="theme-switcher" style="display:flex; gap:8px;">
-    <div style="width:18px;height:18px;border-radius:50%;background:#F3EDE3;cursor:pointer;border:1px solid #ddd" onclick="setTheme('paper')"></div>
-    <div style="width:18px;height:18px;border-radius:50%;background:#FFE8EE;cursor:pointer;border:1px solid #ddd" onclick="setTheme('sakura')"></div>
-    <div style="width:18px;height:18px;border-radius:50%;background:#E8EEF5;cursor:pointer;border:1px solid #ddd" onclick="setTheme('business')"></div>
-  </div>
+  <div class="logo">📖 马伯庸日记</div>
+  <button class="today-btn" onclick="goToday()">回到今日</button>
 </header>
 
-<nav>
-  <button class="nav-btn active" onclick="switchPage('write', this)">✍️ 起居注</button>
-  <button class="nav-btn" onclick="switchPage('history', this)">📅 编年史</button>
-  <button class="nav-btn" onclick="switchPage('vocab', this)">⭐ 采风本</button>
-</nav>
+<div class="container">
 
-<main>
-  <div class="page active" id="page-write">
-    <div style="text-align:center; margin-bottom:20px;">
-      <h1 id="date-main" style="font-family:'Ma Shan Zheng'; color:var(--rose); font-size:28px;"></h1>
-      <p id="date-sub" style="font-size:12px; color:var(--ink3); letter-spacing:2px;"></p>
-    </div>
+  <!-- 左侧 -->
+  <aside class="sidebar">
 
-    <div class="card">
-      <div class="label">☀️ 坊间见闻（发生了什么）</div>
-      <textarea id="events" rows="3" placeholder="今日市井之间，有何奇遇？"></textarea>
-    </div>
+    <div class="panel">
 
-    <div class="card">
-      <div class="label">📚 案头博览（读了什么书）</div>
-      <textarea id="reading" rows="2" placeholder="翻开哪卷经史子集？"></textarea>
-    </div>
-
-    <div class="card">
-        <div class="label">🧊 考据心得（今日冷知识）</div>
-        <input type="text" id="trivia-in" placeholder="记录一个不为人知的细节...">
-    </div>
-
-    <div class="card">
-        <div class="label">💡 奇思脑洞（如果...会怎样）</div>
-        <input type="text" id="brainstorm-in" placeholder="给历史或生活开个洞...">
-    </div>
-
-    <button class="btn btn-primary" onclick="generate()">🪄 研墨挥毫（AI润色）</button>
-    <button class="btn" onclick="saveEntry()" style="width:100%; margin-top:10px; justify-content:center;">💾 载入史册</button>
-
-    <div id="result-wrap" style="display:none; margin-top:20px;">
-        <div class="card" style="background:var(--rose-bg); border-color:var(--rose-l);">
-            <div class="label" id="result-meta" style="color:var(--rose)">✦ 稿件预览</div>
-            <div id="result-text" style="font-family:'Noto Serif SC'; line-height:2; white-space:pre-wrap;"></div>
-        </div>
-    </div>
-  </div>
-
-  <div class="page" id="page-history">
-    <div class="card">
-      <div style="display:flex; justify-content:space-between; margin-bottom:15px; align-items:center;">
-        <button onclick="changeMonth(-1)" class="btn">‹</button>
-        <h3 id="cal-month-label" style="font-family:'Ma Shan Zheng'"></h3>
-        <button onclick="changeMonth(1)" class="btn">›</button>
+      <div class="calendar-head">
+        <button class="cal-btn" onclick="changeMonth(-1)">‹</button>
+        <h2 id="monthTitle"></h2>
+        <button class="cal-btn" onclick="changeMonth(1)">›</button>
       </div>
-      <div class="cal-grid" id="cal-grid">
-        <div class="cal-day other">日</div><div class="cal-day other">一</div><div class="cal-day other">二</div>
-        <div class="cal-day other">三</div><div class="cal-day other">四</div><div class="cal-day other">五</div><div class="cal-day other">六</div>
+
+      <div class="week-row">
+        <div>日</div>
+        <div>一</div>
+        <div>二</div>
+        <div>三</div>
+        <div>四</div>
+        <div>五</div>
+        <div>六</div>
       </div>
+
+      <div class="calendar-grid" id="calendarGrid"></div>
+
     </div>
-    <div id="entry-list" style="margin-top:20px;"></div>
-  </div>
+
+    <div class="panel" style="margin-top:18px;">
+      <div style="font-family:'Ma Shan Zheng';font-size:24px;color:var(--rose);margin-bottom:12px;">
+        编年摘录
+      </div>
+
+      <div id="historyList" class="history-list"></div>
+    </div>
+
+  </aside>
+
+  <!-- 右侧 -->
+  <main class="editor">
+
+    <div class="date-title">
+      <h1 id="mainDate"></h1>
+      <p id="subDate"></p>
+    </div>
+
+    <div class="card">
+      <div class="label">☀️ 坊间见闻</div>
+      <textarea id="events" rows="5" placeholder="今日街谈巷议，有何可记之事？"></textarea>
+    </div>
+
+    <div class="card">
+      <div class="label">📚 案头博览</div>
+      <textarea id="reading" rows="4" placeholder="翻阅了哪些卷册？"></textarea>
+    </div>
+
+    <div class="card">
+      <div class="label">🧊 考据心得</div>
+      <textarea id="trivia" rows="3" placeholder="记录一则冷僻掌故……"></textarea>
+    </div>
+
+    <div class="card">
+      <div class="label">💡 奇思脑洞</div>
+      <textarea id="brainstorm" rows="3" placeholder="若历史拐向另一条河流……"></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-save" onclick="saveDiary()">💾 载入史册</button>
+      <button class="btn btn-clear" onclick="clearDiary()">🗑 焚稿重写</button>
+    </div>
 
   </main>
 
+</div>
+
 <script>
-/* ════ 数据存储 ════ */
-const STORAGE = {
-  get: (k) => JSON.parse(localStorage.getItem('maby_'+k) || '[]'),
-  set: (k, v) => localStorage.setItem('maby_'+k, JSON.stringify(v))
-};
+/* =========================================
+   数据层
+========================================= */
 
-let currentEditDate = formatDate(new Date()); // 核心指针
-let viewDate = new Date(); // 日历查看日期
+const STORAGE_KEY = 'maboyong_diary_v2';
 
-/* ════ 初始化 ════ */
-function init() {
-  updateDateUI(currentEditDate);
-  loadEntryByDate(currentEditDate);
-  renderCalendar();
+function getData(){
+  return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 }
 
-/* ════ 核心函数 ════ */
-function formatDate(d) {
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+function saveData(data){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-function updateDateUI(dateStr) {
-  const d = new Date(dateStr);
-  const weeks = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
-  document.getElementById('date-main').textContent = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
-  document.getElementById('date-sub').textContent = weeks[d.getDay()];
+/* =========================================
+   日期
+========================================= */
+
+const weekNames = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+
+let selectedDate = new Date();
+let currentMonth = new Date();
+
+function formatDate(date){
+  const y = date.getFullYear();
+  const m = String(date.getMonth()+1).padStart(2,'0');
+  const d = String(date.getDate()).padStart(2,'0');
+  return `${y}-${m}-${d}`;
 }
 
-function switchPage(id, btn) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  btn.classList.add('active');
-  if(id === 'history') renderCalendar();
+function updateDateTitle(){
+
+  const d = selectedDate;
+
+  document.getElementById('mainDate').innerHTML =
+    `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+
+  document.getElementById('subDate').innerHTML =
+    weekNames[d.getDay()];
 }
 
-function loadEntryByDate(dateStr) {
-  const entries = STORAGE.get('entries');
-  const e = entries.find(item => item.date === dateStr);
-  
-  // 清空
-  document.getElementById('events').value = e ? e.events : '';
-  document.getElementById('reading').value = e ? e.reading : '';
-  document.getElementById('trivia-in').value = e ? e.trivia : '';
-  document.getElementById('brainstorm-in').value = e ? e.brainstorm : '';
-  
-  if (e && (e.ai_history || e.ai_humor)) {
-      document.getElementById('result-wrap').style.display = 'block';
-      document.getElementById('result-text').textContent = e.ai_history || e.ai_humor;
-  } else {
-      document.getElementById('result-wrap').style.display = 'none';
-  }
-}
+/* =========================================
+   日历
+========================================= */
 
-function saveEntry() {
-  const entries = STORAGE.get('entries');
-  const newData = {
-    date: currentEditDate,
-    events: document.getElementById('events').value,
-    reading: document.getElementById('reading').value,
-    trivia: document.getElementById('trivia-in').value,
-    brainstorm: document.getElementById('brainstorm-in').value,
-    ai_history: document.getElementById('result-text').textContent
-  };
+function renderCalendar(){
 
-  const idx = entries.findIndex(item => item.date === currentEditDate);
-  if(idx > -1) entries[idx] = newData;
-  else entries.unshift(newData);
+  const grid = document.getElementById('calendarGrid');
+  grid.innerHTML = '';
 
-  STORAGE.set('entries', entries);
-  alert('已载入史册！');
-  renderCalendar();
-}
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth();
 
-/* ════ 日历修复版 ════ */
-function renderCalendar() {
-  const grid = document.getElementById('cal-grid');
-  // 保留前7个表头
-  while(grid.children.length > 7) grid.removeChild(grid.lastChild);
-
-  const year = viewDate.getFullYear();
-  const month = viewDate.getMonth();
-  document.getElementById('cal-month-label').textContent = `${year}年${month+1}月`;
+  document.getElementById('monthTitle').innerHTML =
+    `${year}年 ${month+1}月`;
 
   const firstDay = new Date(year, month, 1).getDay();
-  const lastDate = new Date(year, month + 1, 0).getDate();
-  const entries = STORAGE.get('entries');
-  const today = formatDate(new Date());
 
-  // 填充空白
-  for(let i=0; i<firstDay; i++) {
-    const d = document.createElement('div'); d.className = 'cal-day other';
-    grid.appendChild(d);
+  const lastDate = new Date(year, month+1, 0).getDate();
+
+  const diaryData = getData();
+
+  // 空白
+  for(let i=0;i<firstDay;i++){
+    const div = document.createElement('div');
+    div.className = 'day empty';
+    grid.appendChild(div);
   }
 
-  // 填充日期
-  for(let i=1; i<=lastDate; i++) {
-    const d = document.createElement('div');
-    d.className = 'cal-day';
-    d.textContent = i;
-    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
-    
-    if(entries.some(e => e.date === dateStr)) d.classList.add('has-entry');
-    if(dateStr === today) d.classList.add('today');
-    if(dateStr === currentEditDate) d.style.background = 'var(--paper2)';
+  // 日期
+  for(let i=1;i<=lastDate;i++){
 
-    // 核心点击修复
-    d.onclick = () => {
-      currentEditDate = dateStr;
-      updateDateUI(dateStr);
-      loadEntryByDate(dateStr);
-      switchPage('write', document.querySelector('.nav-btn'));
+    const date = new Date(year, month, i);
+    const dateStr = formatDate(date);
+
+    const div = document.createElement('div');
+
+    div.className = 'day';
+    div.innerText = i;
+
+    // 今日
+    if(dateStr === formatDate(new Date())){
+      div.classList.add('today');
+    }
+
+    // 选中
+    if(dateStr === formatDate(selectedDate)){
+      div.classList.add('selected');
+    }
+
+    // 有日记
+    if(diaryData[dateStr]){
+      div.classList.add('has-entry');
+    }
+
+    div.onclick = () => {
+
+      selectedDate = new Date(year, month, i);
+
+      renderCalendar();
+
+      loadDiary();
+
+      updateDateTitle();
     };
-    grid.appendChild(d);
+
+    grid.appendChild(div);
   }
 }
 
-function changeMonth(step) {
-  viewDate.setMonth(viewDate.getMonth() + step);
+function changeMonth(step){
+
+  currentMonth.setMonth(currentMonth.getMonth() + step);
+
   renderCalendar();
 }
 
-function setTheme(t) {
-  document.body.className = 'theme-' + t;
+function goToday(){
+
+  selectedDate = new Date();
+  currentMonth = new Date();
+
+  renderCalendar();
+
+  loadDiary();
+
+  updateDateTitle();
 }
 
-// 模拟AI生成（实际需接入API）
-function generate() {
-    const ev = document.getElementById('events').value;
-    if(!ev) return alert('请先输入今日见闻');
-    document.getElementById('result-wrap').style.display = 'block';
-    document.getElementById('result-text').textContent = "（此处对接Claude API）\n今日大雨滂沱，正如《长安十二时辰》中所载，微臣于檐下观雨，偶得考据一则：" + ev;
+/* =========================================
+   日记
+========================================= */
+
+function loadDiary(){
+
+  const data = getData();
+
+  const dateStr = formatDate(selectedDate);
+
+  const diary = data[dateStr] || {
+    events:'',
+    reading:'',
+    trivia:'',
+    brainstorm:''
+  };
+
+  document.getElementById('events').value = diary.events;
+  document.getElementById('reading').value = diary.reading;
+  document.getElementById('trivia').value = diary.trivia;
+  document.getElementById('brainstorm').value = diary.brainstorm;
+
+  renderHistory();
 }
 
-window.onload = init;
+function saveDiary(){
+
+  const data = getData();
+
+  const dateStr = formatDate(selectedDate);
+
+  data[dateStr] = {
+
+    date:dateStr,
+
+    updatedAt:Date.now(),
+
+    events:document.getElementById('events').value,
+
+    reading:document.getElementById('reading').value,
+
+    trivia:document.getElementById('trivia').value,
+
+    brainstorm:document.getElementById('brainstorm').value
+  };
+
+  saveData(data);
+
+  renderCalendar();
+
+  renderHistory();
+
+  alert('已载入史册');
+}
+
+function clearDiary(){
+
+  if(!confirm('确定焚毁此页起居注？')) return;
+
+  const data = getData();
+
+  delete data[formatDate(selectedDate)];
+
+  saveData(data);
+
+  loadDiary();
+
+  renderCalendar();
+}
+
+/* =========================================
+   历史
+========================================= */
+
+function renderHistory(){
+
+  const wrap = document.getElementById('historyList');
+
+  const data = getData();
+
+  const arr = Object.values(data)
+    .sort((a,b)=>b.updatedAt-a.updatedAt)
+    .slice(0,6);
+
+  if(arr.length === 0){
+
+    wrap.innerHTML = `
+      <div class="empty-tip">
+        尚无史册
+      </div>
+    `;
+
+    return;
+  }
+
+  wrap.innerHTML = '';
+
+  arr.forEach(item=>{
+
+    const div = document.createElement('div');
+
+    div.className = 'history-item';
+
+    const preview =
+      item.events ||
+      item.reading ||
+      item.trivia ||
+      item.brainstorm ||
+      '';
+
+    div.innerHTML = `
+      <div class="history-item-title">${item.date}</div>
+      <div style="color:var(--ink2);line-height:1.8;font-size:14px;">
+        ${preview.substring(0,60)}...
+      </div>
+    `;
+
+    div.onclick = ()=>{
+
+      const d = new Date(item.date);
+
+      selectedDate = d;
+
+      currentMonth = new Date(d.getFullYear(), d.getMonth(), 1);
+
+      renderCalendar();
+
+      loadDiary();
+
+      updateDateTitle();
+
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      });
+    };
+
+    wrap.appendChild(div);
+  });
+}
+
+/* =========================================
+   自动保存
+========================================= */
+
+let autoSaveTimer = null;
+
+['events','reading','trivia','brainstorm'].forEach(id=>{
+
+  document.getElementById(id).addEventListener('input', ()=>{
+
+    clearTimeout(autoSaveTimer);
+
+    autoSaveTimer = setTimeout(()=>{
+
+      saveDiary();
+
+    }, 1200);
+  });
+});
+
+/* =========================================
+   初始化
+========================================= */
+
+function init(){
+
+  updateDateTitle();
+
+  renderCalendar();
+
+  loadDiary();
+}
+
+init();
+
 </script>
+
 </body>
 </html>
