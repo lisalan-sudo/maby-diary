@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>马伯庸日记 📖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   设计语言：「纸上烟云」
+   柔和奶茶色 + 毛笔字标题 + 水彩晕染背景
+   精致可爱而不幼稚，东方诗意少女感
+══════════════════════════════════════════ */
+:root {
+  --cream:    #FAF7F2;
+  --paper:    #F3EDE3;
+  --paper2:   #EDE4D5;
+  --ink:      #2D2520;
+  --ink2:     #6B5D54;
+  --ink3:     #A8978C;
+  --rose:     #C4748A;
+  --rose-l:   #F0D4DC;
+  --rose-bg:  #FBF0F3;
+  --teal:     #4A8C7E;
+  --teal-l:   #C8E5DF;
+  --teal-bg:  #EEF8F5;
+  --amber:    #B5813A;
+  --amber-l:  #F2E2C0;
+  --amber-bg: #FDF6E8;
+  --border:   #DDD3C5;
+  --r:        12px;
+  --r-lg:     18px;
+  --shadow:   0 2px 16px rgba(100,80,60,0.10);
+}
+
+
+/* ══ 主题变量 ══ */
+/* 默认：纸上烟云（奶茶） */
+body.theme-paper {
+  --cream:    #FAF7F2; --paper:  #F3EDE3; --paper2: #EDE4D5;
+  --ink:      #2D2520; --ink2:   #6B5D54; --ink3:   #A8978C;
+  --rose:     #C4748A; --rose-l: #F0D4DC; --rose-bg:#FBF0F3;
+  --teal:     #4A8C7E; --teal-l: #C8E5DF; --teal-bg:#EEF8F5;
+  --amber:    #B5813A; --amber-l:#F2E2C0; --amber-bg:#FDF6E8;
+  --border:   #DDD3C5;
+}
+/* 女生风：樱花粉 */
+body.theme-sakura {
+  --cream:    #FFF5F7; --paper:  #FFE8EE; --paper2: #FFD6E0;
+  --ink:      #3D1A24; --ink2:   #7A4055; --ink3:   #B87A90;
+  --rose:     #E05C8A; --rose-l: #FFB8CC; --rose-bg:#FFF0F4;
+  --teal:     #9B59B6; --teal-l: #E8C9F5; --teal-bg:#F8F0FF;
+  --amber:    #D4677A; --amber-l:#FFD0D8; --amber-bg:#FFF5F7;
+  --border:   #FFCDD7;
+}
+body.theme-sakura::before {
+  background:
+    radial-gradient(ellipse 60% 40% at 10% 20%, rgba(224,92,138,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 90% 80%, rgba(155,89,182,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(255,182,193,0.08) 0%, transparent 70%);
+}
+/* 男生风：清新商务 */
+body.theme-business {
+  --cream:    #F4F7FA; --paper:  #E8EEF5; --paper2: #D8E4EF;
+  --ink:      #1A2535; --ink2:   #3D5068; --ink3:   #7A93AD;
+  --rose:     #2B6CB0; --rose-l: #BEE3F8; --rose-bg:#EBF8FF;
+  --teal:     #276749; --teal-l: #C6F6D5; --teal-bg:#F0FFF4;
+  --amber:    #2C5282; --amber-l:#BEE3F8; --amber-bg:#EBF8FF;
+  --border:   #CBD5E0;
+}
+body.theme-business::before {
+  background:
+    radial-gradient(ellipse 60% 40% at 10% 20%, rgba(43,108,176,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 90% 80%, rgba(39,103,73,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(44,82,130,0.04) 0%, transparent 70%);
+}
+body.theme-business .logo { color: var(--rose); }
+body.theme-business .date-hero-main { color: var(--rose); }
+body.theme-business .cal-month { color: var(--rose); }
+
+/* 主题切换按钮 */
+.theme-switcher {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.theme-dot {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+  position: relative;
+}
+.theme-dot:hover { transform: scale(1.2); }
+.theme-dot.active { border-color: var(--ink); transform: scale(1.15); }
+.theme-dot-paper   { background: linear-gradient(135deg, #F3EDE3, #C4748A); }
+.theme-dot-sakura  { background: linear-gradient(135deg, #FFE8EE, #E05C8A); }
+.theme-dot-business{ background: linear-gradient(135deg, #E8EEF5, #2B6CB0); }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 15px; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 背景水彩纹理 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 10% 20%, rgba(196,116,138,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 90% 80%, rgba(74,140,126,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(181,129,58,0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── 顶部标题栏 ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,247,242,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Ma Shan Zheng', serif;
+  font-size: 22px;
+  color: var(--rose);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--rose);
+  opacity: 0.5;
+}
+
+.streak-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--amber-bg);
+  border: 1px solid var(--amber-l);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 13px;
+  color: var(--amber);
+  font-weight: 500;
+}
+
+/* ── 导航 ── */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-btn {
+  padding: 7px 18px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--ink2);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.nav-btn:hover { background: var(--paper); color: var(--ink); }
+.nav-btn.active {
+  background: var(--paper);
+  border-color: var(--border);
+  color: var(--rose);
+  font-weight: 500;
+  box-shadow: var(--shadow);
+}
+
+/* ── 主内容区 ── */
+main {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── 页面切换 ── */
+.page { display: none; animation: fadeUp 0.3s ease; }
+.page.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── 卡片 ── */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px 22px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rose-l), var(--amber-l), var(--teal-l));
+  opacity: 0.7;
+}
+
+/* 日期大标题 */
+.date-hero {
+  text-align: center;
+  padding: 24px 20px 16px;
+  margin-bottom: 16px;
+}
+.date-hero-main {
+  font-family: 'Ma Shan Zheng', serif;
+  font-size: 32px;
+  color: var(--rose);
+  margin-bottom: 4px;
+}
+.date-hero-sub {
+  font-size: 13px;
+  color: var(--ink3);
+  letter-spacing: 0.1em;
+}
+
+/* ── 标签 ── */
+.label {
+  font-size: 12px;
+  color: var(--ink3);
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.05em;
+}
+.label-icon { font-size: 14px; }
+
+/* ── 输入框 ── */
+textarea, input[type=text], input[type=password] {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 10px 13px;
+  font-size: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: vertical;
+  line-height: 1.75;
+}
+textarea:focus, input:focus {
+  outline: none;
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(196,116,138,0.12);
+}
+textarea::placeholder, input::placeholder { color: var(--ink3); }
+
+/* ── 心情/风格选择 ── */
+.pill-group { display: flex; gap: 6px; flex-wrap: wrap; }
+.pill {
+  padding: 5px 13px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--cream);
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--ink2);
+  transition: all 0.15s;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+.pill:hover { border-color: var(--rose); color: var(--rose); background: var(--rose-bg); }
+.pill.active { background: var(--rose); color: #fff; border-color: var(--rose); }
+.pill.style-humor.active { background: var(--teal); border-color: var(--teal); }
+
+/* ── 按钮 ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--cream);
+  color: var(--ink2);
+  transition: all 0.15s;
+}
+.btn:hover { background: var(--paper2); border-color: var(--ink3); }
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-primary {
+  width: 100%;
+  justify-content: center;
+  background: var(--rose);
+  color: #fff;
+  border-color: var(--rose);
+  font-weight: 500;
+  padding: 11px;
+  font-size: 15px;
+  border-radius: var(--r);
+  box-shadow: 0 3px 12px rgba(196,116,138,0.3);
+}
+.btn-primary:hover { background: #B5637A; border-color: #B5637A; box-shadow: 0 4px 16px rgba(196,116,138,0.4); }
+.btn-primary:disabled { background: var(--ink3); border-color: var(--ink3); box-shadow: none; }
+
+/* ── AI结果区 ── */
+.result-wrap {
+  margin-top: 16px;
+  animation: fadeUp 0.4s ease;
+}
+.result-card {
+  background: linear-gradient(135deg, var(--rose-bg) 0%, var(--amber-bg) 100%);
+  border: 1px solid var(--rose-l);
+  border-radius: var(--r-lg);
+  padding: 20px 22px;
+  position: relative;
+}
+.result-card::after {
+  content: '✦';
+  position: absolute;
+  top: 16px; right: 18px;
+  font-size: 14px;
+  color: var(--rose);
+  opacity: 0.5;
+}
+.result-meta {
+  font-size: 12px;
+  color: var(--rose);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.result-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  line-height: 2.1;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+.result-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+/* 加载动画 */
+.loading-wrap {
+  text-align: center;
+  padding: 32px 0;
+  color: var(--ink3);
+  font-size: 14px;
+}
+.ink-drop {
+  display: inline-flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.ink-drop span {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--rose);
+  animation: inkfall 1.4s ease-in-out infinite;
+}
+.ink-drop span:nth-child(2) { animation-delay: 0.2s; background: var(--amber); }
+.ink-drop span:nth-child(3) { animation-delay: 0.4s; background: var(--teal); }
+@keyframes inkfall {
+  0%,80%,100% { transform: scale(0.5); opacity: 0.3; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* 错误提示 */
+.error-tip {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #FEF0EF;
+  border: 1px solid #F9CECE;
+  border-radius: var(--r);
+  font-size: 13px;
+  color: #C04040;
+  line-height: 1.7;
+}
+
+/* ══ 日记本页面 ══ */
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cal-month {
+  font-family: 'Ma Shan Zheng', serif;
+  font-size: 20px;
+  color: var(--rose);
+}
+.cal-nav { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 4px 10px; cursor: pointer; font-size: 16px; color: var(--ink2); }
+.cal-nav:hover { background: var(--paper2); }
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 20px;
+}
+.cal-weekday {
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink3);
+  padding: 4px 0;
+  letter-spacing: 0.05em;
+}
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: default;
+  position: relative;
+  transition: all 0.15s;
+  color: var(--ink2);
+}
+.cal-day.other { opacity: 0.25; }
+.cal-day.has-entry {
+  background: var(--rose-bg);
+  color: var(--rose);
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--rose-l);
+}
+.cal-day.has-entry:hover { background: var(--rose-l); transform: scale(1.08); }
+.cal-day.today {
+  border: 2px solid var(--rose);
+  font-weight: 600;
+}
+.cal-day.has-entry.today { background: var(--rose); color: #fff; border-color: var(--rose); }
+
+.entry-list { display: flex; flex-direction: column; gap: 10px; }
+.entry-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: var(--shadow);
+}
+.entry-card:hover { border-color: var(--rose-l); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(100,80,60,0.12); }
+.entry-date { font-size: 12px; color: var(--ink3); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+.entry-preview {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.8;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.entry-tags { display: flex; gap: 5px; margin-top: 8px; flex-wrap: wrap; }
+.tag {
+  font-size: 11px;
+  padding: 2px 9px;
+  border-radius: 20px;
+  background: var(--paper2);
+  color: var(--ink3);
+  border: 1px solid var(--border);
+}
+.tag.rose { background: var(--rose-bg); color: var(--rose); border-color: var(--rose-l); }
+.tag.teal { background: var(--teal-bg); color: var(--teal); border-color: var(--teal-l); }
+
+/* ══ 好词本 ══ */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+.vocab-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  transition: all 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.vocab-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--rose);
+  border-radius: 0 2px 2px 0;
+}
+.vocab-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(100,80,60,0.12); }
+.vocab-word {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--rose);
+  margin-bottom: 5px;
+}
+.vocab-meaning { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+.vocab-src { font-size: 11px; color: var(--ink3); margin-top: 6px; }
+.vocab-del {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink3);
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  padding: 2px 5px;
+}
+.vocab-card:hover .vocab-del { opacity: 1; }
+.vocab-del:hover { color: #C04040; }
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  padding: 52px 20px;
+  color: var(--ink3);
+}
+.empty-icon { font-size: 42px; margin-bottom: 12px; }
+.empty-text { font-size: 14px; line-height: 1.8; }
+
+/* ══ 设置 ══ */
+.setting-group { margin-bottom: 20px; }
+.setting-label { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.setting-hint { font-size: 12px; color: var(--ink3); margin-bottom: 8px; line-height: 1.7; }
+
+/* ══ 弹窗 ══ */
+.modal-mask {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(45,37,32,0.4);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+.modal-mask.open { display: flex; animation: fadeUp 0.2s ease; }
+.modal-box {
+  background: var(--paper);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  max-width: 520px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(45,37,32,0.25);
+  border: 1px solid var(--border);
+  position: relative;
+}
+.modal-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rose), var(--amber));
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.modal-title { font-family: 'Noto Serif SC', serif; font-size: 16px; font-weight: 600; color: var(--ink); }
+.modal-close { background: none; border: none; cursor: pointer; font-size: 20px; color: var(--ink3); padding: 2px 6px; border-radius: 6px; }
+.modal-close:hover { background: var(--paper2); color: var(--ink); }
+.modal-date { font-size: 12px; color: var(--ink3); margin-bottom: 14px; }
+.modal-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  line-height: 2.1;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+
+/* 成功提示 */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: var(--ink);
+  color: var(--cream);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 300;
+  transition: transform 0.3s ease;
+  white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ══ 响应式 ══ */
+@media (max-width: 600px) {
+  header { padding: 0 16px; }
+  main { padding: 16px 14px 60px; }
+  nav { gap: 2px; }
+  .nav-btn { padding: 6px 12px; font-size: 13px; }
+  .vocab-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body class="theme-paper">
+
+<!-- 顶部 -->
+<header>
+  <div class="logo">
+    <span>📖</span>
+    <span>马伯庸日记</span>
+    <div class="logo-dot"></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="theme-switcher">
+      <div class="theme-dot theme-dot-paper active"   title="纸上烟云" onclick="setTheme('paper',this)"></div>
+      <div class="theme-dot theme-dot-sakura"         title="樱花少女" onclick="setTheme('sakura',this)"></div>
+      <div class="theme-dot theme-dot-business"       title="清新商务" onclick="setTheme('business',this)"></div>
+    </div>
+    <div class="streak-badge" id="streak-badge">
+      <span>🔥</span>
+      <span id="streak-num">0</span>
+      <span>天连续</span>
+    </div>
+  </div>
+</header>
+
+<!-- 导航 -->
+<nav>
+  <button class="nav-btn active" onclick="switchPage('write',this)">✍️ 写日记</button>
+  <button class="nav-btn" onclick="switchPage('history',this)">📅 日记本</button>
+  <button class="nav-btn" onclick="switchPage('vocab',this)">⭐ 好词本</button>
+  <button class="nav-btn" onclick="switchPage('settings',this)">⚙️ 设置</button>
+</nav>
+
+<main>
+
+<!-- ══ 写日记 ══ -->
+<div class="page active" id="page-write">
+  <div class="date-hero">
+    <div class="date-hero-main" id="date-main"></div>
+    <div class="date-hero-sub" id="date-sub"></div>
+  </div>
+
+  <div class="card">
+    <div class="label"><span class="label-icon">☀️</span> 今天发生了什么？</div>
+    <textarea id="events" rows="3" placeholder="比如：语文课背了《静夜思》，下午踢球赢了，晚上和妈妈一起做饼干…"></textarea>
+  </div>
+
+  <div class="card">
+    <div class="label"><span class="label-icon">📚</span> 今天看了什么书，学到了什么？</div>
+    <textarea id="reading" rows="2" placeholder="比如：读了《三国演义》草船借箭，诸葛亮借来十万支箭…"></textarea>
+  </div>
+
+  <div class="card">
+    <div class="label"><span class="label-icon">✨</span> 今天积累的好词好句（可选，用逗号隔开）</div>
+    <input type="text" id="vocab-in" placeholder="如：运筹帷幄，一鼓作气，胸有成竹…">
+  </div>
+
+  <div class="card">
+    <div class="label"><span class="label-icon">🧊</span> 今日冷知识（可选）</div>
+    <input type="text" id="trivia-in" placeholder="如：今天发现路边的井盖花纹竟然是1990年代设计的…">
+  </div>
+
+  <div class="card">
+    <div class="label"><span class="label-icon">💡</span> 今日脑洞存档（可选）</div>
+    <input type="text" id="brainstorm-in" placeholder="如：如果猫能看懂人类的书，它会喜欢读什么…">
+  </div>
+
+  <div class="card">
+    <div style="display:flex; gap:24px; flex-wrap:wrap;">
+      <div style="flex:1; min-width:180px;">
+        <div class="label"><span class="label-icon">💭</span> 今天的心情</div>
+        <div class="pill-group" id="mood-group">
+          <button class="pill active" onclick="pickMood(this)">😊 开心</button>
+          <button class="pill" onclick="pickMood(this)">😐 一般</button>
+          <button class="pill" onclick="pickMood(this)">😢 难过</button>
+          <button class="pill" onclick="pickMood(this)">🤩 超棒</button>
+          <button class="pill" onclick="pickMood(this)">😤 生气</button>
+        </div>
+      </div>
+      <div style="flex:1; min-width:160px;">
+        <div class="label"><span class="label-icon">🖋️</span> 写作风格</div>
+        <div class="pill-group">
+          <button class="pill active" id="style-history" onclick="pickStyle('history',this)">📜 历史叙事</button>
+          <button class="pill style-humor" id="style-humor" onclick="pickStyle('humor',this)">😄 轻松幽默</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" id="gen-btn" onclick="generate()">
+    🪄 让AI帮我写成马伯庸风格
+  </button>
+
+  <button class="btn" id="save-direct-btn" onclick="saveDirectEntry()" style="width:100%;justify-content:center;margin-top:8px;padding:10px;">
+    💾 直接保存日记（不用AI）
+  </button>
+
+  <div id="error-box" class="error-tip" style="display:none;"></div>
+
+  <div id="loading-box" style="display:none;">
+    <div class="loading-wrap">
+      <div class="ink-drop"><span></span><span></span><span></span></div>
+      <div>正在研墨挥毫，请稍候…</div>
+    </div>
+  </div>
+
+  <div id="result-wrap" class="result-wrap" style="display:none;">
+    <div class="result-card">
+      <div class="result-meta" id="result-meta">✦ AI生成 · 历史叙事风</div>
+      <div class="result-text" id="result-text"></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn" id="save-btn" onclick="saveEntry()">💾 保存到日记本</button>
+      <button class="btn" onclick="generate()">🔄 重新生成</button>
+      <button class="btn" onclick="extractVocab()">⭐ 提取好词</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 日记本 ══ -->
+<div class="page" id="page-history">
+  <div class="card">
+    <div class="cal-header">
+      <button class="cal-nav" onclick="calPrev()">‹</button>
+      <div class="cal-month" id="cal-month-label"></div>
+      <button class="cal-nav" onclick="calNext()">›</button>
+    </div>
+    <div class="cal-grid" id="cal-grid">
+      <div class="cal-weekday">日</div><div class="cal-weekday">一</div>
+      <div class="cal-weekday">二</div><div class="cal-weekday">三</div>
+      <div class="cal-weekday">四</div><div class="cal-weekday">五</div>
+      <div class="cal-weekday">六</div>
+    </div>
+    <div style="font-size:12px; color:var(--ink3); margin-top:8px;">
+      本月已写 <strong id="month-count" style="color:var(--rose)">0</strong> 篇
+    </div>
+  </div>
+
+  <div id="entry-list" class="entry-list"></div>
+</div>
+
+<!-- ══ 好词本 ══ -->
+<div class="page" id="page-vocab">
+  <div class="card" style="margin-bottom:16px;">
+    <div class="label">💡 好词会在保存日记时自动入库，这里可以补充释义或手动添加</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+      <input type="text" id="add-word" placeholder="词语 / 句子">
+      <input type="text" id="add-source" placeholder="来源（如：《西游记》）">
+    </div>
+    <input type="text" id="add-meaning" placeholder="释义（简单解释词语的意思）" style="margin-bottom:10px;">
+    <button class="btn" onclick="addVocab()" style="width:100%; justify-content:center;">➕ 手动添加到好词本</button>
+  </div>
+  <div class="vocab-grid" id="vocab-grid"></div>
+</div>
+
+<!-- ══ 设置 ══ -->
+<div class="page" id="page-settings">
+  <div class="card">
+    <div class="setting-group">
+      <div class="setting-label">🔑 Claude API Key</div>
+      <div class="setting-hint">
+        AI写作功能需要填入你的 Claude API Key（格式：sk-ant-api03-…）<br>
+        Key 只保存在你的浏览器本地，不会上传到任何服务器。<br>
+        还没有？<a href="https://console.anthropic.com/" target="_blank" style="color:var(--rose);">点这里申请</a>（免费注册）
+      </div>
+      <div style="position:relative;">
+        <input type="password" id="api-key-input" placeholder="sk-ant-api03-...">
+        <button onclick="toggleKey()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--ink3);font-size:16px;" id="eye-btn">👁</button>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="saveKey()">保存 API Key</button>
+  </div>
+
+  <div class="card">
+    <div class="setting-label">📖 关于马伯庸日记</div>
+    <div style="font-size:13px; color:var(--ink2); line-height:2.1; margin-top:8px;">
+      <div>🎯 专为小学高年级学生设计的AI写作训练工具</div>
+      <div>📝 每天记录日常 → AI润色成马伯庸风格 → 积累好词好句</div>
+      <div>🤖 由 Claude AI 驱动，两种风格可自由切换</div>
+      <div>💾 数据保存在浏览器本地，隐私安全</div>
+      <div style="margin-top:12px; padding-top:12px; border-top:1px solid var(--border);">
+        开源地址：<a href="https://github.com/your-username/maby-diary" target="_blank" style="color:var(--rose);">github.com/your-username/maby-diary</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- 日记详情弹窗 -->
+<div class="modal-mask" id="modal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">日记详情</div>
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">×</button>
+    </div>
+    <div class="modal-date" id="modal-date"></div>
+    <div class="modal-text" id="modal-text"></div>
+    <div style="margin-top:16px; display:flex; gap:8px;">
+      <button class="btn" onclick="deleteEntry()" style="color:#C04040; border-color:#F9CECE;">🗑 删除</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════
+// 状态与存储
+// ══════════════════════════════════════════
+const STORAGE = {
+  entries:  () => JSON.parse(localStorage.getItem('maby_entries')  || '[]'),
+  vocab:    () => JSON.parse(localStorage.getItem('maby_vocab')    || '[]'),
+  settings: () => JSON.parse(localStorage.getItem('maby_settings') || '{}'),
+  save: (key, val) => localStorage.setItem('maby_' + key, JSON.stringify(val)),
+}
+
+let currentStyle = 'history'
+let currentMood  = '😊 开心'
+let calDate      = new Date()
+let openEntryId  = null
+
+// ══════════════════════════════════════════
+// 初始化
+// ══════════════════════════════════════════
+function init() {
+  // 日期显示
+  const now = new Date()
+  const days = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六']
+  document.getElementById('date-main').textContent =
+    `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`
+  document.getElementById('date-sub').textContent = days[now.getDay()]
+
+  // API Key
+  const s = STORAGE.settings()
+  if (s.api_key) document.getElementById('api-key-input').value = s.api_key
+
+  // 连胜
+  updateStreak()
+
+  // 加载主题
+  const savedTheme = (STORAGE.settings().theme) || 'paper'
+  applyTheme(savedTheme)
+
+  // 加载今日已有日记
+  loadTodayEntry()
+
+  // 日历
+  renderCalendar()
+  renderEntryList()
+  renderVocab()
+}
+
+// ══════════════════════════════════════════
+// 页面切换
+// ══════════════════════════════════════════
+function switchPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'))
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'))
+  document.getElementById('page-' + id).classList.add('active')
+  btn.classList.add('active')
+  if (id === 'history') { renderCalendar(); renderEntryList(); }
+  if (id === 'vocab')   renderVocab()
+}
+
+// ══════════════════════════════════════════
+// 今日日记加载
+// ══════════════════════════════════════════
+function todayStr() {
+  const now = new Date()
+  return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`
+}
+
+function loadTodayEntry() {
+  const entry = STORAGE.entries().find(e => e.date === todayStr())
+  if (!entry) return
+  document.getElementById('events').value      = entry.events      || ''
+  document.getElementById('reading').value     = entry.reading     || ''
+  document.getElementById('vocab-in').value    = entry.vocab       || ''
+  document.getElementById('trivia-in').value   = entry.trivia      || ''
+  document.getElementById('brainstorm-in').value = entry.brainstorm || ''
+  const aiText = entry.style === 'humor' ? entry.ai_humor : entry.ai_history
+  if (aiText) {
+    document.getElementById('result-text').textContent = aiText
+    document.getElementById('result-wrap').style.display = 'block'
+    document.getElementById('result-meta').textContent =
+      `✦ AI生成 · ${entry.style === 'humor' ? '轻松幽默风' : '历史叙事风'}`
+    document.getElementById('save-btn').textContent = '✓ 已保存'
+    document.getElementById('save-btn').disabled = true
+  }
+  if (entry.events || entry.reading) {
+    const btn = document.getElementById('save-direct-btn')
+    if (btn) { btn.textContent = '✓ 今日日记已保存'; btn.disabled = true }
+  }
+}
+
+// ══════════════════════════════════════════
+// 心情 / 风格选择
+// ══════════════════════════════════════════
+function pickMood(btn) {
+  document.querySelectorAll('#mood-group .pill').forEach(b => b.classList.remove('active'))
+  btn.classList.add('active')
+  currentMood = btn.textContent.trim()
+}
+
+function pickStyle(style, btn) {
+  currentStyle = style
+  document.getElementById('style-history').classList.remove('active')
+  document.getElementById('style-humor').classList.remove('active')
+  btn.classList.add('active')
+}
+
+// ══════════════════════════════════════════
+// AI 生成
+// ══════════════════════════════════════════
+async function generate() {
+  const apiKey = STORAGE.settings().api_key
+  if (!apiKey) {
+    showError('请先在【设置】页面填入 Claude API Key，才能使用 AI 写日记功能 ✨')
+    return
+  }
+  const events  = document.getElementById('events').value.trim()
+  const reading = document.getElementById('reading').value.trim()
+  if (!events && !reading) {
+    showError('请至少填写"今天发生了什么"或"看了什么书"，AI才知道写什么哦 🌸')
+    return
+  }
+
+  hideError()
+  document.getElementById('result-wrap').style.display = 'none'
+  document.getElementById('loading-box').style.display = 'block'
+  document.getElementById('gen-btn').disabled = true
+
+  const vocab   = document.getElementById('vocab-in').value.trim()
+  const styleDesc = currentStyle === 'history'
+    ? `马伯庸历史叙事风格：古今融合、信息密度高、细节生动、有紧迫感和历史厚重感，
+       偶尔用文言文词汇，把平凡日常写得如史书一般郑重，适合小学高年级学生`
+    : `轻松幽默风格：把日常小事写得生动有趣，有马伯庸式的细节描写和戏剧感，
+       语言活泼接地气，充满想象力，像说书人讲故事一样，适合小学生`
+
+  const prompt = `你是一位专业的儿童写作老师，擅长用马伯庸的叙事风格帮小学生改写日记。
+
+【今天发生的事】${events || '（未填）'}
+【读书/学习内容】${reading || '（未填）'}
+【积累的好词好句】${vocab || '（无）'}
+【今天心情】${currentMood}
+
+【风格要求】${styleDesc}
+
+【写作要求】
+1. 200-280字，语言适合小学高年级阅读和模仿
+2. 开头要有吸引力，结尾要有感悟或升华
+3. 如果有好词好句，自然融入文中（不要生硬堆砌）
+4. 如有读书内容，把书中道理与今天的经历联系起来
+5. 只输出日记正文，不要标题，不要解释
+
+现在开始写：`
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    })
+
+    const data = await resp.json()
+    if (!resp.ok) throw new Error(data.error?.message || `错误 ${resp.status}`)
+
+    const text = data.content.map(b => b.text || '').join('')
+    document.getElementById('result-text').textContent = text
+    document.getElementById('result-meta').textContent =
+      `✦ AI生成 · ${currentStyle === 'humor' ? '轻松幽默风' : '历史叙事风'}`
+    document.getElementById('result-wrap').style.display = 'block'
+    document.getElementById('save-btn').textContent = '💾 保存到日记本'
+    document.getElementById('save-btn').disabled = false
+
+  } catch(e) {
+    showError('生成失败：' + e.message + '\n请检查 API Key 是否正确，或网络是否正常。')
+  } finally {
+    document.getElementById('loading-box').style.display = 'none'
+    document.getElementById('gen-btn').disabled = false
+  }
+}
+
+// ══════════════════════════════════════════
+// 保存日记
+// ══════════════════════════════════════════
+function saveEntry() {
+  const aiText = document.getElementById('result-text').textContent
+  if (!aiText) return
+
+  const entries = STORAGE.entries()
+  const today   = todayStr()
+  const idx     = entries.findIndex(e => e.date === today)
+  const entry = {
+    id:         idx >= 0 ? entries[idx].id : Date.now(),
+    date:       today,
+    events:     document.getElementById('events').value.trim(),
+    reading:    document.getElementById('reading').value.trim(),
+    mood:       currentMood,
+    style:      currentStyle,
+    ai_history: currentStyle === 'history' ? aiText : (idx >= 0 ? entries[idx].ai_history : ''),
+    ai_humor:   currentStyle === 'humor'   ? aiText : (idx >= 0 ? entries[idx].ai_humor   : ''),
+    saved_at:   new Date().toLocaleString('zh-CN'),
+  }
+
+  if (idx >= 0) entries[idx] = entry
+  else entries.unshift(entry)
+  STORAGE.save('entries', entries)
+
+  // 自动把好词存入好词本
+  const vocabRaw2 = document.getElementById('vocab-in').value.trim()
+  if (vocabRaw2) {
+    const words2 = vocabRaw2.split(/[，,、;；]+/).map(w => w.trim()).filter(Boolean)
+    const vocab2 = STORAGE.vocab()
+    const existing2 = new Set(vocab2.map(v => v.word))
+    let added2 = 0
+    words2.forEach(word => {
+      if (word && !existing2.has(word)) {
+        vocab2.unshift({ id: Date.now() + Math.random(), word, meaning: '', source: today + ' 日记', created: new Date().toLocaleDateString('zh-CN') })
+        added2++
+      }
+    })
+    if (added2 > 0) STORAGE.save('vocab', vocab2)
+  }
+
+  updateStreak(today)
+  document.getElementById('save-btn').textContent = '✓ 已保存'
+  document.getElementById('save-btn').disabled = true
+  showToast(vocabRaw2 ? '日记已保存，好词已自动入库 ⭐' : '日记已保存 🌸')
+}
+
+// 直接保存（不用AI）
+function saveDirectEntry() {
+  const events  = document.getElementById("events").value.trim()
+  const reading = document.getElementById("reading").value.trim()
+  const vocabRaw  = document.getElementById("vocab-in").value.trim()
+  const trivia    = document.getElementById("trivia-in").value.trim()
+  const brainstorm= document.getElementById("brainstorm-in").value.trim()
+  if (!events && !reading) {
+    showError("请至少填写今天发生的事或读书内容，才能保存哦 🌸")
+    return
+  }
+  hideError()
+  const today = todayStr()
+
+  // 自动把好词存入好词本
+  if (vocabRaw) {
+    const words = vocabRaw.split(/[，,、;；]+/).map(w => w.trim()).filter(Boolean)
+    const vocab = STORAGE.vocab()
+    const existing = new Set(vocab.map(v => v.word))
+    let added = 0
+    words.forEach(word => {
+      if (word && !existing.has(word)) {
+        vocab.unshift({
+          id: Date.now() + Math.random(),
+          word,
+          meaning: '',
+          source: today + ' 日记',
+          created: new Date().toLocaleDateString('zh-CN'),
+        })
+        added++
+      }
+    })
+    if (added > 0) STORAGE.save('vocab', vocab)
+  }
+
+  // 保存日记
+  const entries = STORAGE.entries()
+  const idx     = entries.findIndex(e => e.date === today)
+  const entry = {
+    id:       idx >= 0 ? entries[idx].id : Date.now(),
+    date:     today,
+    events,
+    reading,
+    vocab:       vocabRaw,
+    trivia:      trivia,
+    brainstorm:  brainstorm,
+    mood:        currentMood,
+    style:       currentStyle,
+    ai_history:  idx >= 0 ? entries[idx].ai_history : "",
+    ai_humor:    idx >= 0 ? entries[idx].ai_humor   : "",
+    saved_at:    new Date().toLocaleString("zh-CN"),
+  }
+  if (idx >= 0) entries[idx] = entry
+  else entries.unshift(entry)
+  STORAGE.save("entries", entries)
+  updateStreak(today)
+  const btn = document.getElementById("save-direct-btn")
+  btn.textContent = "✓ 今日日记已保存"
+  btn.disabled = true
+  showToast(vocabRaw ? "日记已保存，好词已自动入库 ⭐" : "日记已保存 🌸")
+}
+
+// ══════════════════════════════════════════
+// 提取好词
+// ══════════════════════════════════════════
+async function extractVocab() {
+  const apiKey = STORAGE.settings().api_key
+  const text   = document.getElementById('result-text').textContent
+  if (!apiKey || !text) return
+
+  showToast('正在提取好词…')
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 500,
+        messages: [{ role: 'user', content:
+          `从以下日记中提取3-5个适合小学生积累的好词好句，以JSON数组返回，只返回JSON，不要其他内容：
+[{"word":"词语","meaning":"简短释义（15字内）"}]
+
+日记内容：${text}` }],
+      }),
+    })
+    const data = await resp.json()
+    const raw  = data.content.map(b => b.text || '').join('').trim()
+    const words = JSON.parse(raw.replace(/```json|```/g, '').trim())
+
+    const vocab = STORAGE.vocab()
+    words.forEach(w => {
+      vocab.unshift({ id: Date.now() + Math.random(), word: w.word, meaning: w.meaning, source: '日记提取', created: new Date().toLocaleDateString('zh-CN') })
+    })
+    STORAGE.save('vocab', vocab)
+    showToast(`已提取 ${words.length} 个好词到词库 ⭐`)
+  } catch {
+    showToast('提取失败，请重试')
+  }
+}
+
+// ══════════════════════════════════════════
+// 日历
+// ══════════════════════════════════════════
+function renderCalendar() {
+  const year  = calDate.getFullYear()
+  const month = calDate.getMonth()
+  const label = `${year}年${month+1}月`
+  document.getElementById('cal-month-label').textContent = label
+
+  const allDates = new Set(STORAGE.entries().map(e => e.date))
+  const todayS   = todayStr()
+
+  const first   = new Date(year, month, 1)
+  const startDay = first.getDay()
+  const daysInMonth = new Date(year, month+1, 0).getDate()
+
+  const grid = document.getElementById('cal-grid')
+  // keep weekday headers
+  while (grid.children.length > 7) grid.removeChild(grid.lastChild)
+
+  // prev month padding
+  const prevDays = new Date(year, month, 0).getDate()
+  for (let i = startDay - 1; i >= 0; i--) {
+    const d = document.createElement('div')
+    d.className = 'cal-day other'
+    d.textContent = prevDays - i
+    grid.appendChild(d)
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`
+    const el = document.createElement('div')
+    el.className = 'cal-day'
+    el.textContent = d
+    if (dateStr === todayS)    el.classList.add('today')
+    if (allDates.has(dateStr)) { el.classList.add('has-entry'); el.onclick = () => openEntry(dateStr) }
+    grid.appendChild(el)
+  }
+
+  // month entry count
+  const prefix = `${year}-${String(month+1).padStart(2,'0')}`
+  const count  = STORAGE.entries().filter(e => e.date.startsWith(prefix)).length
+  document.getElementById('month-count').textContent = count
+}
+
+function calPrev() { calDate.setMonth(calDate.getMonth() - 1); renderCalendar(); }
+function calNext() { calDate.setMonth(calDate.getMonth() + 1); renderCalendar(); }
+
+// ══════════════════════════════════════════
+// 日记列表
+// ══════════════════════════════════════════
+function renderEntryList() {
+  const list    = document.getElementById('entry-list')
+  const entries = STORAGE.entries()
+  if (entries.length === 0) {
+    list.innerHTML = `<div class="empty"><div class="empty-icon">📖</div><div class="empty-text">还没有日记<br>去写第一篇吧！</div></div>`
+    return
+  }
+  list.innerHTML = entries.slice(0, 30).map(e => {
+    const text = (e.style === 'humor' ? e.ai_humor : e.ai_history) || ''
+    return `
+    <div class="entry-card" onclick="openEntry('${e.date}')">
+      <div class="entry-date">📅 ${e.date} &nbsp;·&nbsp; ${e.mood || ''}</div>
+      <div class="entry-preview">${text || e.events || '（无内容）'}</div>
+      <div class="entry-tags">
+        <span class="tag ${e.style === 'humor' ? 'teal' : 'rose'}">${e.style === 'humor' ? '幽默风' : '历史风'}</span>
+        ${e.reading ? '<span class="tag">📚 有读书</span>' : ''}
+      </div>
+    </div>`
+  }).join('')
+}
+
+function openEntry(dateStr) {
+  const entry = STORAGE.entries().find(e => e.date === dateStr)
+  if (!entry) return
+  openEntryId = entry.id
+  document.getElementById('modal-title').textContent = `${dateStr} 的日记`
+  document.getElementById('modal-date').textContent  = `心情：${entry.mood || '—'} · ${entry.style === 'humor' ? '轻松幽默风' : '历史叙事风'}`
+  let text = (entry.style === 'humor' ? entry.ai_humor : entry.ai_history) || entry.events || ''
+  if (entry.trivia)      text += '\n\n🧊 冷知识：' + entry.trivia
+  if (entry.brainstorm)  text += '\n\n💡 脑洞：'   + entry.brainstorm
+  document.getElementById('modal-text').textContent = text
+  document.getElementById('modal').classList.add('open')
+}
+
+function deleteEntry() {
+  if (!openEntryId) return
+  if (!confirm('确定删除这篇日记？')) return
+  STORAGE.save('entries', STORAGE.entries().filter(e => e.id !== openEntryId))
+  document.getElementById('modal').classList.remove('open')
+  renderCalendar()
+  renderEntryList()
+  showToast('日记已删除')
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal'))
+    document.getElementById('modal').classList.remove('open')
+}
+
+// ══════════════════════════════════════════
+// 好词本
+// ══════════════════════════════════════════
+function renderVocab() {
+  const grid  = document.getElementById('vocab-grid')
+  const vocab = STORAGE.vocab()
+  if (vocab.length === 0) {
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="empty-icon">⭐</div><div class="empty-text">词库还是空的<br>写完日记后点"提取好词"，或在这里手动添加</div></div>`
+    return
+  }
+  grid.innerHTML = vocab.map(v => `
+    <div class="vocab-card">
+      <button class="vocab-del" onclick="deleteVocab(${v.id},event)">×</button>
+      <div class="vocab-word">${v.word}</div>
+      <div class="vocab-meaning">${v.meaning || ''}</div>
+      <div class="vocab-src">${v.source ? '📚 ' + v.source : ''} ${v.created || ''}</div>
+    </div>
+  `).join('')
+}
+
+function addVocab() {
+  const word = document.getElementById('add-word').value.trim()
+  if (!word) return
+  const vocab = STORAGE.vocab()
+  vocab.unshift({
+    id: Date.now(),
+    word,
+    meaning: document.getElementById('add-meaning').value.trim(),
+    source:  document.getElementById('add-source').value.trim(),
+    created: new Date().toLocaleDateString('zh-CN'),
+  })
+  STORAGE.save('vocab', vocab)
+  document.getElementById('add-word').value    = ''
+  document.getElementById('add-meaning').value = ''
+  document.getElementById('add-source').value  = ''
+  renderVocab()
+  showToast('好词已收藏 ⭐')
+}
+
+function deleteVocab(id, e) {
+  e.stopPropagation()
+  STORAGE.save('vocab', STORAGE.vocab().filter(v => v.id !== id))
+  renderVocab()
+}
+
+// ══════════════════════════════════════════
+// 设置
+// ══════════════════════════════════════════
+function saveKey() {
+  const key = document.getElementById('api-key-input').value.trim()
+  const s   = STORAGE.settings()
+  s.api_key = key
+  STORAGE.save('settings', s)
+  showToast('API Key 已保存 ✓')
+}
+
+function toggleKey() {
+  const inp = document.getElementById('api-key-input')
+  inp.type  = inp.type === 'password' ? 'text' : 'password'
+}
+
+// ══════════════════════════════════════════
+// 连胜计算
+// ══════════════════════════════════════════
+function updateStreak(newDate) {
+  const s    = STORAGE.settings()
+  const last = s.last_entry_date
+  const today = newDate || todayStr()
+  let streak  = parseInt(s.streak || '0')
+
+  if (newDate) {
+    if (!last) streak = 1
+    else {
+      const diff = (new Date(today) - new Date(last)) / 86400000
+      if (diff === 1) streak += 1
+      else if (diff > 1) streak = 1
+    }
+    s.streak = String(streak)
+    s.last_entry_date = today
+    STORAGE.save('settings', s)
+  } else {
+    streak = parseInt(s.streak || '0')
+  }
+
+  document.getElementById('streak-num').textContent = streak
+}
+
+// ══════════════════════════════════════════
+// 工具函数
+// ══════════════════════════════════════════
+function showError(msg) {
+  const box = document.getElementById('error-box')
+  box.textContent = msg
+  box.style.display = 'block'
+}
+function hideError() { document.getElementById('error-box').style.display = 'none' }
+
+let toastTimer
+function showToast(msg) {
+  const t = document.getElementById('toast')
+  t.textContent = msg
+  t.classList.add('show')
+  clearTimeout(toastTimer)
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500)
+}
+
+// ══════════════════════════════════════════
+// 主题切换
+// ══════════════════════════════════════════
+function applyTheme(theme) {
+  document.body.className = document.body.className.replace(/theme-\S+/g, '').trim()
+  document.body.classList.add('theme-' + theme)
+  document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'))
+  const dot = document.querySelector('.theme-dot-' + theme)
+  if (dot) dot.classList.add('active')
+}
+
+function setTheme(theme, el) {
+  applyTheme(theme)
+  const s = STORAGE.settings()
+  s.theme = theme
+  STORAGE.save('settings', s)
+  const names = { paper:'纸上烟云 🍵', sakura:'樱花少女 🌸', business:'清新商务 💼' }
+  showToast('已切换：' + (names[theme] || theme))
+}
+
+// 启动
+init()
+</script>
+</body>
+</html>
