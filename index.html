@@ -1,581 +1,347 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>人间编年</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 :root{
-
 --bg:#161311;
 --paper:#221D1A;
 --paper2:#2E2621;
-
 --text:#F2E8DC;
 --text2:#B7A99B;
 --text3:#7C7067;
-
 --accent:#8FAE8E;
 --accentSoft:#2D3830;
-
 --border:#3A312B;
-
 --radius:24px;
-
-}
-
-body.theme-songyan{
-
---bg:#161311;
---paper:#221D1A;
---paper2:#2E2621;
-
---text:#F2E8DC;
---text2:#B7A99B;
---text3:#7C7067;
-
---accent:#8FAE8E;
---accentSoft:#2D3830;
-
---border:#3A312B;
-
-}
-
-body.theme-xuanzhi{
-
---bg:#F7F2E8;
---paper:#EFE7DA;
---paper2:#E3D7C5;
-
---text:#2B2622;
---text2:#6A5F55;
---text3:#A09284;
-
---accent:#B0714F;
---accentSoft:#EFE0D0;
-
---border:#D8CCBB;
-
-}
-
-body.theme-yanzhi{
-
---bg:#2A1E22;
---paper:#3A2A2F;
---paper2:#49353B;
-
---text:#F8EDEE;
---text2:#D8B8C0;
---text3:#A7828D;
-
---accent:#E09AB0;
---accentSoft:#5A3B45;
-
---border:#6B4A55;
-
-}
-
-body.theme-qingjian{
-
---bg:#162024;
---paper:#223136;
---paper2:#2F4348;
-
---text:#E7F0EA;
---text2:#A8BBB0;
---text3:#73867C;
-
---accent:#7FA89A;
---accentSoft:#32464B;
-
---border:#3C545B;
-
+--shadow:0 10px 40px rgba(0,0,0,.25);
 }
 
 body{
-
 background:var(--bg);
 color:var(--text);
-
 font-family:'Noto Sans SC',sans-serif;
-
-transition:.3s;
-
 overflow-x:hidden;
-
+transition:.35s;
+position:relative;
 }
-
-/* 中国风暗纹 */
 
 body::before{
-
 content:'';
-
 position:fixed;
 inset:0;
-
 pointer-events:none;
-
-opacity:.12;
-
+opacity:.14;
 z-index:-1;
-
-background-size:240px;
-
+background-size:cover;
+background-position:center;
 }
 
-body.theme-songyan::before{
-
-background-image:
-radial-gradient(circle at 20% 20%, rgba(255,255,255,.04), transparent 22%),
-linear-gradient(45deg, transparent 48%, rgba(255,255,255,.02) 49%, transparent 51%);
-
+/* 宣纸 */
+body.theme-xuanzhi{
+--bg:#f6f1e8;
+--paper:#efe6d7;
+--paper2:#e6dac7;
+--text:#2f2923;
+--text2:#6c6155;
+--text3:#998b7c;
+--accent:#a56a42;
+--accentSoft:#efe2d2;
+--border:#d8cab7;
 }
 
 body.theme-xuanzhi::before{
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+}
 
-background-image:
-linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px),
-linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px);
+/* 松烟 */
+body.theme-songyan{
+--bg:#151210;
+--paper:#211c19;
+--paper2:#2c2521;
+--text:#f0e6db;
+--text2:#b7a99b;
+--text3:#776a61;
+--accent:#93b09a;
+--accentSoft:#29342e;
+--border:#3a312b;
+}
 
-background-size:120px 120px;
+body.theme-songyan::before{
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 1200'%3E%3Cpath d='M0 700 Q 200 500 400 700 T 800 700 T 1200 650' stroke='rgba(255,255,255,0.10)' stroke-width='3' fill='none'/%3E%3Cpath d='M0 820 Q 200 620 400 820 T 800 820 T 1200 780' stroke='rgba(255,255,255,0.05)' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+}
 
+/* 胭脂 */
+body.theme-yanzhi{
+--bg:#2a1d21;
+--paper:#39282d;
+--paper2:#49343a;
+--text:#f7edee;
+--text2:#d7b9c1;
+--text3:#a4828b;
+--accent:#e49ab1;
+--accentSoft:#583b45;
+--border:#6b4a55;
 }
 
 body.theme-yanzhi::before{
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='none' stroke='rgba(255,255,255,0.05)'/%3E%3Cpath d='M0 200 H400 M200 0 V400' stroke='rgba(255,255,255,0.05)'/%3E%3Ccircle cx='200' cy='200' r='120' stroke='rgba(255,255,255,0.04)' fill='none'/%3E%3C/svg%3E");
+background-size:260px;
+}
 
-background-image:
-radial-gradient(circle at 50% 50%, rgba(255,255,255,.04), transparent 24%);
-
+/* 青简 */
+body.theme-qingjian{
+--bg:#162125;
+--paper:#223237;
+--paper2:#2e4348;
+--text:#e5efe8;
+--text2:#a9bbb1;
+--text3:#76867f;
+--accent:#82aa9b;
+--accentSoft:#30464b;
+--border:#40575e;
 }
 
 body.theme-qingjian::before{
-
-background-image:
-linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-
-background-size:90px;
-
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cpath d='M80 0V800M160 0V800M240 0V800M320 0V800M400 0V800M480 0V800M560 0V800M640 0V800M720 0V800' stroke='rgba(255,255,255,0.05)' stroke-width='2'/%3E%3Cpath d='M0 650 Q200 550 400 650 T800 630' stroke='rgba(255,255,255,0.04)' fill='none'/%3E%3C/svg%3E");
+background-size:240px;
 }
 
 header{
-
-padding:20px;
-
-border-bottom:1px solid var(--border);
-
+padding:22px;
 display:flex;
 justify-content:space-between;
 align-items:flex-start;
 gap:20px;
-
 flex-wrap:wrap;
-
+border-bottom:1px solid var(--border);
+backdrop-filter:blur(8px);
 }
 
 .logo{
-
 font-family:'Ma Shan Zheng',serif;
-font-size:54px;
-
-line-height:1.2;
-
+font-size:58px;
+line-height:1.1;
 color:var(--accent);
-
 }
 
 .logo-sub{
-
-margin-top:6px;
-
+margin-top:8px;
 font-size:15px;
-
 color:var(--text2);
-
 }
 
 .theme-wrap{
-
 display:flex;
 gap:10px;
 flex-wrap:wrap;
-
 }
 
 .theme-btn{
-
-border:none;
-
-background:var(--paper);
-
-padding:12px 18px;
-
-border-radius:999px;
-
-cursor:pointer;
-
-color:var(--text2);
-
+background:rgba(255,255,255,.03);
 border:1px solid var(--border);
+color:var(--text2);
+padding:12px 18px;
+border-radius:999px;
+cursor:pointer;
+transition:.25s;
+}
 
+.theme-btn:hover{
+transform:translateY(-2px);
+background:var(--accentSoft);
+color:var(--text);
 }
 
 .layout{
-
 display:grid;
 grid-template-columns:320px 1fr;
-
 min-height:calc(100vh - 110px);
-
 }
 
 .sidebar{
-
-padding:22px;
-
+padding:24px;
 border-right:1px solid var(--border);
-
 }
 
 .main{
-
 padding:28px;
-
 }
 
-.panel,
-.card{
-
-background:var(--paper);
-
+.panel,.card,.quote{
+background:rgba(255,255,255,.02);
 border:1px solid var(--border);
-
-border-radius:var(--radius);
-
+border-radius:28px;
+backdrop-filter:blur(8px);
+box-shadow:var(--shadow);
 }
 
-.panel{
-
-padding:22px;
-
-}
-
-.card{
-
-padding:24px;
-
-margin-bottom:22px;
-
-}
+.panel{padding:24px;}
+.card{padding:24px;margin-bottom:22px;}
+.quote{padding:22px;margin-bottom:28px;}
 
 .calendar-head{
-
 display:flex;
 justify-content:space-between;
 align-items:center;
-
 margin-bottom:20px;
-
 }
 
 .calendar-title{
-
 font-family:'Ma Shan Zheng';
-font-size:40px;
-
+font-size:42px;
 color:var(--accent);
-
 }
 
 .cal-btn{
-
-width:42px;
-height:42px;
-
+width:44px;
+height:44px;
 border-radius:50%;
-
 border:none;
-
-background:var(--bg);
-
+background:var(--paper2);
 color:var(--text);
-
 cursor:pointer;
-
 }
 
-.week-row,
-.calendar-grid{
-
+.week-row,.calendar-grid{
 display:grid;
 grid-template-columns:repeat(7,1fr);
-
 gap:8px;
-
 }
 
-.week-row{
-
-margin-bottom:12px;
-
-}
-
-.week-row div{
-
-text-align:center;
-color:var(--text3);
-
-}
+.week-row{margin-bottom:12px;}
+.week-row div{text-align:center;color:var(--text3);}
 
 .day{
-
 aspect-ratio:1;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
-border-radius:12px;
-
+border-radius:14px;
 cursor:pointer;
-
 position:relative;
-
 transition:.2s;
-
 }
 
 .day:hover{
-
 background:var(--accentSoft);
-
+transform:translateY(-2px);
 }
 
 .day.selected{
-
 background:var(--accent);
-
-color:white;
-
+color:#fff;
 font-weight:bold;
-
 }
 
 .day.today{
-
 border:2px solid var(--accent);
-
 }
 
 .day.has-entry::after{
-
 content:'';
-
 width:6px;
 height:6px;
-
-background:var(--accent);
-
 border-radius:50%;
-
+background:var(--accent);
 position:absolute;
 bottom:5px;
-
-}
-
-.quote{
-
-padding:22px;
-
-background:var(--accentSoft);
-
-border:1px dashed var(--accent);
-
-border-radius:22px;
-
-margin-bottom:30px;
-
 }
 
 .quote-title{
-
 color:var(--accent);
-
-margin-bottom:12px;
-
+margin-bottom:10px;
 }
 
 .quote-text{
-
 font-family:'Noto Serif SC',serif;
-
 font-size:18px;
-
 line-height:2;
-
 color:var(--text2);
-
 }
 
 .date-box{
-
 text-align:center;
-
 margin-bottom:30px;
-
 }
 
 .date-box h1{
-
 font-family:'Ma Shan Zheng';
-
-font-size:72px;
-
-line-height:1.2;
-
+font-size:76px;
 color:var(--accent);
-
 }
 
 .date-box p{
-
-margin-top:8px;
-
+margin-top:10px;
 color:var(--text2);
-
 }
 
 .label{
-
 margin-bottom:12px;
-
 color:var(--text2);
-
 }
 
 textarea{
-
 width:100%;
-
 background:none;
-
 border:none;
-
 outline:none;
-
 resize:vertical;
-
 min-height:120px;
-
 font-family:'Noto Serif SC',serif;
-
 font-size:16px;
-
 line-height:2;
-
 color:var(--text);
-
 }
 
-::placeholder{
-
-color:var(--text3);
-
-}
+::placeholder{color:var(--text3);}
 
 .actions{
-
 display:flex;
 gap:16px;
-
 margin-top:24px;
-
 }
 
 .btn{
-
 flex:1;
-
 border:none;
-
 padding:18px;
-
-border-radius:18px;
-
+border-radius:20px;
 cursor:pointer;
-
 font-size:16px;
-
 font-weight:700;
+transition:.25s;
+}
 
+.btn:hover{
+transform:translateY(-2px);
 }
 
 .btn-primary{
-
 background:var(--accent);
-
-color:white;
-
+color:#fff;
 }
 
 .btn-secondary{
-
 background:var(--paper2);
-
 color:var(--text2);
-
 }
 
 @media(max-width:980px){
-
-.layout{
-
-grid-template-columns:1fr;
-
-}
-
-.sidebar{
-
-display:none;
-
-}
-
-.logo{
-
-font-size:42px;
-
-}
-
-.date-box h1{
-
-font-size:52px;
-
-}
-
-.main{
-
-padding:18px;
-
-}
-
-.actions{
-
-flex-direction:column;
-
-}
-
+.layout{grid-template-columns:1fr;}
+.sidebar{display:none;}
+.logo{font-size:42px;}
+.date-box h1{font-size:54px;}
+.main{padding:18px;}
+.actions{flex-direction:column;}
 }
 
 </style>
@@ -584,399 +350,217 @@ flex-direction:column;
 <body class="theme-songyan">
 
 <header>
-
 <div>
-
 <div class="logo">人间编年</div>
-
-<div class="logo-sub">
-不是世界史，而是我的人间史
-</div>
-
+<div class="logo-sub">不是世界史，而是我的人间史</div>
 </div>
 
 <div class="theme-wrap">
-
 <button class="theme-btn" onclick="setTheme('xuanzhi')">宣纸</button>
-
 <button class="theme-btn" onclick="setTheme('songyan')">松烟</button>
-
 <button class="theme-btn" onclick="setTheme('yanzhi')">胭脂</button>
-
 <button class="theme-btn" onclick="setTheme('qingjian')">青简</button>
-
 </div>
-
 </header>
 
 <div class="layout">
-
 <aside class="sidebar">
-
 <div class="panel">
-
 <div class="calendar-head">
-
 <button class="cal-btn" onclick="changeMonth(-1)">‹</button>
-
 <div class="calendar-title" id="monthTitle"></div>
-
 <button class="cal-btn" onclick="changeMonth(1)">›</button>
-
 </div>
 
 <div class="week-row">
-
-<div>日</div>
-<div>一</div>
-<div>二</div>
-<div>三</div>
-<div>四</div>
-<div>五</div>
-<div>六</div>
-
+<div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
 </div>
 
 <div class="calendar-grid" id="calendarGrid"></div>
-
 </div>
-
 </aside>
 
 <main class="main">
-
 <div class="quote">
-
 <div class="quote-title">✦ 今日史官</div>
-
 <div class="quote-text" id="dailyQuote"></div>
-
 </div>
 
 <div class="date-box">
-
 <h1 id="mainDate"></h1>
-
 <p id="subDate"></p>
-
 </div>
 
 <div class="card">
-
 <div class="label">☀️ 坊间见闻</div>
-
 <textarea id="events" placeholder="今日市井之间，有何可记？"></textarea>
-
 </div>
 
 <div class="card">
-
 <div class="label">📚 案头博览</div>
-
 <textarea id="reading" placeholder="今日翻阅了哪些卷册？"></textarea>
-
 </div>
 
 <div class="card">
-
 <div class="label">🧊 考据心得</div>
-
 <textarea id="trivia" placeholder="记录一则掌故、冷知识……"></textarea>
-
 </div>
 
 <div class="card">
-
 <div class="label">💡 奇思脑洞</div>
-
 <textarea id="brainstorm" placeholder="若历史拐向另一条河流……"></textarea>
-
 </div>
 
 <div class="actions">
-
-<button class="btn btn-primary" onclick="saveEntry()">
-💾 载入史册
-</button>
-
-<button class="btn btn-secondary" onclick="exportMarkdown()">
-📜 誊录
-</button>
-
+<button class="btn btn-primary" onclick="saveEntry()">💾 载入史册</button>
+<button class="btn btn-secondary" onclick="exportMarkdown()">📜 誊录</button>
 </div>
-
 </main>
-
 </div>
 
 <script>
 
 const QUOTES = [
-
 '万历十五年无大事，今日亦然。',
-
 '长安米贵，居大不易，而今日咖啡亦涨价。',
-
 '历史从不是宏大叙事，它只是千万人的今日。',
-
 '古人记山河，今人记地铁与深夜便利店。',
-
 '所谓人生，不过是把寻常日子写成长卷。',
-
 '窗外车流不息，恰如旧时长安夜市。',
-
 '所有未被记下的生活，终将沉入岁月。'
-
 ];
 
 function setDailyQuote(){
-
 const today = new Date().toDateString();
-
 let seed = 0;
-
 for(let i=0;i<today.length;i++){
-
 seed += today.charCodeAt(i);
-
 }
-
-dailyQuote.innerText = QUOTES[seed % QUOTES.length];
-
+document.getElementById('dailyQuote').innerText = QUOTES[seed % QUOTES.length];
 }
 
 let selectedDate = new Date();
-
 let currentMonth = new Date();
-
 const weeks = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
 
 function formatDate(date){
-
 return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
-
 }
 
 function updateDate(){
-
-mainDate.innerText =
+document.getElementById('mainDate').innerText =
 `${selectedDate.getFullYear()}年${selectedDate.getMonth()+1}月${selectedDate.getDate()}日`;
 
-subDate.innerText = weeks[selectedDate.getDay()];
-
+document.getElementById('subDate').innerText = weeks[selectedDate.getDay()];
 }
 
 function getEntries(){
-
 return JSON.parse(localStorage.getItem('renjian_entries') || '{}');
-
 }
 
 function saveEntries(data){
-
 localStorage.setItem('renjian_entries', JSON.stringify(data));
-
 }
 
 function loadEntry(){
-
 const entries = getEntries();
-
 const key = formatDate(selectedDate);
-
 const entry = entries[key];
 
-if(entry){
-
-events.value = entry.events || '';
-
-reading.value = entry.reading || '';
-
-trivia.value = entry.trivia || '';
-
-brainstorm.value = entry.brainstorm || '';
-
-}else{
-
-events.value = '';
-
-reading.value = '';
-
-trivia.value = '';
-
-brainstorm.value = '';
-
-}
-
+document.getElementById('events').value = entry?.events || '';
+document.getElementById('reading').value = entry?.reading || '';
+document.getElementById('trivia').value = entry?.trivia || '';
+document.getElementById('brainstorm').value = entry?.brainstorm || '';
 }
 
 function saveEntry(){
-
 const entries = getEntries();
-
 const key = formatDate(selectedDate);
 
 entries[key] = {
-
-events:events.value,
-
-reading:reading.value,
-
-trivia:trivia.value,
-
-brainstorm:brainstorm.value
-
+events:document.getElementById('events').value,
+reading:document.getElementById('reading').value,
+trivia:document.getElementById('trivia').value,
+brainstorm:document.getElementById('brainstorm').value
 };
 
 saveEntries(entries);
-
-alert('已载入史册');
-
 renderCalendar();
-
+alert('已载入史册');
 }
 
 function exportMarkdown(){
-
 const key = formatDate(selectedDate);
 
-const markdown =
-
-`# ${key}
-
-## 坊间见闻
-${events.value}
-
-## 案头博览
-${reading.value}
-
-## 考据心得
-${trivia.value}
-
-## 奇思脑洞
-${brainstorm.value}
-
-`;
+const markdown = `# ${key}\n\n## 坊间见闻\n${document.getElementById('events').value}\n\n## 案头博览\n${document.getElementById('reading').value}\n\n## 考据心得\n${document.getElementById('trivia').value}\n\n## 奇思脑洞\n${document.getElementById('brainstorm').value}`;
 
 const blob = new Blob([markdown], {type:'text/markdown'});
-
 const url = URL.createObjectURL(blob);
-
 const a = document.createElement('a');
-
 a.href = url;
-
 a.download = `${key}-人间编年.md`;
-
 a.click();
-
 URL.revokeObjectURL(url);
-
 }
 
 function renderCalendar(){
-
-calendarGrid.innerHTML = '';
+const grid = document.getElementById('calendarGrid');
+grid.innerHTML = '';
 
 const year = currentMonth.getFullYear();
-
 const month = currentMonth.getMonth();
 
-monthTitle.innerText = `${year}年 ${month+1}月`;
+document.getElementById('monthTitle').innerText = `${year}年 ${month+1}月`;
 
 const firstDay = new Date(year, month, 1).getDay();
-
-const lastDate = new Date(year, month+1, 0).getDate();
-
+const lastDate = new Date(year, month + 1, 0).getDate();
 const entries = getEntries();
 
 for(let i=0;i<firstDay;i++){
-
 const empty = document.createElement('div');
-
-calendarGrid.appendChild(empty);
-
+grid.appendChild(empty);
 }
 
 for(let i=1;i<=lastDate;i++){
-
 const date = new Date(year, month, i);
-
 const div = document.createElement('div');
-
 div.className = 'day';
 
 const key = formatDate(date);
-
-if(entries[key]){
-
-div.classList.add('has-entry');
-
-}
-
-if(date.toDateString() === new Date().toDateString()){
-
-div.classList.add('today');
-
-}
-
-if(date.toDateString() === selectedDate.toDateString()){
-
-div.classList.add('selected');
-
-}
+if(entries[key]) div.classList.add('has-entry');
+if(date.toDateString() === new Date().toDateString()) div.classList.add('today');
+if(date.toDateString() === selectedDate.toDateString()) div.classList.add('selected');
 
 div.innerText = i;
 
-div.onclick = ()=>{
-
+ div.onclick = ()=>{
 selectedDate = date;
-
 updateDate();
-
 loadEntry();
-
 renderCalendar();
-
 };
 
-calendarGrid.appendChild(div);
-
+grid.appendChild(div);
 }
-
 }
 
 function changeMonth(step){
-
 currentMonth.setMonth(currentMonth.getMonth() + step);
-
 renderCalendar();
-
 }
 
 function setTheme(theme){
-
 document.body.className = `theme-${theme}`;
-
 localStorage.setItem('renjian_theme', theme);
-
 }
 
 function init(){
-
-const savedTheme =
-localStorage.getItem('renjian_theme') || 'songyan';
-
+const savedTheme = localStorage.getItem('renjian_theme') || 'songyan';
 document.body.className = `theme-${savedTheme}`;
-
 setDailyQuote();
-
 updateDate();
-
 loadEntry();
-
 renderCalendar();
-
 }
 
 init();
@@ -985,3 +569,4 @@ init();
 
 </body>
 </html>
+```
