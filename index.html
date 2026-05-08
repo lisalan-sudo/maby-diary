@@ -9,61 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
 :root{
---bg:#161311;
---paper:#221D1A;
---paper2:#2E2621;
---text:#F2E8DC;
---text2:#B7A99B;
---text3:#7C7067;
---accent:#8FAE8E;
---accentSoft:#2D3830;
---border:#3A312B;
---radius:24px;
---shadow:0 10px 40px rgba(0,0,0,.25);
-}
-
-body{
-background:var(--bg);
-color:var(--text);
-font-family:'Noto Sans SC',sans-serif;
-overflow-x:hidden;
-transition:.35s;
-position:relative;
-}
-
-body::before{
-content:'';
-position:fixed;
-inset:0;
-pointer-events:none;
-opacity:.14;
-z-index:-1;
-background-size:cover;
-background-position:center;
-}
-
-/* 宣纸 */
-body.theme-xuanzhi{
---bg:#f6f1e8;
---paper:#efe6d7;
---paper2:#e6dac7;
---text:#2f2923;
---text2:#6c6155;
---text3:#998b7c;
---accent:#a56a42;
---accentSoft:#efe2d2;
---border:#d8cab7;
-}
-
-body.theme-xuanzhi::before{
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
-}
-
-/* 松烟 */
-body.theme-songyan{
 --bg:#151210;
 --paper:#211c19;
 --paper2:#2c2521;
@@ -73,98 +26,55 @@ body.theme-songyan{
 --accent:#93b09a;
 --accentSoft:#29342e;
 --border:#3a312b;
+--shadow:0 10px 40px rgba(0,0,0,.25);
 }
 
-body.theme-songyan::before{
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 1200'%3E%3Cpath d='M0 700 Q 200 500 400 700 T 800 700 T 1200 650' stroke='rgba(255,255,255,0.10)' stroke-width='3' fill='none'/%3E%3Cpath d='M0 820 Q 200 620 400 820 T 800 820 T 1200 780' stroke='rgba(255,255,255,0.05)' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+body{
+background:var(--bg);
+color:var(--text);
+font-family:'Noto Sans SC',sans-serif;
+overflow-x:hidden;
+position:relative;
 }
 
-/* 胭脂 */
-body.theme-yanzhi{
---bg:#2a1d21;
---paper:#39282d;
---paper2:#49343a;
---text:#f7edee;
---text2:#d7b9c1;
---text3:#a4828b;
---accent:#e49ab1;
---accentSoft:#583b45;
---border:#6b4a55;
-}
-
-body.theme-yanzhi::before{
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='none' stroke='rgba(255,255,255,0.05)'/%3E%3Cpath d='M0 200 H400 M200 0 V400' stroke='rgba(255,255,255,0.05)'/%3E%3Ccircle cx='200' cy='200' r='120' stroke='rgba(255,255,255,0.04)' fill='none'/%3E%3C/svg%3E");
-background-size:260px;
-}
-
-/* 青简 */
-body.theme-qingjian{
---bg:#162125;
---paper:#223237;
---paper2:#2e4348;
---text:#e5efe8;
---text2:#a9bbb1;
---text3:#76867f;
---accent:#82aa9b;
---accentSoft:#30464b;
---border:#40575e;
-}
-
-body.theme-qingjian::before{
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cpath d='M80 0V800M160 0V800M240 0V800M320 0V800M400 0V800M480 0V800M560 0V800M640 0V800M720 0V800' stroke='rgba(255,255,255,0.05)' stroke-width='2'/%3E%3Cpath d='M0 650 Q200 550 400 650 T800 630' stroke='rgba(255,255,255,0.04)' fill='none'/%3E%3C/svg%3E");
-background-size:240px;
+body::before{
+content:'';
+position:fixed;
+inset:0;
+pointer-events:none;
+opacity:.12;
+z-index:-1;
+background-image:
+radial-gradient(circle at 20% 20%, rgba(255,255,255,.05), transparent 30%),
+radial-gradient(circle at 80% 80%, rgba(255,255,255,.04), transparent 30%);
 }
 
 header{
-padding:22px;
+padding:24px;
 display:flex;
 justify-content:space-between;
 align-items:flex-start;
 gap:20px;
-flex-wrap:wrap;
 border-bottom:1px solid var(--border);
-backdrop-filter:blur(8px);
 }
 
 .logo{
-font-family:'Ma Shan Zheng',serif;
+font-family:'Ma Shan Zheng';
 font-size:58px;
-line-height:1.1;
 color:var(--accent);
+line-height:1.1;
 }
 
 .logo-sub{
-margin-top:8px;
+margin-top:10px;
+color:var(--text2);
 font-size:15px;
-color:var(--text2);
-}
-
-.theme-wrap{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-}
-
-.theme-btn{
-background:rgba(255,255,255,.03);
-border:1px solid var(--border);
-color:var(--text2);
-padding:12px 18px;
-border-radius:999px;
-cursor:pointer;
-transition:.25s;
-}
-
-.theme-btn:hover{
-transform:translateY(-2px);
-background:var(--accentSoft);
-color:var(--text);
 }
 
 .layout{
 display:grid;
 grid-template-columns:320px 1fr;
-min-height:calc(100vh - 110px);
+min-height:calc(100vh - 120px);
 }
 
 .sidebar{
@@ -176,17 +86,51 @@ border-right:1px solid var(--border);
 padding:28px;
 }
 
-.panel,.card,.quote{
+.panel,.card,.quote,.time-scroll{
 background:rgba(255,255,255,.02);
 border:1px solid var(--border);
 border-radius:28px;
-backdrop-filter:blur(8px);
+backdrop-filter:blur(10px);
 box-shadow:var(--shadow);
 }
 
-.panel{padding:24px;}
-.card{padding:24px;margin-bottom:22px;}
-.quote{padding:22px;margin-bottom:28px;}
+.panel{
+padding:24px;
+}
+
+.card{
+padding:24px;
+margin-bottom:22px;
+}
+
+.quote{
+padding:24px;
+margin-bottom:28px;
+position:relative;
+overflow:hidden;
+}
+
+.quote::after{
+content:'史';
+position:absolute;
+right:20px;
+bottom:-10px;
+font-size:120px;
+opacity:.04;
+font-family:'Ma Shan Zheng';
+}
+
+.quote-title{
+color:var(--accent);
+margin-bottom:14px;
+}
+
+.quote-text{
+font-family:'Noto Serif SC';
+font-size:18px;
+line-height:2;
+color:var(--text2);
+}
 
 .calendar-head{
 display:flex;
@@ -197,13 +141,13 @@ margin-bottom:20px;
 
 .calendar-title{
 font-family:'Ma Shan Zheng';
-font-size:42px;
+font-size:40px;
 color:var(--accent);
 }
 
 .cal-btn{
-width:44px;
-height:44px;
+width:42px;
+height:42px;
 border-radius:50%;
 border:none;
 background:var(--paper2);
@@ -217,8 +161,14 @@ grid-template-columns:repeat(7,1fr);
 gap:8px;
 }
 
-.week-row{margin-bottom:12px;}
-.week-row div{text-align:center;color:var(--text3);}
+.week-row{
+margin-bottom:10px;
+}
+
+.week-row div{
+text-align:center;
+color:var(--text3);
+}
 
 .day{
 aspect-ratio:1;
@@ -236,46 +186,89 @@ background:var(--accentSoft);
 transform:translateY(-2px);
 }
 
+.day.today{
+border:2px solid var(--accent);
+}
+
 .day.selected{
 background:var(--accent);
 color:#fff;
 font-weight:bold;
 }
 
-.day.today{
-border:2px solid var(--accent);
-}
-
 .day.has-entry::after{
 content:'';
 width:6px;
 height:6px;
-border-radius:50%;
 background:var(--accent);
+border-radius:50%;
 position:absolute;
 bottom:5px;
 }
 
-.quote-title{
-color:var(--accent);
-margin-bottom:10px;
+.time-scroll{
+padding:28px;
+margin-bottom:28px;
+position:relative;
+overflow:hidden;
 }
 
-.quote-text{
-font-family:'Noto Serif SC',serif;
-font-size:18px;
-line-height:2;
-color:var(--text2);
+.time-scroll::before{
+content:'人间卷宗';
+position:absolute;
+top:20px;
+right:24px;
+font-family:'Ma Shan Zheng';
+font-size:32px;
+opacity:.08;
+}
+
+.time-line{
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.time-item{
+display:flex;
+gap:18px;
+align-items:flex-start;
+padding-bottom:16px;
+border-bottom:1px dashed rgba(255,255,255,.06);
+}
+
+.time-label{
+width:88px;
+flex-shrink:0;
+color:var(--text3);
+font-size:14px;
+letter-spacing:2px;
+}
+
+.time-content{
+flex:1;
+}
+
+.time-main{
+font-size:20px;
+font-family:'Noto Serif SC';
+line-height:1.8;
+}
+
+.time-sub{
+margin-top:4px;
+color:var(--text3);
+font-size:13px;
 }
 
 .date-box{
 text-align:center;
-margin-bottom:30px;
+margin-bottom:36px;
 }
 
 .date-box h1{
 font-family:'Ma Shan Zheng';
-font-size:76px;
+font-size:74px;
 color:var(--accent);
 }
 
@@ -296,13 +289,15 @@ border:none;
 outline:none;
 resize:vertical;
 min-height:120px;
-font-family:'Noto Serif SC',serif;
+font-family:'Noto Serif SC';
 font-size:16px;
 line-height:2;
 color:var(--text);
 }
 
-::placeholder{color:var(--text3);}
+::placeholder{
+color:var(--text3);
+}
 
 .actions{
 display:flex;
@@ -335,37 +330,69 @@ background:var(--paper2);
 color:var(--text2);
 }
 
+.phase-input{
+margin-top:12px;
+width:100%;
+padding:14px;
+background:var(--paper2);
+border:1px solid var(--border);
+border-radius:16px;
+color:var(--text);
+font-size:15px;
+}
+
 @media(max-width:980px){
-.layout{grid-template-columns:1fr;}
-.sidebar{display:none;}
-.logo{font-size:42px;}
-.date-box h1{font-size:54px;}
-.main{padding:18px;}
-.actions{flex-direction:column;}
+
+.layout{
+grid-template-columns:1fr;
+}
+
+.sidebar{
+display:none;
+}
+
+.logo{
+font-size:42px;
+}
+
+.main{
+padding:18px;
+}
+
+.actions{
+flex-direction:column;
+}
+
+.date-box h1{
+font-size:56px;
+}
+
+.time-main{
+font-size:17px;
+}
+
 }
 
 </style>
 </head>
 
-<body class="theme-songyan">
+<body>
 
 <header>
+
 <div>
 <div class="logo">人间编年</div>
 <div class="logo-sub">不是世界史，而是我的人间史</div>
 </div>
 
-<div class="theme-wrap">
-<button class="theme-btn" onclick="setTheme('xuanzhi')">宣纸</button>
-<button class="theme-btn" onclick="setTheme('songyan')">松烟</button>
-<button class="theme-btn" onclick="setTheme('yanzhi')">胭脂</button>
-<button class="theme-btn" onclick="setTheme('qingjian')">青简</button>
-</div>
 </header>
 
 <div class="layout">
+
 <aside class="sidebar">
+
 <div class="panel">
+
 <div class="calendar-head">
 <button class="cal-btn" onclick="changeMonth(-1)">‹</button>
 <div class="calendar-title" id="monthTitle"></div>
@@ -373,17 +400,80 @@ color:var(--text2);
 </div>
 
 <div class="week-row">
-<div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+<div>日</div>
+<div>一</div>
+<div>二</div>
+<div>三</div>
+<div>四</div>
+<div>五</div>
+<div>六</div>
 </div>
 
 <div class="calendar-grid" id="calendarGrid"></div>
+
 </div>
+
 </aside>
 
 <main class="main">
+
 <div class="quote">
 <div class="quote-title">✦ 今日史官</div>
 <div class="quote-text" id="dailyQuote"></div>
+</div>
+
+<div class="time-scroll">
+
+<div class="time-line">
+
+<div class="time-item">
+<div class="time-label">公历</div>
+<div class="time-content">
+<div class="time-main" id="solarDate"></div>
+<div class="time-sub">现实世界正在流动</div>
+</div>
+</div>
+
+<div class="time-item">
+<div class="time-label">时令</div>
+<div class="time-content">
+<div class="time-main" id="lunarDate"></div>
+<div class="time-sub">东方时间仍在缓慢运转</div>
+</div>
+</div>
+
+<div class="time-item">
+<div class="time-label">人间历</div>
+<div class="time-content">
+<div class="time-main" id="lifeDays"></div>
+<div class="time-sub">自初临人世起，已走过的岁月</div>
+</div>
+</div>
+
+<div class="time-item">
+<div class="time-label">人生阶段</div>
+<div class="time-content">
+<div class="time-main" id="lifePhase"></div>
+<div class="time-sub">此刻的人生章节</div>
+</div>
+</div>
+
+<div class="time-item">
+<div class="time-label">本年已载</div>
+<div class="time-content">
+<div class="time-main" id="yearEntries"></div>
+<div class="time-sub">已经誊入史册的篇章</div>
+</div>
+</div>
+
+</div>
+
+<input
+class="phase-input"
+id="phaseInput"
+placeholder="例如：芝加哥初春纪 · 第17日"
+/>
+
 </div>
 
 <div class="date-box">
@@ -415,43 +505,83 @@ color:var(--text2);
 <button class="btn btn-primary" onclick="saveEntry()">💾 载入史册</button>
 <button class="btn btn-secondary" onclick="exportMarkdown()">📜 誊录</button>
 </div>
+
 </main>
+
 </div>
 
 <script>
 
 const QUOTES = [
-'万历十五年无大事，今日亦然。',
-'长安米贵，居大不易，而今日咖啡亦涨价。',
-'历史从不是宏大叙事，它只是千万人的今日。',
-'古人记山河，今人记地铁与深夜便利店。',
 '所谓人生，不过是把寻常日子写成长卷。',
-'窗外车流不息，恰如旧时长安夜市。',
-'所有未被记下的生活，终将沉入岁月。'
+'所有未被记下的生活，终将沉入岁月。',
+'古人记山河，今人记地铁与深夜便利店。',
+'历史从不是宏大叙事，它只是千万人的今日。',
+'窗外车流不息，恰如旧时长安夜市。'
 ];
 
-function setDailyQuote(){
-const today = new Date().toDateString();
-let seed = 0;
-for(let i=0;i<today.length;i++){
-seed += today.charCodeAt(i);
-}
-document.getElementById('dailyQuote').innerText = QUOTES[seed % QUOTES.length];
-}
+const weeks = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
 
 let selectedDate = new Date();
 let currentMonth = new Date();
-const weeks = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
 
 function formatDate(date){
 return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
 }
 
-function updateDate(){
-document.getElementById('mainDate').innerText =
-`${selectedDate.getFullYear()}年${selectedDate.getMonth()+1}月${selectedDate.getDate()}日`;
+function setDailyQuote(){
 
-document.getElementById('subDate').innerText = weeks[selectedDate.getDay()];
+const today = new Date().toDateString();
+
+let seed = 0;
+
+for(let i=0;i<today.length;i++){
+seed += today.charCodeAt(i);
+}
+
+document.getElementById('dailyQuote').innerText =
+QUOTES[seed % QUOTES.length];
+
+}
+
+function updateDate(){
+
+document.getElementById('mainDate').innerText =
+`${selectedDate.getMonth()+1}月${selectedDate.getDate()}日`;
+
+document.getElementById('subDate').innerText =
+`${selectedDate.getFullYear()}年 · ${weeks[selectedDate.getDay()]}`;
+
+document.getElementById('solarDate').innerText =
+`${selectedDate.getFullYear()}年${selectedDate.getMonth()+1}月${selectedDate.getDate()}日 ${weeks[selectedDate.getDay()]}`;
+
+document.getElementById('lunarDate').innerText =
+'乙巳年 · 立夏后三日';
+
+const birthday = new Date('1997-01-01');
+
+const days =
+Math.floor((selectedDate - birthday)/(1000*60*60*24));
+
+document.getElementById('lifeDays').innerText =
+`第 ${days.toLocaleString()} 日`;
+
+const phase =
+localStorage.getItem('renjian_phase') ||
+'尚未命名的人生章节';
+
+document.getElementById('lifePhase').innerText = phase;
+
+const entries = getEntries();
+
+const currentYear = selectedDate.getFullYear();
+
+const count =
+Object.keys(entries).filter(key=>key.startsWith(currentYear)).length;
+
+document.getElementById('yearEntries').innerText =
+`${count} 篇`;
+
 }
 
 function getEntries(){
@@ -463,18 +593,31 @@ localStorage.setItem('renjian_entries', JSON.stringify(data));
 }
 
 function loadEntry(){
+
 const entries = getEntries();
+
 const key = formatDate(selectedDate);
+
 const entry = entries[key];
 
-document.getElementById('events').value = entry?.events || '';
-document.getElementById('reading').value = entry?.reading || '';
-document.getElementById('trivia').value = entry?.trivia || '';
-document.getElementById('brainstorm').value = entry?.brainstorm || '';
+document.getElementById('events').value =
+entry?.events || '';
+
+document.getElementById('reading').value =
+entry?.reading || '';
+
+document.getElementById('trivia').value =
+entry?.trivia || '';
+
+document.getElementById('brainstorm').value =
+entry?.brainstorm || '';
+
 }
 
 function saveEntry(){
+
 const entries = getEntries();
+
 const key = formatDate(selectedDate);
 
 entries[key] = {
@@ -485,82 +628,166 @@ brainstorm:document.getElementById('brainstorm').value
 };
 
 saveEntries(entries);
+
+const phase =
+document.getElementById('phaseInput').value;
+
+if(phase){
+localStorage.setItem('renjian_phase', phase);
+}
+
+updateDate();
+
 renderCalendar();
-alert('已载入史册');
+
+alert('已誊入此年卷宗');
+
 }
 
 function exportMarkdown(){
+
 const key = formatDate(selectedDate);
 
-const markdown = `# ${key}\n\n## 坊间见闻\n${document.getElementById('events').value}\n\n## 案头博览\n${document.getElementById('reading').value}\n\n## 考据心得\n${document.getElementById('trivia').value}\n\n## 奇思脑洞\n${document.getElementById('brainstorm').value}`;
+const markdown = `
+# 人间编年
+
+## 公历
+${document.getElementById('solarDate').innerText}
+
+## 时令
+${document.getElementById('lunarDate').innerText}
+
+## 人间历
+${document.getElementById('lifeDays').innerText}
+
+## 人生阶段
+${document.getElementById('lifePhase').innerText}
+
+---
+
+## 坊间见闻
+${document.getElementById('events').value}
+
+## 案头博览
+${document.getElementById('reading').value}
+
+## 考据心得
+${document.getElementById('trivia').value}
+
+## 奇思脑洞
+${document.getElementById('brainstorm').value}
+`;
 
 const blob = new Blob([markdown], {type:'text/markdown'});
+
 const url = URL.createObjectURL(blob);
+
 const a = document.createElement('a');
+
 a.href = url;
+
 a.download = `${key}-人间编年.md`;
+
 a.click();
+
 URL.revokeObjectURL(url);
+
 }
 
 function renderCalendar(){
+
 const grid = document.getElementById('calendarGrid');
+
 grid.innerHTML = '';
 
 const year = currentMonth.getFullYear();
+
 const month = currentMonth.getMonth();
 
-document.getElementById('monthTitle').innerText = `${year}年 ${month+1}月`;
+document.getElementById('monthTitle').innerText =
+`${year}年 ${month+1}月`;
 
-const firstDay = new Date(year, month, 1).getDay();
-const lastDate = new Date(year, month + 1, 0).getDate();
+const firstDay =
+new Date(year, month, 1).getDay();
+
+const lastDate =
+new Date(year, month+1, 0).getDate();
+
 const entries = getEntries();
 
 for(let i=0;i<firstDay;i++){
+
 const empty = document.createElement('div');
+
 grid.appendChild(empty);
+
 }
 
 for(let i=1;i<=lastDate;i++){
+
 const date = new Date(year, month, i);
+
 const div = document.createElement('div');
+
 div.className = 'day';
 
 const key = formatDate(date);
+
 if(entries[key]) div.classList.add('has-entry');
-if(date.toDateString() === new Date().toDateString()) div.classList.add('today');
-if(date.toDateString() === selectedDate.toDateString()) div.classList.add('selected');
+
+if(date.toDateString() === new Date().toDateString()){
+div.classList.add('today');
+}
+
+if(date.toDateString() === selectedDate.toDateString()){
+div.classList.add('selected');
+}
 
 div.innerText = i;
 
- div.onclick = ()=>{
+div.onclick = ()=>{
+
 selectedDate = date;
+
 updateDate();
+
 loadEntry();
+
 renderCalendar();
+
 };
 
 grid.appendChild(div);
+
 }
+
 }
 
 function changeMonth(step){
-currentMonth.setMonth(currentMonth.getMonth() + step);
-renderCalendar();
-}
 
-function setTheme(theme){
-document.body.className = `theme-${theme}`;
-localStorage.setItem('renjian_theme', theme);
+currentMonth.setMonth(currentMonth.getMonth() + step);
+
+renderCalendar();
+
 }
 
 function init(){
-const savedTheme = localStorage.getItem('renjian_theme') || 'songyan';
-document.body.className = `theme-${savedTheme}`;
+
 setDailyQuote();
+
 updateDate();
+
 loadEntry();
+
 renderCalendar();
+
+const savedPhase =
+localStorage.getItem('renjian_phase');
+
+if(savedPhase){
+document.getElementById('phaseInput').value = savedPhase;
+}
+
 }
 
 init();
@@ -569,4 +796,3 @@ init();
 
 </body>
 </html>
-
